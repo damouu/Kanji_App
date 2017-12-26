@@ -1,6 +1,8 @@
 package com.example.mouad.kanjiapp;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.nfc.Tag;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,17 +19,31 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
 {
 
+
     TextView ChampText;
     EditText editText;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    protected void onCreate(Bundle savedInstanceState)                                                  // this lines are for associate the class with the XML file .
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);                                                         // here we say that MainActivity's  XML layout is activity_main.
     }
 
+    public void buttonOnClick3 (View v)                                                                 // we create  a method name buttonOnClick3 associated to the right button .
+    {
+        ImageButton personaButton = (ImageButton) findViewById(R.id.imageButton2);                      // this two lines instantiated an ImageButton named personaButton and associated the button to the xml imageButton2.
+        personaButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(MainActivity.this , SecondScreen.class);      // here we are instantiated a new intent to go the SecondScreen.
+                startActivity(intent);                                                                 // and now we are staring the intent by an startActivity (in android a page == Activity).
+            }
+        });
+    }
     public void buttonOnClick1 (View v)
     {
         Button Click = (Button) findViewById(R.id.button);
