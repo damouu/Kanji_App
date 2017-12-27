@@ -86,5 +86,18 @@ public class MainActivity extends AppCompatActivity
         });
         builder.show();
     }
+
+    public void buttonOnClickX (View v)
+    {
+            ImageButton personaPurple = (ImageButton) findViewById(R.id.personaPurple);
+            personaPurple.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view)
+                {
+                    Intent intent = new Intent(MainActivity.this , ThirdActivity.class);
+                    startActivity(intent);
+                }
+            });
+    }
 }
 
