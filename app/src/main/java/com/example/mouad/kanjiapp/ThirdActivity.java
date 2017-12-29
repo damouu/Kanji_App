@@ -32,8 +32,10 @@ public class ThirdActivity extends AppCompatActivity
             List<Kanji> leskanjis = new ArrayList<Kanji>();
             Kanji hana = new Kanji('花',1,"hana","hana","fleur");
             Kanji tabe = new Kanji('食',2,"tabe","taberu","manger");
+            Kanji yomi = new Kanji('読',3,"yomi","yomi","lire");
             leskanjis.add(hana);
             leskanjis.add(tabe);
+            leskanjis.add(yomi);
             ArrayAdapter<Kanji> arrayAdapter = new ArrayAdapter<Kanji>(this,android.R.layout.simple_list_item_1,leskanjis);
             list.setAdapter(arrayAdapter);
 
