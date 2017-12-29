@@ -6,21 +6,36 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by mouad on 27/12/2017.
  */
 
 public class ThirdActivity extends AppCompatActivity
 {
+        private ListView list;
 
         protected void onCreate(Bundle savedInstanceState)
         {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.thirdactivity);
+            list =(ListView) findViewById(R.id.ListView);
+            List<Kanji> leskanjis = new ArrayList<Kanji>();
+            Kanji hana = new Kanji('花',1,"hana","hana","fleur");
+            Kanji tabe = new Kanji('食',2,"tabe","taberu","manger");
+            leskanjis.add(hana);
+            leskanjis.add(tabe);
+            ArrayAdapter<Kanji> arrayAdapter = new ArrayAdapter<Kanji>(this,android.R.layout.simple_list_item_1,leskanjis);
+            list.setAdapter(arrayAdapter);
 
         }
 
