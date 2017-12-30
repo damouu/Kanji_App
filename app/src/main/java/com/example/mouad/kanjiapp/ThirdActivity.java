@@ -24,11 +24,13 @@ public class ThirdActivity extends AppCompatActivity
 {
         private ListView list;
 
+
         protected void onCreate(Bundle savedInstanceState)
         {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.thirdactivity);
             list =(ListView) findViewById(R.id.ListView);
+
             List<Kanji> leskanjis = new ArrayList<Kanji>();
             Kanji hana = new Kanji('花',1,"hana","hana","fleur");
             Kanji tabe = new Kanji('食',2,"tabe","taberu","manger");
@@ -36,7 +38,9 @@ public class ThirdActivity extends AppCompatActivity
             leskanjis.add(hana);
             leskanjis.add(tabe);
             leskanjis.add(yomi);
-            ArrayAdapter<Kanji> arrayAdapter = new ArrayAdapter<Kanji>(this,android.R.layout.simple_list_item_1,leskanjis);
+
+
+            final ArrayAdapter<Kanji> arrayAdapter = new ArrayAdapter<Kanji>(this,android.R.layout.simple_list_item_1,leskanjis);
             list.setAdapter(arrayAdapter);
 
         }
