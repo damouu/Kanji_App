@@ -17,7 +17,7 @@ public class Kanji extends AppCompatActivity
 
     public Kanji()
     {
-
+            super();
     }
 
     public Kanji(char kanji, int numero, String lecture_kunyomi, String lecture_onyomi , String signification)

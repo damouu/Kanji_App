@@ -84,6 +84,7 @@ public class ThirdActivity extends AppCompatActivity
             text.setText(t.getName().toString());
             text2.setText(ageR);
 
+
         }
 
 }
