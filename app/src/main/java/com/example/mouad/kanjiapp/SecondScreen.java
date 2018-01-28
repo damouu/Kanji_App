@@ -1,5 +1,4 @@
 package com.example.mouad.kanjiapp;
-
 import android.animation.ValueAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -45,7 +44,8 @@ public class SecondScreen extends AppCompatActivity
         Button button = (Button) findViewById(R.id.button4);
         EditText editText5 = (EditText) findViewById(R.id.ryu_edit);
         TextView textView5 = (TextView) findViewById(R.id.ryu_view);
-        textView5.setText("dede");
+        Kanji aller = new Kanji('行',1,"iku","bilal","aller");
+        textView5.setText(aller.getSignification());
         if(!editText5.getText().toString().trim().equals(textView5.getText()))
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(SecondScreen.this);
