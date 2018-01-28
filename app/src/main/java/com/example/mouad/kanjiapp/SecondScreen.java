@@ -38,7 +38,7 @@ public class SecondScreen extends AppCompatActivity
 
         });
     }
-
+// test
         public void buttonOnClick4 (View v)
     {
         Button button = (Button) findViewById(R.id.button4);
