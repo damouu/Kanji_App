@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 public class Kanji extends AppCompatActivity
 {
 
-    private char kanji;
+    private String kanji;
     private int numero;
     private String lecture_kenyon;
     private String lecture_onyomi;
@@ -20,7 +20,7 @@ public class Kanji extends AppCompatActivity
             super();
     }
 
-    public Kanji(char kanji, int numero, String lecture_kunyomi, String lecture_onyomi , String signification)
+    public Kanji(String kanji, int numero, String lecture_kunyomi, String lecture_onyomi , String signification)
     {
         this.kanji  = kanji;
         this.numero = numero;
@@ -30,15 +30,10 @@ public class Kanji extends AppCompatActivity
 
     }
 
-    public char getKanji()
-    {
-        return kanji;
-    }
 
-    public void setKanji(char kanji)
-    {
-        this.kanji = kanji;
-    }
+    public String getKanji() { return kanji; }
+
+    public void setKanji(String kanji) {this.kanji = kanji;}
 
     public int getNumero() {
         return numero;

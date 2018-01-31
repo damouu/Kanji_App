@@ -32,9 +32,9 @@ public class ThirdActivity extends AppCompatActivity
             list =(ListView) findViewById(R.id.ListView);
 
             List<Kanji> leskanjis = new ArrayList<Kanji>();
-            Kanji hana = new Kanji('花',1,"hana","hana","fleur");
-            Kanji tabe = new Kanji('食',2,"tabe","taberu","manger");
-            Kanji yomi = new Kanji('読',3,"yomi","yomi","Lire");
+            Kanji hana = new Kanji("花",1,"hana","hana","fleur");
+            Kanji tabe = new Kanji("食",2,"tabe","taberu","manger");
+            Kanji yomi = new Kanji("読",3,"yomi","yomi","Lire");
             leskanjis.add(hana);
             leskanjis.add(tabe);
             leskanjis.add(yomi);
