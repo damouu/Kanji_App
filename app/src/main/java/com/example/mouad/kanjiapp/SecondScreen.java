@@ -23,19 +23,19 @@ import java.util.Optional;
 
 public class SecondScreen extends AppCompatActivity
 {
+    List<Kanji> leskanjis = new ArrayList<>();
+    Kanji manger = new Kanji("食",1,"dede","dede","manger");
+    Kanji lire = new Kanji("読",2,"dede","dede","lire");
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.secondactivities);
-        List<Kanji> leskanjis = new ArrayList<>();
-        Kanji manger = new Kanji("食",1,"dede","dede","manger");
-        Kanji lire = new Kanji("読",2,"dede","dede","lire");
-        leskanjis.add(manger);
         leskanjis.add(lire);
+        leskanjis.add(manger);
         TextView textView5 = (TextView) findViewById(R.id.ryu_view);
-        textView5.setText(leskanjis.get(0).getKanji());
-
+        textView5.setText(leskanjis.get(1).getKanji());
     }
 
     public void buttonOnClick3 (View v)
@@ -56,11 +56,10 @@ public class SecondScreen extends AppCompatActivity
     // test
         public void buttonOnClick4 (View v)
     {
-        Kanji aller = new Kanji("食",1,"tabe","dede","manger");
         TextView textView5 = (TextView) findViewById(R.id.ryu_view);
-        textView5.setText(aller.getSignification());
         Button button = (Button) findViewById(R.id.button4);
         EditText editText5 = (EditText) findViewById(R.id.ryu_edit);
+        textView5.setText(leskanjis.get(1).getSignification());
         if(!editText5.getText().toString().trim().equals(textView5.getText()))
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(SecondScreen.this);
@@ -77,6 +76,12 @@ public class SecondScreen extends AppCompatActivity
             });
             builder.show();
         }
+        else
+        {
+            editText5.setText("gg");
+            //textView5.setText(leskanjis.listIterator().nextIndex());
+        }
 
     }
+
 }
