@@ -24,43 +24,41 @@ import java.util.Optional;
 public class SecondScreen extends AppCompatActivity
 {
     List<Kanji> leskanjis = new ArrayList<>();
-    Kanji manger = new Kanji("食",1,"dede","dede","manger");
-    Kanji lire = new Kanji("読",2,"dede","dede","lire");
+    Kanji manger = new Kanji("食",0,"dede","dede","manger");
+    Kanji lire = new Kanji("読",1,"dede","dede","lire");
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.secondactivities);
-        leskanjis.add(lire);
         leskanjis.add(manger);
+        leskanjis.add(lire);
         TextView textView5 = (TextView) findViewById(R.id.ryu_view);
-        textView5.setText(leskanjis.get(1).getKanji());
+        textView5.setText(leskanjis.get(0).getKanji());
     }
 
     public void buttonOnClick3 (View v)
     {
         ImageButton personaButton = (ImageButton) findViewById(R.id.imageButton);
         personaButton.setOnClickListener(new View.OnClickListener()
-
         {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SecondScreen.this, MainActivity.class);
                 startActivity(intent);
             }
-
-
         });
     }
-    // test
+
         public void buttonOnClick4 (View v)
     {
+        leskanjis.add(manger);
+        leskanjis.add(lire);
         TextView textView5 = (TextView) findViewById(R.id.ryu_view);
         Button button = (Button) findViewById(R.id.button4);
         EditText editText5 = (EditText) findViewById(R.id.ryu_edit);
-        textView5.setText(leskanjis.get(1).getSignification());
-        if(!editText5.getText().toString().trim().equals(textView5.getText()))
+        if(!editText5.getText().toString().trim().equals(leskanjis.get(0).getSignification()))
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(SecondScreen.this);
             builder.setCancelable(true);
@@ -78,6 +76,7 @@ public class SecondScreen extends AppCompatActivity
         }
         else
         {
+            textView5.setText(leskanjis.get(0).getSignification());
             editText5.setText("gg");
             //textView5.setText(leskanjis.listIterator().nextIndex());
         }
