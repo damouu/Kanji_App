@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -25,17 +26,23 @@ public class SecondScreen extends AppCompatActivity
 {
     List<Kanji> leskanjis = new ArrayList<>();
     Kanji manger = new Kanji("食",0,"dede","dede","manger");
-    Kanji lire = new Kanji("読",1,"dede","dede","lire");
+    Kanji lire   = new Kanji("読",1,"dede","dede","lire");
+    Kanji boire  = new Kanji("飲",2,"dede","dede","boire");
+    boolean reponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.secondactivities);
+        leskanjis.add(boire);
         leskanjis.add(manger);
         leskanjis.add(lire);
         TextView textView5 = (TextView) findViewById(R.id.ryu_view);
         textView5.setText(leskanjis.get(0).getKanji());
+        reponse = false;
+
+
     }
 
     public void buttonOnClick3 (View v)
@@ -53,13 +60,58 @@ public class SecondScreen extends AppCompatActivity
 
         public void buttonOnClick4 (View v)
     {
-        leskanjis.add(manger);
-        leskanjis.add(lire);
+        TextView textView2 = (TextView) findViewById(R.id.textView2);
+        EditText editText3 = (EditText) findViewById(R.id.editText3);
+
+        System.out.println("hello");
         TextView textView5 = (TextView) findViewById(R.id.ryu_view);
         Button button = (Button) findViewById(R.id.button4);
         EditText editText5 = (EditText) findViewById(R.id.ryu_edit);
-        if(!editText5.getText().toString().trim().equals(leskanjis.get(0).getSignification()))
+        reponse = false;
+        if(Arrays.asList(leskanjis).contains(textView5.getText())){
+
+        }
+        for (int i =0; i < leskanjis.size(); i++){
+            if(editText5.getText().toString().equals(leskanjis.get(i).getSignification())) {
+               editText5.setText("");
+               textView5.setText(leskanjis.get(i+1).getKanji());
+               break;
+            }
+
+            /*if(!editText5.getText().toString().trim().equals(leskanjis.get(0).getSignification()))
+            {
+                {
+                    reponse = false;
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SecondScreen.this);
+                    builder.setCancelable(true);
+                    builder.setTitle("Alerte");
+                    builder.setMessage("faux pas egale");
+                    builder.setNegativeButton("cancel", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i)
+                        {
+                            dialogInterface.cancel();
+                        }
+                    });
+                    builder.show();
+                }
+            }
+            else
+            {
+                    leskanjis.get(0);
+            }*/
+
+        }
+
+
+    }
+
+}
+
+       /* if(!editText5.getText().toString().trim().equals(leskanjis.get(0).getSignification()))
         {
+            reponse = false;
             AlertDialog.Builder builder = new AlertDialog.Builder(SecondScreen.this);
             builder.setCancelable(true);
             builder.setTitle("Alerte");
@@ -74,13 +126,9 @@ public class SecondScreen extends AppCompatActivity
             });
             builder.show();
         }
+
         else
         {
-            textView5.setText(leskanjis.get(0).getSignification());
-            editText5.setText("gg");
-            //textView5.setText(leskanjis.listIterator().nextIndex());
-        }
 
-    }
+        }*/
 
-}
