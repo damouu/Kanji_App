@@ -40,9 +40,6 @@ public class SecondScreen extends AppCompatActivity
         leskanjis.add(lire);
         TextView textView5 = (TextView) findViewById(R.id.ryu_view);
         textView5.setText(leskanjis.get(0).getKanji());
-        reponse = false;
-
-
     }
 
     public void buttonOnClick3 (View v)
@@ -62,14 +59,12 @@ public class SecondScreen extends AppCompatActivity
     {
         TextView textView2 = (TextView) findViewById(R.id.textView2);
         EditText editText3 = (EditText) findViewById(R.id.editText3);
-
         System.out.println("hello");
         TextView textView5 = (TextView) findViewById(R.id.ryu_view);
         Button button = (Button) findViewById(R.id.button4);
         EditText editText5 = (EditText) findViewById(R.id.ryu_edit);
         reponse = false;
         if(Arrays.asList(leskanjis).contains(textView5.getText())){
-
         }
         for (int i =0; i < leskanjis.size(); i++){
             if(editText5.getText().toString().equals(leskanjis.get(i).getSignification())) {
@@ -77,58 +72,28 @@ public class SecondScreen extends AppCompatActivity
                textView5.setText(leskanjis.get(i+1).getKanji());
                break;
             }
-
-            /*if(!editText5.getText().toString().trim().equals(leskanjis.get(0).getSignification()))
-            {
-                {
-                    reponse = false;
-                    AlertDialog.Builder builder = new AlertDialog.Builder(SecondScreen.this);
-                    builder.setCancelable(true);
-                    builder.setTitle("Alerte");
-                    builder.setMessage("faux pas egale");
-                    builder.setNegativeButton("cancel", new DialogInterface.OnClickListener()
-                    {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i)
-                        {
-                            dialogInterface.cancel();
-                        }
-                    });
-                    builder.show();
-                }
-            }
             else
             {
-                    leskanjis.get(0);
-            }*/
-
+                AlertDialog.Builder builder = new AlertDialog.Builder(SecondScreen.this);
+                builder.setCancelable(true);
+                builder.setTitle("Alerte");
+                builder.setMessage("faux pas egale");
+                builder.setNegativeButton("cancel", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i)
+                    {
+                        dialogInterface.cancel();
+                    }
+                });
+                builder.show();
+            }
         }
-
 
     }
-
 }
 
-       /* if(!editText5.getText().toString().trim().equals(leskanjis.get(0).getSignification()))
-        {
-            reponse = false;
-            AlertDialog.Builder builder = new AlertDialog.Builder(SecondScreen.this);
-            builder.setCancelable(true);
-            builder.setTitle("Alerte");
-            builder.setMessage("faux pas egale");
-            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener()
-            {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i)
-                {
-                    dialogInterface.cancel();
-                }
-            });
-            builder.show();
-        }
 
-        else
-        {
 
-        }*/
+
 
