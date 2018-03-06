@@ -1,22 +1,15 @@
 package com.example.mouad.kanjiapp;
-import android.animation.ValueAnimator;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by mouad on 26/12/2017.
@@ -24,7 +17,8 @@ import java.util.Optional;
 
 public class SecondScreen extends AppCompatActivity
 {
-    List<Kanji> leskanjis = new ArrayList<>();
+    List<Kanji> leskanjis   = new ArrayList<>();
+    List<String> fauxkanjis = new ArrayList<String>();
     Kanji manger = new Kanji("食",0,"dede","dede","manger");
     Kanji lire   = new Kanji("読",1,"dede","dede","lire");
     Kanji boire  = new Kanji("飲",2,"dede","dede","boire");
@@ -68,6 +62,9 @@ public class SecondScreen extends AppCompatActivity
 
 
         for (Kanji kanji : leskanjis){
+            if (!editText5.getText().toString().equals(leskanjis.get(i).getSignification())) {
+                fauxkanjis.add(leskanjis.get(i).getKanji());
+            }
             editText5.setText("");
             i++;
             if (i==leskanjis.size()){
@@ -75,7 +72,7 @@ public class SecondScreen extends AppCompatActivity
             }
             textView5.setText(leskanjis.get(i).getKanji());
             break;
-        }
+            }
 
 
        /* for (int i =0; i < leskanjis.size(); i++){
