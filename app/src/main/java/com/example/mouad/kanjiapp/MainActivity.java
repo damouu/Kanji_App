@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity
 
     public void buttonOnClick3 (View v)                                                                 // we create  a method name buttonOnClick3 associated to the right button .
     {
-        ImageButton personaButton = (ImageButton) findViewById(R.id.imageButton2);                      // this two lines instantiated an ImageButton named personaButton and associated the button to the xml imageButton2.
+        ImageButton personaButton = findViewById(R.id.imageButton2);                      // this two lines instantiated an ImageButton named personaButton and associated the button to the xml imageButton2.
         personaButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -46,9 +46,9 @@ public class MainActivity extends AppCompatActivity
     }
     public void buttonOnClick1 (View v)
     {
-        Button Click = (Button) findViewById(R.id.button);
-        EditText editText = (EditText) findViewById(R.id.editText2);
-        TextView ChampText = (TextView) findViewById(R.id.textView);
+        Button Click = findViewById(R.id.button);
+        EditText editText = findViewById(R.id.editText2);
+        TextView ChampText = findViewById(R.id.textView);
         ChampText.setText(editText.getText());
         ((Button)v).setText("salam");
         Click.setOnClickListener(new View.OnClickListener()
@@ -64,10 +64,10 @@ public class MainActivity extends AppCompatActivity
 
     public void buttonOnClick2 (View v)
     {
-        EditText editText = (EditText) findViewById(R.id.editText2);
-        TextView ChampText = (TextView) findViewById(R.id.textView);
+        EditText editText = findViewById(R.id.editText2);
+        TextView ChampText = findViewById(R.id.textView);
         ChampText.setText(editText.getText());
-        ImageButton Damou_Button = (ImageButton) findViewById(R.id.Damou_Button);
+        ImageButton Damou_Button = findViewById(R.id.Damou_Button);
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setCancelable(true);
         builder.setTitle("Alerte");
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity
 
     public void buttonOnClickX (View v)
     {
-            ImageButton personaPurple = (ImageButton) findViewById(R.id.personaPurple);
+            ImageButton personaPurple = findViewById(R.id.personaPurple);
             personaPurple.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view)

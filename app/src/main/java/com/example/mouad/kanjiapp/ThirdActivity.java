@@ -29,7 +29,7 @@ public class ThirdActivity extends AppCompatActivity
         {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.thirdactivity);
-            list =(ListView) findViewById(R.id.ListView);
+            list = findViewById(R.id.ListView);
 
             List<Kanji> leskanjis = new ArrayList<Kanji>();
             Kanji hana = new Kanji("花",1,"hana","hana","fleur");
@@ -52,11 +52,11 @@ public class ThirdActivity extends AppCompatActivity
 
         public void buttonTest (View v)
         {
-            EditText edit = (EditText) findViewById(R.id.whatsyourname);
-            TextView text = (TextView) findViewById(R.id.textviewmountain);
-            Button button = (Button) findViewById(R.id.buttontest);
-            EditText edit2 = (EditText) findViewById(R.id.editText4);
-            TextView text2 = (TextView) findViewById(R.id.textView3);
+            EditText edit = findViewById(R.id.whatsyourname);
+            TextView text = findViewById(R.id.textviewmountain);
+            Button button = findViewById(R.id.buttontest);
+            EditText edit2 = findViewById(R.id.editText4);
+            TextView text2 = findViewById(R.id.textView3);
             if (edit.getText().toString().trim().length()<=0 || edit2.getText().toString().trim().length() <=0)
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ThirdActivity.this);

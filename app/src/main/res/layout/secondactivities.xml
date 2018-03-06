@@ -11,7 +11,7 @@
         android:id="@+id/imageButton"
         android:layout_width="155dp"
         android:layout_height="93dp"
-        android:layout_marginBottom="284dp"
+        android:layout_marginBottom="368dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:background="@android:color/holo_red_dark"
@@ -56,15 +56,16 @@
     <TextView
         android:id="@+id/ryu_view"
         android:layout_width="128dp"
-        android:layout_height="51dp"
+        android:layout_height="94dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="aller"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton"
-        app:layout_constraintVertical_bias="0.354" />
+        app:layout_constraintVertical_bias="0.468" />
 
     <EditText
         android:id="@+id/ryu_edit"
@@ -82,7 +83,7 @@
         app:layout_constraintHorizontal_bias="0.733"
         app:layout_constraintStart_toEndOf="@+id/ryu_view"
         app:layout_constraintTop_toBottomOf="@+id/imageButton"
-        app:layout_constraintVertical_bias="0.347" />
+        app:layout_constraintVertical_bias="0.495" />
 
     <Button
         android:id="@+id/button4"
@@ -96,21 +97,22 @@
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ryu_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/ryu_edit"
+        app:layout_constraintVertical_bias="0.7" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/ScoreView"
         android:layout_width="149dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton"
+        android:layout_marginTop="40dp"
+        android:text="Votre Score"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
 </android.support.constraint.ConstraintLayout>

@@ -29,7 +29,7 @@ public class SecondScreen extends AppCompatActivity
     Kanji lire   = new Kanji("読",1,"dede","dede","lire");
     Kanji boire  = new Kanji("飲",2,"dede","dede","boire");
     boolean reponse;
-
+    int i=0;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -38,13 +38,13 @@ public class SecondScreen extends AppCompatActivity
         leskanjis.add(boire);
         leskanjis.add(manger);
         leskanjis.add(lire);
-        TextView textView5 = (TextView) findViewById(R.id.ryu_view);
-        textView5.setText(leskanjis.get(0).getKanji());
+        TextView textView5 = findViewById(R.id.ryu_view);
+        textView5.setText(leskanjis.get(i).getKanji());
     }
 
     public void buttonOnClick3 (View v)
     {
-        ImageButton personaButton = (ImageButton) findViewById(R.id.imageButton);
+        ImageButton personaButton = findViewById(R.id.imageButton);
         personaButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -57,16 +57,28 @@ public class SecondScreen extends AppCompatActivity
 
         public void buttonOnClick4 (View v)
     {
-        TextView textView2 = (TextView) findViewById(R.id.textView2);
-        EditText editText3 = (EditText) findViewById(R.id.editText3);
-        System.out.println("hello");
-        TextView textView5 = (TextView) findViewById(R.id.ryu_view);
-        Button button = (Button) findViewById(R.id.button4);
-        EditText editText5 = (EditText) findViewById(R.id.ryu_edit);
+
+        EditText editText3 = findViewById(R.id.editText3);
+        TextView textView5 = findViewById(R.id.ryu_view);
+        Button button = findViewById(R.id.button4);
+        EditText editText5 = findViewById(R.id.ryu_edit);
         reponse = false;
         if(Arrays.asList(leskanjis).contains(textView5.getText())){
         }
-        for (int i =0; i < leskanjis.size(); i++){
+
+
+        for (Kanji kanji : leskanjis){
+            editText5.setText("");
+            i++;
+            if (i==leskanjis.size()){
+                break;
+            }
+            textView5.setText(leskanjis.get(i).getKanji());
+            break;
+        }
+
+
+       /* for (int i =0; i < leskanjis.size(); i++){
             if(editText5.getText().toString().equals(leskanjis.get(i).getSignification())) {
                editText5.setText("");
                textView5.setText(leskanjis.get(i+1).getKanji());
@@ -88,7 +100,7 @@ public class SecondScreen extends AppCompatActivity
                 });
                 builder.show();
             }
-        }
+        }*/
 
     }
 }
