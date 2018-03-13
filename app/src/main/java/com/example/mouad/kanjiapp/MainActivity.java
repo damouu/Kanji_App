@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity
 
     public void buttonOnClick3 (View v)                                                                 // we create  a method name buttonOnClick3 associated to the right button .
     {
-        ImageButton personaButton = findViewById(R.id.imageButton2);                      // this two lines instantiated an ImageButton named personaButton and associated the button to the xml imageButton2.
+        ImageButton personaButton = findViewById(R.id.imageButton2);                                   // this two lines instantiated an ImageButton named personaButton and associated the button to the xml imageButton2.
         personaButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
