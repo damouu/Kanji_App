@@ -24,6 +24,7 @@ public class SecondScreen extends AppCompatActivity
     Kanji manger = new Kanji("食",0,"dede","dede","manger");
     Kanji lire   = new Kanji("読",1,"dede","dede","lire");
     Kanji boire  = new Kanji("飲",2,"dede","dede","boire");
+    Kanji entrer = new Kanji("入",3,"dede","dede","entrer");
     boolean reponse = false;
     int i = 0;
     int score = 0;
@@ -36,6 +37,7 @@ public class SecondScreen extends AppCompatActivity
         leskanjis.add(boire);
         leskanjis.add(manger);
         leskanjis.add(lire);
+        leskanjis.add(entrer);
         TextView textView5 = findViewById(R.id.ryu_view);
         textView5.setText(leskanjis.get(i).getKanji());
     }
@@ -55,7 +57,6 @@ public class SecondScreen extends AppCompatActivity
 
         public void buttonOnClick4 (View v)
     {
-
         TextView ScoreView = findViewById(R.id.ScoreView);
         EditText editText3 = findViewById(R.id.editText3);
         TextView textView5 = findViewById(R.id.ryu_view);

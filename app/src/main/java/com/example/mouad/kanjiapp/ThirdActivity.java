@@ -40,14 +40,16 @@ public class ThirdActivity extends AppCompatActivity
             ListView.setAdapter(adapter);
         }
 
-        public void buttonOnClickX (View v)
+        public void buttonHome (View v)
         {
-
+            Intent intent = new Intent(ThirdActivity.this, MainActivity.class);
+            ThirdActivity.this.startActivity(intent);
         }
 
-        public void buttonTest (View v)
+        public void buttonRetry (View v)
         {
-
+            Intent intent = new Intent(ThirdActivity.this, SecondScreen.class);
+            ThirdActivity.this.startActivity(intent);
         }
 
 }
