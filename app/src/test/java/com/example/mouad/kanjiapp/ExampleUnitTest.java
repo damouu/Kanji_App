@@ -17,5 +17,13 @@ public class ExampleUnitTest
         assertEquals(4, 2 + 2);
     }
 
+    @Test
+    public void getting_kanji_meaning()
+    {
+        Kanji z = new Kanji("zizi",1,"dede","dede","manger");
+        Kanji k = new Kanji("zizi",1,"dede","dede","manger");
+        assertEquals(k,k);
+    }
+
 
 }

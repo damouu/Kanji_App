@@ -44,6 +44,20 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
+
+    public void personaPurple ( View v)
+    {
+        ImageButton personaPurple = findViewById(R.id.personaPurple);
+        personaPurple.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Learn_Kanji.class);      // here we are instantiated a new intent to go the SecondScreen.
+                startActivity(intent);
+            }
+        });
+    }
+
+
     public void buttonOnClick1 (View v)
     {
         Button Click = findViewById(R.id.button);

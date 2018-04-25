@@ -13,7 +13,7 @@
         android:layout_height="62dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="172dp"
+        android:layout_marginTop="144dp"
         android:contentDescription="test of "
         android:text="LE SALAM"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +88,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/button"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.755"
+        app:layout_constraintVertical_bias="0.833"
         app:srcCompat="@drawable/persona_5_logo" />
 
     <ImageButton
@@ -100,13 +100,13 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@android:color/holo_purple"
-        android:onClick="buttonOnClickX"
+        android:onClick="personaPurple"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.587"
+        app:layout_constraintHorizontal_bias="0.814"
         app:layout_constraintStart_toEndOf="@+id/imageButton2"
         app:layout_constraintTop_toBottomOf="@+id/Damou_Button"
-        app:layout_constraintVertical_bias="0.489"
+        app:layout_constraintVertical_bias="0.676"
         app:srcCompat="@drawable/persona_5_logo" />
 
 </android.support.constraint.ConstraintLayout>

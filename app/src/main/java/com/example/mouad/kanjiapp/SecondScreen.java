@@ -21,10 +21,10 @@ public class SecondScreen extends AppCompatActivity
 {
     List<Kanji> leskanjis   = new ArrayList<>();
     List<String> fauxkanjis = new ArrayList<String>();
-    Kanji manger = new Kanji("食",0,"dede","dede","manger");
-    Kanji lire   = new Kanji("読",1,"dede","dede","lire");
-    Kanji boire  = new Kanji("飲",2,"dede","dede","boire");
-    Kanji entrer = new Kanji("入",3,"dede","dede","entrer");
+    Kanji manger = new Kanji("食",0,"taberu","shiyoku","manger");
+    Kanji lire   = new Kanji("読",1,"yomu","doku","lire");
+    Kanji boire  = new Kanji("飲",2,"nomu","in","boire");
+    Kanji entrer = new Kanji("入",3,"iru","niyou","entrer");
     boolean reponse = false;
     int i = 0;
     int score = 0;

@@ -16,8 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SecondScreen"></activity>
-        <activity android:name=".ThirdActivity"></activity>
+        <activity android:name=".SecondScreen" />
+        <activity android:name=".ThirdActivity" />
+        <activity
+            android:name=".Learning_Kanji"
+            android:label="@string/title_activity_learning__kanji"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Learn_Kanji" />
+        <activity android:name=".Lesson_Kanji"></activity>
     </application>
 
 </manifest>
