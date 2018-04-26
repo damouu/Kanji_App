@@ -31,7 +31,7 @@ public class Lesson_Kanji extends AppCompatActivity {
         textView2.setText(niveauJLPT);
         Bundle bundle = getIntent().getExtras();
         LeskanjisJLPT5 = (ArrayList) getIntent().getSerializableExtra("LeskanjisJLPT5");
-        textView3.setText(LeskanjisJLPT5.get(i).getKanji());
+        textView3.setText(LeskanjisJLPT5.get(i).getCharactere());
         textView4.setText(LeskanjisJLPT5.get(i).getLecture_kenyon());
         textView5.setText(LeskanjisJLPT5.get(i).getLecture_onyomi());
         textView6.setText(LeskanjisJLPT5.get(i).getSignification());
@@ -51,7 +51,7 @@ public class Lesson_Kanji extends AppCompatActivity {
                 Lesson_Kanji.this.startActivity(intent);
                 break;
             } else {
-                textView3.setText(LeskanjisJLPT5.get(i).getKanji());
+                textView3.setText(LeskanjisJLPT5.get(i).getCharactere());
                 textView4.setText(LeskanjisJLPT5.get(i).getLecture_kenyon());
                 textView5.setText(LeskanjisJLPT5.get(i).getLecture_onyomi());
                 textView6.setText(LeskanjisJLPT5.get(i).getSignification());

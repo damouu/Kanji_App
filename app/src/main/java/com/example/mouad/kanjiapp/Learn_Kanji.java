@@ -14,13 +14,15 @@ import java.util.List;
 
 public class Learn_Kanji extends AppCompatActivity {
     ArrayList<Kanji> LeskanjisJLPT5   = new ArrayList<Kanji>();
-    Kanji manger = new Kanji("食",0,"taberu","shiyoku","manger");
-    Kanji lire   = new Kanji("読",1,"yomu","doku","lire");
-    Kanji boire  = new Kanji("飲",2,"nomu","in","boire");
-    Kanji entrer = new Kanji("入",3,"iru","niyou","entrer");
+    Kanji manger = new Kanji("食",0,"manger","taberu","shiyoku");
+    Kanji lire   = new Kanji("読",1,"lire","yomu","doku");
+    Kanji boire  = new Kanji("飲",2,"boire","nomu","in");
+    Kanji entrer = new Kanji("入",3,"entrer","iru","niyou");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Hiragana bilal = new Hiragana("か",1,"ka");
+        Katakana nabil = new Katakana(" ア",2,"a");
         LeskanjisJLPT5.add(boire);
         LeskanjisJLPT5.add(manger);
         LeskanjisJLPT5.add(lire);
@@ -42,7 +44,7 @@ public class Learn_Kanji extends AppCompatActivity {
                     case 0: position =0;
                         String niveauJLPT =  leskanjis[0];
                         Intent intent = new Intent(Learn_Kanji.this, Lesson_Kanji.class);
-                  //      intent.putExtra("niveauJLPT", niveauJLPT);
+                        intent.putExtra("niveauJLPT", niveauJLPT);
                         intent.putExtra("LeskanjisJLPT5", LeskanjisJLPT5);
                         Learn_Kanji.this.startActivity(intent);
                         break;
