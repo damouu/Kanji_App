@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity
                         buffer.append("Charactere :" +result.getString(1));
                     }
                     displayAllData("Charactere list",buffer.toString());
-                }
+                } //scqcqscqs
             }
         });
     }
