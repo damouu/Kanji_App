@@ -1,5 +1,6 @@
 package com.example.mouad.kanjiapp;
 
+
 import android.support.v7.app.AppCompatActivity;
 
 import java.io.Serializable;

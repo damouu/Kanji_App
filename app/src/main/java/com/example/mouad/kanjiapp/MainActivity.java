@@ -2,6 +2,7 @@ package com.example.mouad.kanjiapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.nfc.Tag;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,18 +17,23 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 public class MainActivity extends AppCompatActivity
 {
-
+    DataBaseHelper myDb;
     TextView ChampText;
     EditText editText;
-
+    Button ViewAll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)                                                  // this lines are for associate the class with the XML file .
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);                                                         // here we say that MainActivity's  XML layout is activity_main.
+        setContentView(R.layout.activity_main);
+        myDb = new DataBaseHelper(this);
+        Button ViewAll = findViewById(R.id.ViewAll);
+        viewAll();
+                                                                                                                             // here we say that MainActivity's  XML layout is activity_main.
     }
 
     public void buttonOnClick3 (View v)                                                                 // we create  a method name buttonOnClick3 associated to the right button .
@@ -78,6 +84,11 @@ public class MainActivity extends AppCompatActivity
     public void buttonOnClick2 (View v)
     {
         EditText editText = findViewById(R.id.editText2);
+       boolean isInserted =  myDb.InsertData(editText.getText().toString());
+       if (isInserted ==true)
+           Toast.makeText(MainActivity.this,"UEUE ",Toast.LENGTH_SHORT).show();
+       else
+           Toast.makeText(MainActivity.this,"NAN NAN ",Toast.LENGTH_SHORT).show();
         TextView ChampText = findViewById(R.id.textView);
         ChampText.setText(editText.getText());
         ImageButton Damou_Button = findViewById(R.id.Damou_Button);
@@ -112,5 +123,33 @@ public class MainActivity extends AppCompatActivity
                 }
             });
     }
+
+    public void displayAllData(String tittle, String content){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(tittle);
+        builder.setMessage(content);
+        builder.show();
+    }
+    public void viewAll(){
+        Button ViewAll= (Button) findViewById(R.id.ViewAll);
+        ViewAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Cursor result = myDb.getAllData();
+                if (result.getCount() ==0){
+                    displayAllData("error","error");
+                }
+                else {
+                    StringBuffer buffer = new StringBuffer();
+                    while (result.moveToNext()){
+                        buffer.append("Charactere :" +result.getString(1));
+                    }
+                    displayAllData("Charactere list",buffer.toString());
+                }
+            }
+        });
+    }
+
 }
 

@@ -2,6 +2,7 @@ package com.example.mouad.kanjiapp;
 
 import java.io.Serializable;
 
+
 public abstract class Charactere implements  IAppKanji , Serializable{
    protected String charactere;
    protected int    numero;
