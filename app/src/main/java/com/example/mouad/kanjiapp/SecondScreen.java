@@ -1,5 +1,6 @@
 package com.example.mouad.kanjiapp;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
@@ -19,12 +20,9 @@ import java.util.List;
 
 public class SecondScreen extends AppCompatActivity
 {
-    List<Kanji> leskanjis   = new ArrayList<>();
+    ArrayList<Kanji> Leskanjis = new ArrayList<Kanji>();
     List<String> fauxkanjis = new ArrayList<String>();
-    Kanji manger = new Kanji("食",0,"manger","taberu","shiyoku");
-    Kanji lire   = new Kanji("読",1,"lire","yomu","doku");
-    Kanji boire  = new Kanji("飲",2,"boire","nomu","in");
-    Kanji entrer = new Kanji("入",3,"entrer","iru","niyou");
+    DataBaseHelper myDb;
     boolean reponse = false;
     int i = 0;
     int score = 0;
@@ -32,15 +30,15 @@ public class SecondScreen extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.secondactivities);
-        leskanjis.add(boire);
-        leskanjis.add(manger);
-        leskanjis.add(lire);
-        leskanjis.add(entrer);
+        myDb = new DataBaseHelper(this);
+        String niveauJLPT = getIntent().getExtras().getString("niveauJLPT");
+      //  textView2.setText(niveauJLPT);
+        Bundle bundle = getIntent().getExtras();
+        Leskanjis = (ArrayList) getIntent().getSerializableExtra("Leskanjis");
         TextView textView5 = findViewById(R.id.ryu_view);
-        textView5.setText(leskanjis.get(i).getCharactere());
+        textView5.setText(Leskanjis.get(i).getCharactere());
     }
 
     public void buttonOnClick3 (View v)
@@ -64,11 +62,11 @@ public class SecondScreen extends AppCompatActivity
         Button button = findViewById(R.id.button4);
         EditText editText5 = findViewById(R.id.ryu_edit);
         reponse = false;
-        if(Arrays.asList(leskanjis).contains(textView5.getText())){
+        if(Arrays.asList(Leskanjis).contains(textView5.getText())){
         }
-        for(Kanji kanji : leskanjis){
-            if (!editText5.getText().toString().equals(leskanjis.get(i).getSignification())){
-                fauxkanjis.add(leskanjis.get(i).getCharactere());
+        for(Kanji kanji : Leskanjis){
+            if (!editText5.getText().toString().equals(Leskanjis.get(i).getSignification())){
+                fauxkanjis.add(Leskanjis.get(i).getCharactere());
             }
             else {
                 reponse=true;
@@ -77,14 +75,14 @@ public class SecondScreen extends AppCompatActivity
             }
             editText5.setText("");
             i++;
-            if (i==leskanjis.size()){
+            if (i==Leskanjis.size()){
                 Intent intent = new Intent(SecondScreen.this, ThirdActivity.class);
                 intent.putExtra("score", score);
                 intent.putExtra("fauxkanjis", (ArrayList<String>) fauxkanjis);
                 SecondScreen.this.startActivity(intent);
                 break;
             }
-            textView5.setText(leskanjis.get(i).getCharactere());
+            textView5.setText(Leskanjis.get(i).getCharactere());
             break;
             }
     }

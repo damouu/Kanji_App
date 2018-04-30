@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(MainActivity.this , SecondScreen.class);      // here we are instantiated a new intent to go the SecondScreen.
+                Intent intent = new Intent(MainActivity.this , Before_SecondScreen.class);      // here we are instantiated a new intent to go the SecondScreen.
                 startActivity(intent);                                                                 // and now we are staring the intent by an startActivity (in android a page == Activity).
             }
         });

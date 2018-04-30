@@ -43,6 +43,18 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return  res;
     }
 
+    public  Cursor JLPT5_Kanji(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM Kanji_Table WHERE NUMERO ='" + "JLPT5" +"'",null);
+        return  res;
+    }
+
+    public  Cursor JLPT4_Kanji(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM Kanji_Table WHERE NUMERO ='" + "JLPT4" +"'",null);
+        return  res;
+    }
+
     public void deleteData(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME,null,null);

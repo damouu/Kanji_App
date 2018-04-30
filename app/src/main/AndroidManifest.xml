@@ -24,7 +24,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Learn_Kanji" />
         <activity android:name=".Lesson_Kanji" />
-        <activity android:name=".Admin"></activity>
+        <activity android:name=".Admin" />
+        <activity android:name=".Before_SecondScreen"></activity>
     </application>
 
 </manifest>

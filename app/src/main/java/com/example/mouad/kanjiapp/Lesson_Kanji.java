@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lesson_Kanji extends AppCompatActivity {
-    List<Kanji> LeskanjisJLPT5 = new ArrayList<Kanji>();
+    List<Kanji> Leskanjis = new ArrayList<Kanji>();
     int i = 0;
 
     @Override
@@ -30,11 +30,11 @@ public class Lesson_Kanji extends AppCompatActivity {
         String niveauJLPT = getIntent().getExtras().getString("niveauJLPT");
         textView2.setText(niveauJLPT);
         Bundle bundle = getIntent().getExtras();
-        LeskanjisJLPT5 = (ArrayList) getIntent().getSerializableExtra("LeskanjisJLPT5");
-        textView3.setText(LeskanjisJLPT5.get(i).getCharactere());
-        textView4.setText(LeskanjisJLPT5.get(i).getLecture_kenyon());
-        textView5.setText(LeskanjisJLPT5.get(i).getLecture_onyomi());
-        textView6.setText(LeskanjisJLPT5.get(i).getSignification());
+        Leskanjis = (ArrayList) getIntent().getSerializableExtra("Leskanjis");
+        textView3.setText(Leskanjis.get(i).getCharactere());
+        textView4.setText(Leskanjis.get(i).getLecture_kenyon());
+        textView5.setText(Leskanjis.get(i).getLecture_onyomi());
+        textView6.setText(Leskanjis.get(i).getSignification());
     }
 
     public void buttonOnClick2(View v) {
@@ -44,17 +44,17 @@ public class Lesson_Kanji extends AppCompatActivity {
         TextView textView5 = (TextView) findViewById(R.id.textView5);
         TextView textView6 = (TextView) findViewById(R.id.textView6);
 
-        for (Kanji kanji : LeskanjisJLPT5) {
+        for (Kanji kanji : Leskanjis) {
             i++;
-            if (i == LeskanjisJLPT5.size()) {
+            if (i == Leskanjis.size()) {
                 Intent intent = new Intent(Lesson_Kanji.this, Learn_Kanji.class);
                 Lesson_Kanji.this.startActivity(intent);
                 break;
             } else {
-                textView3.setText(LeskanjisJLPT5.get(i).getCharactere());
-                textView4.setText(LeskanjisJLPT5.get(i).getLecture_kenyon());
-                textView5.setText(LeskanjisJLPT5.get(i).getLecture_onyomi());
-                textView6.setText(LeskanjisJLPT5.get(i).getSignification());
+                textView3.setText(Leskanjis.get(i).getCharactere());
+                textView4.setText(Leskanjis.get(i).getLecture_kenyon());
+                textView5.setText(Leskanjis.get(i).getLecture_onyomi());
+                textView6.setText(Leskanjis.get(i).getSignification());
                 break;
             }
         }
