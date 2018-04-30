@@ -23,7 +23,8 @@
             android:label="@string/title_activity_learning__kanji"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Learn_Kanji" />
-        <activity android:name=".Lesson_Kanji"></activity>
+        <activity android:name=".Lesson_Kanji" />
+        <activity android:name=".Admin"></activity>
     </application>
 
 </manifest>

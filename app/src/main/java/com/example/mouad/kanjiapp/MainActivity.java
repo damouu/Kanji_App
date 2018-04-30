@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myDb = new DataBaseHelper(this);
+        Button Admin_Button = findViewById(R.id.Admin_Button);
         Button ViewAll = findViewById(R.id.ViewAll);
         viewAll();
                                                                                                                              // here we say that MainActivity's  XML layout is activity_main.
@@ -62,7 +63,11 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-
+public void Admin_Button (View v){
+        Button Admin_Button = findViewById(R.id.Admin_Button);
+    Intent intent = new Intent(MainActivity.this, Admin.class);      // here we are instantiated a new intent to go the SecondScreen.
+    startActivity(intent);
+}
     public void buttonOnClick1 (View v)
     {
         Button Click = findViewById(R.id.button);
@@ -84,10 +89,10 @@ public class MainActivity extends AppCompatActivity
     public void buttonOnClick2 (View v)
     {
         EditText editText = findViewById(R.id.editText2);
-       boolean isInserted =  myDb.InsertData(editText.getText().toString());
-       if (isInserted ==true)
+
+
            Toast.makeText(MainActivity.this,"UEUE ",Toast.LENGTH_SHORT).show();
-       else
+
            Toast.makeText(MainActivity.this,"NAN NAN ",Toast.LENGTH_SHORT).show();
         TextView ChampText = findViewById(R.id.textView);
         ChampText.setText(editText.getText());

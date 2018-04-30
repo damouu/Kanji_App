@@ -18,7 +18,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COL_4         =  "SIGNIFICATION";
     public static final String COL_5         =  "LECTURE_KUN";
     public static final String COL_6         =  "LECTURE_ON";
-    public static final String COL_7         =  "JLPT_NIVEAU";
 
     private  static final String DATABASE_ALTER_TMODIF1 = "ALTER TABLE Kanji_Table ADD JLPT_NIVEAU_KANJI TEXT";
 
@@ -29,7 +28,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT , LECTURE_KUN TEXT , LECTURE_ON TEXT, JLPT_NIVEAU TEXT)" );
+        db.execSQL("create table " + TABLE_NAME +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT , LECTURE_KUN TEXT , LECTURE_ON TEXT)" );
 
     }
 
@@ -44,11 +43,21 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return  res;
     }
 
-    public boolean InsertData(String character)
+    public void deleteData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME,null,null);
+        db.execSQL("DELETE  FROM " +TABLE_NAME);
+        db.close();
+    }
+    public boolean InsertData(String CHARACTERE,String NUMERO,  String SIGNIFICATION , String LECTURE_KUN ,String LECTURE_ON )
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_2, character);
+        contentValues.put(COL_2, CHARACTERE);
+        contentValues.put(COL_3, NUMERO);
+        contentValues.put(COL_4, SIGNIFICATION);
+        contentValues.put(COL_5, LECTURE_KUN);
+        contentValues.put(COL_6, LECTURE_ON);
        long result = db.insert(TABLE_NAME, null, contentValues);
        if (result == -1)
            return false;
