@@ -17,14 +17,23 @@ import java.util.List;
 public class Learn_Kanji extends AppCompatActivity {
     DataBaseHelper myDb;
     DataBaseHelper myDb2;
+    DataBaseHelper myDb3;
+    DataBaseHelper myDb4;
+    DataBaseHelper myDb5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ImageButton imageButton3 = findViewById(R.id.imageButton3);
         final ArrayList<Kanji> Kanji_JLPT5 = new ArrayList<Kanji>();
         final ArrayList<Kanji> Kanji_JLPT4 = new ArrayList<Kanji>();
-        myDb = new DataBaseHelper(this);
+        final ArrayList<Kanji> Kanji_JLPT3 = new ArrayList<Kanji>();
+        final ArrayList<Kanji> Kanji_JLPT2 = new ArrayList<Kanji>();
+        final ArrayList<Kanji> Kanji_JLPT1 = new ArrayList<Kanji>();
+        myDb  = new DataBaseHelper(this);
         myDb2 = new DataBaseHelper(this);
+        myDb3 = new DataBaseHelper(this);
+        myDb4 = new DataBaseHelper(this);
+        myDb5 = new DataBaseHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn__kanji);
         final String [] leskanjis = new String[] {"JLPT5","JLPT4","JLPT3","JLPT2","JLPT1"};
@@ -64,23 +73,38 @@ public class Learn_Kanji extends AppCompatActivity {
                         break;
 
                     case 2: position =2;
+                        Cursor cursor3 = myDb3.JLPT3_Kanji();
+                        while (cursor3.moveToNext()){
+                            Kanji_JLPT3.add(new Kanji(cursor3.getString(cursor3.getColumnIndex("CHARACTERE")), cursor3.getInt(cursor3.getColumnIndex("NUMERO")), cursor3.getString(cursor3.getColumnIndex("SIGNIFICATION")),cursor3.getString(cursor3.getColumnIndex("LECTURE_KUN")),cursor3.getString(cursor3.getColumnIndex("LECTURE_ON"))));
+                        }
                         niveauJLPT = leskanjis[2];
                         intent = new Intent(Learn_Kanji.this, Lesson_Kanji.class);
                         intent.putExtra("niveauJLPT", niveauJLPT);
+                        intent.putExtra("Leskanjis", Kanji_JLPT3);
                         Learn_Kanji.this.startActivity(intent);
                         break;
 
                     case 3: position =3;
+                        Cursor cursor4 = myDb4.JLPT2_Kanji();
+                        while (cursor4.moveToNext()){
+                            Kanji_JLPT2.add(new Kanji(cursor4.getString(cursor4.getColumnIndex("CHARACTERE")), cursor4.getInt(cursor4.getColumnIndex("NUMERO")), cursor4.getString(cursor4.getColumnIndex("SIGNIFICATION")),cursor4.getString(cursor4.getColumnIndex("LECTURE_KUN")),cursor4.getString(cursor4.getColumnIndex("LECTURE_ON"))));
+                        }
                         niveauJLPT = leskanjis[3];
                         intent = new Intent(Learn_Kanji.this, Lesson_Kanji.class);
                         intent.putExtra("niveauJLPT", niveauJLPT);
+                        intent.putExtra("Leskanjis", Kanji_JLPT2);
                         Learn_Kanji.this.startActivity(intent);
                         break;
 
                     case 4: position =4;
+                        Cursor cursor5 = myDb5.JLPT1_Kanji();
+                        while (cursor5.moveToNext()){
+                            Kanji_JLPT1.add(new Kanji(cursor5.getString(cursor5.getColumnIndex("CHARACTERE")), cursor5.getInt(cursor5.getColumnIndex("NUMERO")), cursor5.getString(cursor5.getColumnIndex("SIGNIFICATION")),cursor5.getString(cursor5.getColumnIndex("LECTURE_KUN")),cursor5.getString(cursor5.getColumnIndex("LECTURE_ON"))));
+                        }
                         niveauJLPT = leskanjis[4];
                         intent = new Intent(Learn_Kanji.this, Lesson_Kanji.class);
                         intent.putExtra("niveauJLPT", niveauJLPT);
+                        intent.putExtra("Leskanjis", Kanji_JLPT1);
                         Learn_Kanji.this.startActivity(intent);
                         break;
 

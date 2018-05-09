@@ -7,7 +7,7 @@
     android:background="@drawable/sunrise">
 
     <TextView
-        android:id="@+id/ScoreView"
+        android:id="@+id/JLPTView"
         android:layout_width="199dp"
         android:layout_height="40dp"
         android:layout_marginBottom="8dp"
@@ -35,8 +35,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.791"
-        app:layout_constraintStart_toStartOf="@+id/ScoreView"
-        app:layout_constraintTop_toBottomOf="@+id/ScoreView"
+        app:layout_constraintStart_toStartOf="@+id/JLPTView"
+        app:layout_constraintTop_toBottomOf="@+id/JLPTView"
         app:layout_constraintVertical_bias="0.918" />
 
     <ListView

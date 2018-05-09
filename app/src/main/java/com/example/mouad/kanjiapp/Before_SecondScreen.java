@@ -36,7 +36,6 @@ public class Before_SecondScreen extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(),"toozoumouk",Toast.LENGTH_SHORT).show();
-
                 switch (position) {
                     case 0: position =0;
                         Cursor cursor = myDb.JLPT5_Kanji();

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mouad.kanjiapp">
-
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/kanjiapplogo"
@@ -25,7 +25,8 @@
         <activity android:name=".Learn_Kanji" />
         <activity android:name=".Lesson_Kanji" />
         <activity android:name=".Admin" />
-        <activity android:name=".Before_SecondScreen"></activity>
+        <activity android:name=".Before_SecondScreen" />
+        <activity android:name=".Login"></activity>
     </application>
 
 </manifest>

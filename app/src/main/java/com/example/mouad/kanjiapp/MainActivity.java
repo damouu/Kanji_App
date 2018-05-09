@@ -32,8 +32,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         myDb = new DataBaseHelper(this);
         Button Admin_Button = findViewById(R.id.Admin_Button);
-        Button ViewAll = findViewById(R.id.ViewAll);
-        viewAll();
+
                                                                                                                              // here we say that MainActivity's  XML layout is activity_main.
     }
 
@@ -71,7 +70,6 @@ public void Admin_Button (View v){
     public void buttonOnClick1 (View v)
     {
         Button Click = findViewById(R.id.button);
-        EditText editText = findViewById(R.id.editText2);
         TextView ChampText = findViewById(R.id.textView);
         ChampText.setText(editText.getText());
         ((Button)v).setText("salam");
@@ -88,12 +86,8 @@ public void Admin_Button (View v){
 
     public void buttonOnClick2 (View v)
     {
-        EditText editText = findViewById(R.id.editText2);
-
-
-           Toast.makeText(MainActivity.this,"UEUE ",Toast.LENGTH_SHORT).show();
-
-           Toast.makeText(MainActivity.this,"NAN NAN ",Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this,"UEUE ",Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this,"NAN NAN ",Toast.LENGTH_SHORT).show();
         TextView ChampText = findViewById(R.id.textView);
         ChampText.setText(editText.getText());
         ImageButton Damou_Button = findViewById(R.id.Damou_Button);
@@ -129,32 +123,7 @@ public void Admin_Button (View v){
             });
     }
 
-    public void displayAllData(String tittle, String content){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(tittle);
-        builder.setMessage(content);
-        builder.show();
-    }
-    public void viewAll(){
-        Button ViewAll= (Button) findViewById(R.id.ViewAll);
-        ViewAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Cursor result = myDb.getAllData();
-                if (result.getCount() ==0){
-                    displayAllData("error","error");
-                }
-                else {
-                    StringBuffer buffer = new StringBuffer();
-                    while (result.moveToNext()){
-                        buffer.append("Charactere :" +result.getString(1));
-                    }
-                    displayAllData("Charactere list",buffer.toString());
-                } //scqcqscqs
-            }
-        });
-    }
+
 
 }
 
