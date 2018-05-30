@@ -36,16 +36,16 @@ public class Admin extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(Admin.this);
         builder.setCancelable(true);
         builder.setTitle("Alerte");
-        builder.setMessage("Delte all the data ?");
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+        builder.setMessage("Supprimer toutes les données ?");
+        builder.setPositiveButton("OUI", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             myDb.deleteData();
-            Toast.makeText(Admin.this,"data has been deleted",Toast.LENGTH_SHORT).show();
+            Toast.makeText(Admin.this,"les données ont été supprimé",Toast.LENGTH_SHORT).show();
             }
         });
 
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("NON", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -64,9 +64,9 @@ public class Admin extends AppCompatActivity {
         EditText editText7 = findViewById(R.id.editText7);
         boolean isInserted =  myDb.InsertData(editText.getText().toString(), editText4.getText().toString(),editText5.getText().toString(),editText6.getText().toString(),editText7.getText().toString());
             if (isInserted ==true)
-                Toast.makeText(Admin.this,"New Kanji has been added ",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Admin.this,"Un nouveau Kanji a été crée ",Toast.LENGTH_SHORT).show();
             else
-                Toast.makeText(Admin.this,"An error happended ",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Admin.this,"Une erreure s'est produite",Toast.LENGTH_SHORT).show();
     }
 
     public void displayAllData(String tittle, String content){
@@ -84,7 +84,7 @@ public class Admin extends AppCompatActivity {
              public void onClick(View v) {
              Cursor result = myDb.getAllData();
                  if (result.getCount() == 0) {
-                     displayAllData("No Data", "the database is empty");
+                     displayAllData("Aucune donnée", "La base de données est vide");
               } else {
                      StringBuffer buffer = new StringBuffer();
                while(result.moveToNext()) {
@@ -93,8 +93,8 @@ public class Admin extends AppCompatActivity {
                  buffer.append("SIGNIFICATION :" + result.getString(3) + "\n");
                  buffer.append("LECTURE_KUN :" + result.getString(4) + "\n");
                  buffer.append("LECTURE_ON :" + result.getString(5) + "\n");
-            }
-         displayAllData("les kanjis crées", buffer.toString());
+                }
+            displayAllData("les kanjis crées", buffer.toString());
                 } }
                 });
              }

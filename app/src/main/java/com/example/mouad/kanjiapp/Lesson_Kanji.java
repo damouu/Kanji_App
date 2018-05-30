@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lesson_Kanji extends AppCompatActivity {
-    List<Kanji> Leskanjis = new ArrayList<Kanji>();
+    List<Kanji> Leskanjis  = new ArrayList<Kanji>();
+    List<Kanji> Fauxkanjis = new ArrayList<Kanji>();
     int i = 0;
 
     @Override
@@ -35,8 +36,22 @@ public class Lesson_Kanji extends AppCompatActivity {
         textView4.setText(Leskanjis.get(i).getLecture_kenyon());
         textView5.setText(Leskanjis.get(i).getLecture_onyomi());
         textView6.setText(Leskanjis.get(i).getSignification());
+        GetNbKanjis();
+    }
+    public int GetNbKanjis(){
+        int NbKanjis  =0;
+        for(Kanji kanji : Leskanjis){
+            NbKanjis++;
+        }
+        return NbKanjis;
     }
 
+    public void SyncKanjis(){
+        Kanji k = new Kanji("ded",1,"dee","dede","dde");
+        if (Leskanjis != Fauxkanjis){
+            k.getNumero();
+        }
+    }
     public void buttonOnClick2(View v) {
         Button button2 = findViewById(R.id.button2);
         TextView textView3 = (TextView) findViewById(R.id.textView3);

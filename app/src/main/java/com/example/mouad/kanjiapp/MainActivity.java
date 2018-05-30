@@ -1,21 +1,25 @@
 package com.example.mouad.kanjiapp;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.nfc.Tag;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 
 public class MainActivity extends AppCompatActivity
@@ -24,51 +28,50 @@ public class MainActivity extends AppCompatActivity
     TextView ChampText;
     EditText editText;
     Button ViewAll;
+    private ActionBarDrawerToggle mToggle;
+    private DrawerLayout mDrawerLayout;
+    private Toolbar toolbar;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)                                                  // this lines are for associate the class with the XML file .
-    {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myDb = new DataBaseHelper(this);
         Button Admin_Button = findViewById(R.id.Admin_Button);
-
-                                                                                                                             // here we say that MainActivity's  XML layout is activity_main.
     }
 
-    public void buttonOnClick3 (View v)                                                                 // we create  a method name buttonOnClick3 associated to the right button .
-    {
-        ImageButton personaButton = findViewById(R.id.imageButton2);                                   // this two lines instantiated an ImageButton named personaButton and associated the button to the xml imageButton2.
+    public void buttonOnClick3 (View v){
+        ImageButton personaButton = findViewById(R.id.imageButton2);
         personaButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(MainActivity.this , Before_SecondScreen.class);      // here we are instantiated a new intent to go the SecondScreen.
-                startActivity(intent);                                                                 // and now we are staring the intent by an startActivity (in android a page == Activity).
-            }
-        });
-    }
-
-    public void personaPurple ( View v)
-    {
-        ImageButton personaPurple = findViewById(R.id.personaPurple);
-        personaPurple.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Learn_Kanji.class);      // here we are instantiated a new intent to go the SecondScreen.
+                Intent intent = new Intent(MainActivity.this , Before_SecondScreen.class);
                 startActivity(intent);
             }
         });
     }
 
-public void Admin_Button (View v){
+    public void personaPurple ( View v) {
+        ImageButton personaPurple = findViewById(R.id.personaPurple);
+        personaPurple.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Learn_Kanji.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void Admin_Button (View v){
         Button Admin_Button = findViewById(R.id.Admin_Button);
-    Intent intent = new Intent(MainActivity.this, Admin.class);      // here we are instantiated a new intent to go the SecondScreen.
-    startActivity(intent);
-}
-    public void buttonOnClick1 (View v)
-    {
+        Intent intent = new Intent(MainActivity.this, Admin.class);
+        startActivity(intent);
+    }
+
+    public void buttonOnClick1 (View v) {
         Button Click = findViewById(R.id.button);
         TextView ChampText = findViewById(R.id.textView);
         ChampText.setText(editText.getText());
@@ -84,8 +87,7 @@ public void Admin_Button (View v){
         });
     }
 
-    public void buttonOnClick2 (View v)
-    {
+    public void buttonOnClick2 (View v) {
         Toast.makeText(MainActivity.this,"UEUE ",Toast.LENGTH_SHORT).show();
         Toast.makeText(MainActivity.this,"NAN NAN ",Toast.LENGTH_SHORT).show();
         TextView ChampText = findViewById(R.id.textView);
@@ -110,8 +112,7 @@ public void Admin_Button (View v){
         builder.show();
     }
 
-    public void buttonOnClickX (View v)
-    {
+    public void buttonOnClickX (View v) {
             ImageButton personaPurple = findViewById(R.id.personaPurple);
             personaPurple.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -122,8 +123,5 @@ public void Admin_Button (View v){
                 }
             });
     }
-
-
-
 }
 

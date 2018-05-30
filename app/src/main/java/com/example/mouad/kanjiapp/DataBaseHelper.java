@@ -8,8 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME =  "KanjiApp.db";
-    public static final String TABLE_NAME    =  "Kanji_Table";
+    public static final String DATABASE_NAME          =  "KanjiApp.db";
+    public static final String TABLE_NAME             =  "Kanji_Table";
 
     public static final String COL_1         =  "ID";
     public static final String COL_2         =  "CHARACTERE";
@@ -24,12 +24,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public DataBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
         SQLiteDatabase db = this.getWritableDatabase();
-    }
+}
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + TABLE_NAME +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT , LECTURE_KUN TEXT , LECTURE_ON TEXT)" );
-
     }
 
     @Override

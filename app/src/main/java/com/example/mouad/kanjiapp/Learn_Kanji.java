@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -20,10 +21,11 @@ public class Learn_Kanji extends AppCompatActivity {
     DataBaseHelper myDb3;
     DataBaseHelper myDb4;
     DataBaseHelper myDb5;
+    private Object kanji;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ImageButton imageButton3 = findViewById(R.id.imageButton3);
+        Button Button6 = findViewById(R.id.button6);
         final ArrayList<Kanji> Kanji_JLPT5 = new ArrayList<Kanji>();
         final ArrayList<Kanji> Kanji_JLPT4 = new ArrayList<Kanji>();
         final ArrayList<Kanji> Kanji_JLPT3 = new ArrayList<Kanji>();
@@ -45,8 +47,7 @@ public class Learn_Kanji extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(),"toozoumouk",Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(getApplicationContext(),"toozoumouk",Toast.LENGTH_SHORT).show();
                 switch (position) {
                     case 0: position =0;
                         Cursor cursor = myDb.JLPT5_Kanji();
@@ -118,9 +119,9 @@ public class Learn_Kanji extends AppCompatActivity {
             }
         });
     }
-        public void imageButton3(View v ){
-                ImageButton imageButton3 = findViewById(R.id.imageButton3);
-                imageButton3.setOnClickListener(new View.OnClickListener()
+        public void Button6(View v ){
+                Button Button6 = findViewById(R.id.button6);
+                Button6.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view) {
