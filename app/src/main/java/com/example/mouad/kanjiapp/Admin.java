@@ -62,11 +62,16 @@ public class Admin extends AppCompatActivity {
         EditText editText5 = findViewById(R.id.editText5);
         EditText editText6 = findViewById(R.id.editText6);
         EditText editText7 = findViewById(R.id.editText7);
-        boolean isInserted =  myDb.InsertData(editText.getText().toString(), editText4.getText().toString(),editText5.getText().toString(),editText6.getText().toString(),editText7.getText().toString());
+        if(editText.getText().toString().trim().length() == 0 || editText4.getText().toString().trim().length() == 0 ||editText5.getText().toString().trim().length()== 0 ||editText6.getText().toString().trim().length()==0 || editText7.getText().toString().trim().length()==0){
+            Toast.makeText(Admin.this,"Veulliez remplir tout les champs",Toast.LENGTH_SHORT).show();
+        }
+    else {
+            boolean isInserted =  myDb.InsertData(editText.getText().toString(), editText4.getText().toString(),editText5.getText().toString(),editText6.getText().toString(),editText7.getText().toString());
             if (isInserted ==true)
                 Toast.makeText(Admin.this,"Un nouveau Kanji a été crée ",Toast.LENGTH_SHORT).show();
             else
                 Toast.makeText(Admin.this,"Une erreure s'est produite",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void displayAllData(String tittle, String content){
