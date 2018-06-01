@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".Katakana_Results"
     android:background="@drawable/sunrise">
 
     <TextView
@@ -36,10 +37,10 @@
         android:text="Home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.657"
+        app:layout_constraintHorizontal_bias="0.684"
         app:layout_constraintStart_toStartOf="@+id/JLPTView"
         app:layout_constraintTop_toBottomOf="@+id/JLPTView"
-        app:layout_constraintVertical_bias="0.932" />
+        app:layout_constraintVertical_bias="0.948" />
 
     <ListView
         android:id="@+id/ListView"

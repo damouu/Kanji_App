@@ -32,13 +32,15 @@ public class MainActivity extends AppCompatActivity
     private DrawerLayout mDrawerLayout;
     private Toolbar toolbar;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myDb = new DataBaseHelper(this);
         Button Admin_Button = findViewById(R.id.Admin_Button);
+        Button button_KANJI = findViewById(R.id.button_KANJI);
+        Button button_HIRAGANA = findViewById(R.id.button_HIRAGANA);
+        Button button_KATAKANA = findViewById(R.id.button_KATAKANA);
     }
 
     public void buttonOnClick3 (View v){
@@ -65,9 +67,27 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+    public void button_KANJI (View v){
+        Button button_KANJI = findViewById(R.id.button_KANJI);
+        Intent intent = new Intent(MainActivity.this, Kanji_HUB.class);
+        startActivity(intent);
+    }
+
+    public void button_HIRAGANA (View v){
+        Button button_HIRAGANA = findViewById(R.id.button_HIRAGANA);
+        Intent intent = new Intent(MainActivity.this, Hiragana_HUB.class);
+        startActivity(intent);
+    }
+
+    public void button_KATAKANA (View v){
+        Button button_KATAKANA = findViewById(R.id.button_KATAKANA);
+        Intent intent = new Intent(MainActivity.this, Katakana_HUB.class);
+        startActivity(intent);
+    }
+
     public void Admin_Button (View v){
         Button Admin_Button = findViewById(R.id.Admin_Button);
-        Intent intent = new Intent(MainActivity.this, Admin.class);
+        Intent intent = new Intent(MainActivity.this, Admin_Hub.class);
         startActivity(intent);
     }
 

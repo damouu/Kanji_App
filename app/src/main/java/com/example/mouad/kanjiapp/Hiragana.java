@@ -12,6 +12,5 @@ public class Hiragana extends Charactere  {
     @Override
     public int    getNumero() {return numero;}
     @Override
-    public String getSignification() {return signification;
-    }
+    public String getSignification() {return signification;}
 }

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wp2337025"
-    tools:context=".Before_SecondScreen">
+    tools:context=".Katakana_Learn"
+    android:background="@drawable/wp2337025">
 
     <ListView
         android:id="@+id/ListView"
@@ -33,10 +33,10 @@
         android:text="Retour"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.923" />
+        app:layout_constraintVertical_bias="0.961" />
 
     <TextView
         android:id="@+id/textView13"
@@ -54,4 +54,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.107" />
+
 </android.support.constraint.ConstraintLayout>

@@ -27,7 +27,7 @@ public class ThirdActivity extends AppCompatActivity
             TextView ScoreView = findViewById(R.id.JLPTView);
             TextView FauxList  = findViewById(R.id.FauxList);
             ListView ListView  = findViewById(R.id.ListView);
-            ScoreView.setText("Your score" + " "+ String.valueOf(score));
+            ScoreView.setText("Nombres de réponses juste " + " "+": "+" "+ String.valueOf(score));
             Toast.makeText(getApplicationContext(), "Voici vos resultats ! ", Toast.LENGTH_LONG).show();
             ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,dede);
             ListView.setAdapter(adapter);

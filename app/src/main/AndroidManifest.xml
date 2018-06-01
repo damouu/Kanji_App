@@ -32,7 +32,23 @@
         <activity
             android:name=".Navigation_Drawer"
             android:label="@string/title_activity_navigation__drawer"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Admin_Hub" />
+        <activity android:name=".Admin_Hiragana" />
+        <activity android:name=".Admin_Katakana" />
+        <activity android:name=".Kanji_HUB" />
+        <activity android:name=".Hiragana_HUB" />
+        <activity android:name=".Hiragana_beforeT" />
+        <activity android:name=".Hiragana_Test" />
+        <activity android:name=".Hiragana_Results" />
+        <activity android:name=".Katakana_HUB" />
+        <activity android:name=".Katakana_beforeT" />
+        <activity android:name=".Katakana_Test" />
+        <activity android:name=".Katakana_Results" />
+        <activity android:name=".Hiragana_Lesson" />
+        <activity android:name=".Hiragana_Learn" />
+        <activity android:name=".Katakana_Learn" />
+        <activity android:name=".Katakana_Lesson"></activity>
     </application>
 
 </manifest>
