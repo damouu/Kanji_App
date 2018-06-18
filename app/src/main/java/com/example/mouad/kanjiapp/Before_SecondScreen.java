@@ -47,7 +47,7 @@ public class Before_SecondScreen extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "toozoumouk", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "chargement", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Before_SecondScreen.this, SecondScreen.class);
                 String niveauJLPT = leskanjis[0];
                 switch (position) {

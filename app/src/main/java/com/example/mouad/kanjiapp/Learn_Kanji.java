@@ -26,6 +26,7 @@ public class Learn_Kanji extends AppCompatActivity {
     private Object kanji;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         Button Button6 = findViewById(R.id.button6);
         final ArrayList<Kanji> Kanji_JLPT5 = new ArrayList<Kanji>();
@@ -49,7 +50,7 @@ public class Learn_Kanji extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Toast.makeText(getApplicationContext(),"toozoumouk",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"chargement",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(Learn_Kanji.this, Lesson_Kanji.class);
                 switch (position) {
                 case 0: position =0;
