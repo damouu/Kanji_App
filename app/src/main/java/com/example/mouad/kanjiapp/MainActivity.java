@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity
         Button button_KATAKANA = findViewById(R.id.button_KATAKANA);
     }
 
+    // testing pushing to git 
     public void buttonOnClick3 (View v){
         ImageButton personaButton = findViewById(R.id.imageButton2);
         personaButton.setOnClickListener(new View.OnClickListener()
