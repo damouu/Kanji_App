@@ -22,7 +22,7 @@ public class ExampleUnitTest
     {
         Kanji z = new Kanji("zizi",1,"dede","dede","manger");
         Kanji k = new Kanji("zizi",1,"dede","dede","manger");
-        assertEquals(k,k);
+        assertEquals(z,k);
     }
 
 

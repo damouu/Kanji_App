@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 public class Admin extends AppCompatActivity {
     DataBaseHelper myDb;
     Button button6_Delete;
@@ -29,23 +30,24 @@ public class Admin extends AppCompatActivity {
         EditText editText7 = findViewById(R.id.editText7);
         Button button3 = findViewById(R.id.button3);
         Button button6_Delete_ = findViewById(R.id.button6_Delete);
+        TextView Time_TextView = findViewById(R.id.Time_TextView);
         viewAll();
     }
 
     public void DeleteData(View v){
         AlertDialog.Builder builder = new AlertDialog.Builder(Admin.this);
         builder.setCancelable(true);
-        builder.setTitle("Alerte");
-        builder.setMessage("Supprimer toutes les données ?");
-        builder.setPositiveButton("OUI", new DialogInterface.OnClickListener() {
+        builder.setTitle("Warning");
+        builder.setMessage("Delete all the data ?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             myDb.deleteData();
-            Toast.makeText(Admin.this,"les données ont été supprimé",Toast.LENGTH_SHORT).show();
+            Toast.makeText(Admin.this,"the data has been deleted ",Toast.LENGTH_SHORT).show();
             }
         });
 
-        builder.setNegativeButton("NON", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -63,14 +65,20 @@ public class Admin extends AppCompatActivity {
         EditText editText6 = findViewById(R.id.editText6);
         EditText editText7 = findViewById(R.id.editText7);
         if(editText.getText().toString().trim().length() == 0 || editText4.getText().toString().trim().length() == 0 ||editText5.getText().toString().trim().length()== 0 ||editText6.getText().toString().trim().length()==0 || editText7.getText().toString().trim().length()==0){
-            Toast.makeText(Admin.this,"Veulliez remplir tout les champs",Toast.LENGTH_SHORT).show();
+            Toast.makeText(Admin.this,"pLease fill all the fields",Toast.LENGTH_SHORT).show();
         }
     else {
-            boolean isInserted =  myDb.InsertData(editText.getText().toString(), editText4.getText().toString(),editText5.getText().toString(),editText6.getText().toString(),editText7.getText().toString());
-            if (isInserted ==true)
-                Toast.makeText(Admin.this,"Un nouveau Kanji a été crée ",Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(Admin.this,"Une erreure s'est produite",Toast.LENGTH_SHORT).show();
+            boolean isInserted = myDb.InsertData(editText.getText().toString(), editText4.getText().toString(), editText5.getText().toString(), editText6.getText().toString(), editText7.getText().toString());
+            if (isInserted == true) {
+                Toast.makeText(Admin.this, "The Kanji" + " " + editText.getText().toString() + " " + "has been added to the database", Toast.LENGTH_SHORT).show();
+                editText.setText("Charactere");
+                editText4.setText("NUMERO");
+                editText5.setText("SIGNIFICATION");
+                editText6.setText("LECTURE_KUN");
+                editText7.setText("LECTURE_ON");
+            } else {
+                Toast.makeText(Admin.this, "Une erreure s'est produite", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -89,7 +97,7 @@ public class Admin extends AppCompatActivity {
              public void onClick(View v) {
              Cursor result = myDb.getAllData();
                  if (result.getCount() == 0) {
-                     displayAllData("Aucune donnée", "La base de données est vide");
+                     displayAllData("no data", "The database is empty");
               } else {
                      StringBuffer buffer = new StringBuffer();
                while(result.moveToNext()) {
@@ -98,9 +106,9 @@ public class Admin extends AppCompatActivity {
                  buffer.append("SIGNIFICATION :" + result.getString(3) + "\n");
                  buffer.append("LECTURE_KUN :" + result.getString(4) + "\n");
                  buffer.append("LECTURE_ON :" + result.getString(5) + "\n");
-                }
-            displayAllData("les kanjis crées", buffer.toString());
-                } }
+                    }
+                 displayAllData("les kanjis crées", buffer.toString());
+                    } }
                 });
-             }
-        }
+                }
+            }

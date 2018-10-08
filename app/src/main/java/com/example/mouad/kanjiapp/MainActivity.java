@@ -21,6 +21,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.util.Date;
+
 
 public class MainActivity extends AppCompatActivity
 {
@@ -28,6 +32,7 @@ public class MainActivity extends AppCompatActivity
     TextView ChampText;
     EditText editText;
     Button ViewAll;
+    EditText Time_TextView;
     private ActionBarDrawerToggle mToggle;
     private DrawerLayout mDrawerLayout;
     private Toolbar toolbar;
@@ -41,9 +46,11 @@ public class MainActivity extends AppCompatActivity
         Button button_KANJI = findViewById(R.id.button_KANJI);
         Button button_HIRAGANA = findViewById(R.id.button_HIRAGANA);
         Button button_KATAKANA = findViewById(R.id.button_KATAKANA);
+        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+        TextView Time_TextView = findViewById(R.id.Time_TextView);
+        Time_TextView.setText(currentDateTimeString);
     }
 
-    // testing pushing to git 
     public void buttonOnClick3 (View v){
         ImageButton personaButton = findViewById(R.id.imageButton2);
         personaButton.setOnClickListener(new View.OnClickListener()
@@ -145,4 +152,3 @@ public class MainActivity extends AppCompatActivity
             });
     }
 }
-

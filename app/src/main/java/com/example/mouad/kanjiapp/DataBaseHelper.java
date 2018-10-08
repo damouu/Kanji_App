@@ -22,7 +22,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private  static final String DATABASE_ALTER_TMODIF1 = "ALTER TABLE Kanji_Table ADD JLPT_NIVEAU_KANJI TEXT";
 
     public DataBaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 3);
+        super(context, DATABASE_NAME, null, 4);
         SQLiteDatabase db = this.getWritableDatabase();
     }
 
