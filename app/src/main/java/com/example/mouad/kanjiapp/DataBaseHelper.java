@@ -7,34 +7,40 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
-
     public static final String DATABASE_NAME          =  "KanjiApp.db";
     public static final String TABLE_NAME             =  "Kanji_Table";
     public static final String TABLE_NAME_HIRAGANA    =  "Hiragana_Table";
     public static final String TABLE_NAME_KATAKANA    =  "Katakana_Table";
+    public static final String TABLE_NAME_USERS       =  "Users_Table";
     public static final String COL_1         =  "ID";
     public static final String COL_2         =  "CHARACTERE";
     public static final String COL_3         =  "NUMERO";
     public static final String COL_4         =  "SIGNIFICATION";
     public static final String COL_5         =  "LECTURE_KUN";
     public static final String COL_6         =  "LECTURE_ON";
-
+    public static final String COL_10        =  "EmailAddress";
+    public static final String COL_11       =  "Password";
+    public static final String COL_12       =   "Pseudo";
+    public static final String COL_13       =   "Avatar";
+    public static final String COL_14       =   "RandomValue";
     private  static final String DATABASE_ALTER_TMODIF1 = "ALTER TABLE Kanji_Table ADD JLPT_NIVEAU_KANJI TEXT";
 
     public DataBaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 4);
+        super(context, DATABASE_NAME, null, 19);
         SQLiteDatabase db = this.getWritableDatabase();
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + TABLE_NAME +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT , LECTURE_KUN TEXT , LECTURE_ON TEXT)" );
+        //db.execSQL("create table " + TABLE_NAME_USERS    +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , EmailAddress TEXT ,Password TEXT ,Pseudo TEXT ,Avatar TEXT,RandomValue TEXT )");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("create table " + TABLE_NAME_KATAKANA +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT )");
-        // db.execSQL("create table " + TABLE_NAME_HIRAGANA +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT )");
+        db.execSQL("create table " + TABLE_NAME_USERS    +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , EmailAddress TEXT ,Password TEXT ,Pseudo TEXT ,Avatar TEXT,RandomValue TEXT )");
+        //db.execSQL("create table " + TABLE_NAME_KATAKANA +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT )");
+        //db.execSQL("create table " + TABLE_NAME_HIRAGANA +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT )");
     }
 
     public Cursor getAllData() {
@@ -146,6 +152,27 @@ public class DataBaseHelper extends SQLiteOpenHelper {
        else
            return true;
     }
+
+    public boolean InsertUser(String EmailAddress,String Password,String Pseudo) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_10, EmailAddress);
+        contentValues.put(COL_11, Password);
+        contentValues.put(COL_12, Pseudo);
+        long result = db.insert(TABLE_NAME_USERS, null, contentValues);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
+
+
+    public Cursor LogUser(String LogInMail,String LogInPassword){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT EmailAddress,Password,Pseudo,Avatar FROM Users_Table WHERE EmailAddress = '" + LogInMail +"'" + " AND Password ='" + LogInPassword +"'",null);
+        return  res;
+    }
+
 
     public boolean Insert_Hiragana(String CHARACTERE,String NUMERO,  String SIGNIFICATION)
     {

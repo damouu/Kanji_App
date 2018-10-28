@@ -13,7 +13,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 public class Admin extends AppCompatActivity {
     DataBaseHelper myDb;
     Button button6_Delete;

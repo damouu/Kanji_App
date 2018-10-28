@@ -1,8 +1,6 @@
 package com.example.mouad.kanjiapp;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.nfc.Tag;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
@@ -10,18 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
-import java.sql.Time;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -35,6 +28,19 @@ public class MainActivity extends AppCompatActivity
     EditText Time_TextView;
     private ActionBarDrawerToggle mToggle;
     private DrawerLayout mDrawerLayout;
+    public void buttonOnClick3 (View v){
+        ImageButton personaButton = findViewById(R.id.imageButton2);
+        personaButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(MainActivity.this , Before_SecondScreen.class);
+                startActivity(intent);
+            }
+        });
+    }
+
     private Toolbar toolbar;
 
     @Override
@@ -46,19 +52,39 @@ public class MainActivity extends AppCompatActivity
         Button button_KANJI = findViewById(R.id.button_KANJI);
         Button button_HIRAGANA = findViewById(R.id.button_HIRAGANA);
         Button button_KATAKANA = findViewById(R.id.button_KATAKANA);
+        Button LogInButton = findViewById(R.id.LogIn);
+        Button SignIn_button = findViewById(R.id.SignIn_button);
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
         TextView Time_TextView = findViewById(R.id.Time_TextView);
         Time_TextView.setText(currentDateTimeString);
+        User user = (User)getIntent().getSerializableExtra("user");
+        if(user != null ){
+        TextView User_TextView = findViewById(R.id.User_TextView);
+        User_TextView.setText("Welcome back " + " " + user.GetPseudo());
+        }
     }
 
-    public void buttonOnClick3 (View v){
-        ImageButton personaButton = findViewById(R.id.imageButton2);
-        personaButton.setOnClickListener(new View.OnClickListener()
+    public void LogInButton (View v){
+        Button LogInButton = findViewById(R.id.LogIn);
+        LogInButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(MainActivity.this , Before_SecondScreen.class);
+                Intent intent = new Intent(MainActivity.this , LoginPage.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void SignIn_button (View v){
+        Button SignIn_button = findViewById(R.id.SignIn_button);
+        SignIn_button.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(MainActivity.this , SignIn.class);
                 startActivity(intent);
             }
         });
