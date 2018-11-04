@@ -1,5 +1,6 @@
 package com.example.mouad.kanjiapp;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -16,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -76,7 +79,7 @@ public class SignIn extends AppCompatActivity implements Serializable {
         TextView Sign_Password = findViewById(R.id.Sign_Password);
         TextView Sign_Pseudo = findViewById(R.id.Sign_Pseudo);
         if(Sign_Email.getText().toString().trim().length() == 0 || Sign_Password.getText().toString().trim().length() == 0 || Sign_Pseudo.getText().toString().length() == 0){
-            Toast.makeText(SignIn.this,"pLease fill all the fields",Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignIn.this,"Please fill all the fields",Toast.LENGTH_SHORT).show();
         }
         else {
             boolean isInserted = myDb.InsertUser(Sign_Email.getText().toString(),Sign_Password.getText().toString(),Sign_Pseudo.getText().toString());

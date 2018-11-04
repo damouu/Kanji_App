@@ -1,7 +1,9 @@
 package com.example.mouad.kanjiapp;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +13,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+import android.support.v7.widget.Toolbar;
+
+
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -26,8 +31,11 @@ public class MainActivity extends AppCompatActivity
     EditText editText;
     Button ViewAll;
     EditText Time_TextView;
-    private ActionBarDrawerToggle mToggle;
-    private DrawerLayout mDrawerLayout;
+    Toolbar toolbar;
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+
+
     public void buttonOnClick3 (View v){
         ImageButton personaButton = findViewById(R.id.imageButton2);
         personaButton.setOnClickListener(new View.OnClickListener()
@@ -41,12 +49,16 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    private Toolbar toolbar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+        actionBar.setHomeButtonEnabled(true);
         myDb = new DataBaseHelper(this);
         Button Admin_Button = findViewById(R.id.Admin_Button);
         Button button_KANJI = findViewById(R.id.button_KANJI);
@@ -58,9 +70,14 @@ public class MainActivity extends AppCompatActivity
         TextView Time_TextView = findViewById(R.id.Time_TextView);
         Time_TextView.setText(currentDateTimeString);
         User user = (User)getIntent().getSerializableExtra("user");
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout, toolbar, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
         if(user != null ){
-        TextView User_TextView = findViewById(R.id.User_TextView);
-        User_TextView.setText("Welcome back " + " " + user.GetPseudo());
+            TextView User_TextView = findViewById(R.id.User_TextView);
+            User_TextView.setText("Welcome back " + " " + user.GetPseudo());
+            //User_TextView.setText(getString(R.string.nav_header_title,user_mail));
         }
     }
 
