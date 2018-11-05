@@ -1,10 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <resources>
     <string name="app_name">Kanji App</string>
     <string name="title_activity_learning__kanji">Learning_Kanji</string>
     <string name="title_activity_navigation__drawer">Navigation_Drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Best</string>
+    <string name="nav_header_title">Hello  guest</string>
     <string name="nav_header_subtitle">bilal@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>

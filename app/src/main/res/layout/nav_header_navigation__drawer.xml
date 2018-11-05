@@ -21,6 +21,7 @@
         app:srcCompat="@drawable/bilalpng_96x96" />
 
     <TextView
+        android:id="@+id/navUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"

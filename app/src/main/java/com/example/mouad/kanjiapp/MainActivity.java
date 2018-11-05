@@ -76,8 +76,9 @@ public class MainActivity extends AppCompatActivity
         actionBarDrawerToggle.syncState();
         if(user != null ){
             TextView User_TextView = findViewById(R.id.User_TextView);
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view); View headerView = navigationView.getHeaderView(0);
+            TextView navUsername = (TextView) headerView.findViewById(R.id.navUsername); navUsername.setText("welcome  " + user.GetPseudo());
             User_TextView.setText("Welcome back " + " " + user.GetPseudo());
-            //User_TextView.setText(getString(R.string.nav_header_title,user_mail));
         }
     }
 
