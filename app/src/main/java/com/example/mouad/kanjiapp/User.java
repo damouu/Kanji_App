@@ -10,10 +10,10 @@ public class User extends AppCompatActivity implements Serializable
     private String EmailAddress;
     private String Password;
     private String Pseudo;
-    private String Avatar;
+    private byte[] Avatar;
     private String RandomValue;
 
-    public User(String EmailAddress ,String Pseudo,String Avatar, String RandomValue)
+    public User(String EmailAddress , String Pseudo, byte[] Avatar, String RandomValue)
     {
         this.EmailAddress = EmailAddress;
         this.Pseudo = Pseudo;
@@ -31,10 +31,7 @@ public class User extends AppCompatActivity implements Serializable
         return this.Pseudo;
     }
 
-    public String GetAvatar()
-    {
-        return this.Avatar;
-    }
+    public byte[] GetAvatar() { return this.Avatar; }
 
     public String GetPassword()
     {
@@ -45,4 +42,5 @@ public class User extends AppCompatActivity implements Serializable
     {
         return this.RandomValue;
     }
+
 }

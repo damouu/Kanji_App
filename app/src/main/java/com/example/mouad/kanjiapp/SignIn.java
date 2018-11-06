@@ -32,7 +32,7 @@ public class SignIn extends AppCompatActivity implements Serializable {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.content_sign_in);
         myDb = new DataBaseHelper(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -41,14 +41,6 @@ public class SignIn extends AppCompatActivity implements Serializable {
         TextView Sign_Password = findViewById(R.id.Sign_Password);
         ImageView AvatarImage = findViewById(R.id.AvatarImage);
         Button OpenGallery = findViewById(R.id.OpenGallery);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     public void OpenGallery (View v){

@@ -1,6 +1,7 @@
 package com.example.mouad.kanjiapp;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,14 +37,11 @@ public class MainActivity extends AppCompatActivity
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
-
     public void buttonOnClick3 (View v){
         ImageButton personaButton = findViewById(R.id.imageButton2);
         personaButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
+        {@Override
+            public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this , Before_SecondScreen.class);
                 startActivity(intent);
             }
@@ -77,18 +76,20 @@ public class MainActivity extends AppCompatActivity
         if(user != null ){
             TextView User_TextView = findViewById(R.id.User_TextView);
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view); View headerView = navigationView.getHeaderView(0);
-            TextView navUsername = (TextView) headerView.findViewById(R.id.navUsername); navUsername.setText("welcome  " + user.GetPseudo());
+            TextView navUsername = (TextView) headerView.findViewById(R.id.navUsername); navUsername.setText( user.GetPseudo());
             User_TextView.setText("Welcome back " + " " + user.GetPseudo());
+            NavigationView navigationView2 = (NavigationView) findViewById(R.id.nav_view); View headerView2 = navigationView2.getHeaderView(0);
+            TextView navUserEmail = (TextView) headerView2.findViewById(R.id.navUserEmail); navUserEmail.setText(user.GetEmailAddress());
+            NavigationView navigationView3 = (NavigationView) findViewById(R.id.nav_view); View headerView3 = navigationView3.getHeaderView(0);
+            //ImageView navUserAvatar = (ImageView) headerView3.findViewById(R.id.imageView); navUserAvatar.setImageBitmap(user.GetAvatar());
         }
     }
 
     public void LogInButton (View v){
         Button LogInButton = findViewById(R.id.LogIn);
-        LogInButton.setOnClickListener(new View.OnClickListener()
-        {
+        LogInButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this , LoginPage.class);
                 startActivity(intent);
             }
@@ -97,8 +98,7 @@ public class MainActivity extends AppCompatActivity
 
     public void SignIn_button (View v){
         Button SignIn_button = findViewById(R.id.SignIn_button);
-        SignIn_button.setOnClickListener(new View.OnClickListener()
-        {
+        SignIn_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
