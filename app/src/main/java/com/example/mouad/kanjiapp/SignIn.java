@@ -80,6 +80,9 @@ public class SignIn extends AppCompatActivity implements Serializable {
                 Sign_Email.setText("EMAILAddress");
                 Sign_Password.setText("Password");
                 Sign_Pseudo.setText("Pseudo");
+                Intent intent = new Intent(SignIn.this , LoginPage.class);
+                SignIn.this.startActivity(intent);
+                startActivity(intent);
             } else {
                 Toast.makeText(SignIn.this, "Une erreure s'est produite", Toast.LENGTH_SHORT).show();
             }

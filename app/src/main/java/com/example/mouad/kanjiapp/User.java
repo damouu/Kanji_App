@@ -33,14 +33,8 @@ public class User extends AppCompatActivity implements Serializable
 
     public byte[] GetAvatar() { return this.Avatar; }
 
-    public String GetPassword()
-    {
-        return this.Password;
-    }
+    public String GetPassword() { return this.Password; }
 
-    public String GetRandomValue()
-    {
-        return this.RandomValue;
-    }
+    public String GetRandomValue() { return this.RandomValue; }
 
 }
