@@ -31,6 +31,7 @@ public class SignIn extends AppCompatActivity implements Serializable {
     private int REQUEST_CODE =1;
     Uri imageUri1;
     ImageView AvatarImage;
+    Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,6 @@ public class SignIn extends AppCompatActivity implements Serializable {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent.createChooser(intent,"Select Picture"),REQUEST_CODE);
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         ImageView AvatarImage = findViewById(R.id.AvatarImage);
@@ -60,9 +60,8 @@ public class SignIn extends AppCompatActivity implements Serializable {
         if(requestCode == REQUEST_CODE  && data != null && data.getData() != null){
             Uri uri = data.getData();
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
                 AvatarImage.setImageBitmap(bitmap);
-                myDb.addBitmap(Utils.getBytes(bitmap));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -78,7 +77,7 @@ public class SignIn extends AppCompatActivity implements Serializable {
             Toast.makeText(SignIn.this,"Please fill all the fields",Toast.LENGTH_SHORT).show();
         }
         else {
-            boolean isInserted = myDb.InsertUser(Sign_Email.getText().toString(),Sign_Password.getText().toString(),Sign_Pseudo.getText().toString());
+            boolean isInserted = myDb.InsertUser(Sign_Email.getText().toString(),Sign_Password.getText().toString(),Sign_Pseudo.getText().toString(),Utils.getBytes(bitmap));
             if (isInserted == true) {
                 Toast.makeText(SignIn.this, "The user" + " " + Sign_Email.getText().toString() + " " + "has been created", Toast.LENGTH_SHORT).show();
                 Sign_Email.setText("EMAILAddress");
@@ -91,6 +90,5 @@ public class SignIn extends AppCompatActivity implements Serializable {
                 Toast.makeText(SignIn.this, "A problem occurred ", Toast.LENGTH_SHORT).show();
             }
         }
-
     }
 }

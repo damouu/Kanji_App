@@ -34,7 +34,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private  static final String DATABASE_ALTER_TMODIF1 = "ALTER TABLE Kanji_Table ADD JLPT_NIVEAU_KANJI TEXT";
 
     public DataBaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 31);
+        super(context, DATABASE_NAME, null, 33);
         SQLiteDatabase db = this.getWritableDatabase();
     }
 
@@ -49,7 +49,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
        // db.execSQL("create table " + TABLE_NAME_USERS +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , EmailAddress TEXT ,Password TEXT ,Pseudo TEXT ,Avatar BLOB,RandomValue TEXT )");
         //db.execSQL("create table " + TABLE_NAME_KATAKANA +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT )");
         //db.execSQL("create table " + TABLE_NAME_HIRAGANA +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT )");
-       // db.execSQL("DELETE from " + TABLE_NAME_USERS);
+        //db.execSQL("DELETE from " + TABLE_NAME_USERS);
     }
 
     public Cursor getAllData() {
@@ -162,25 +162,18 @@ public class DataBaseHelper extends SQLiteOpenHelper {
            return true;
     }
 
-    public boolean InsertUser(String EmailAddress,String Password,String Pseudo) {
+    public boolean InsertUser(String EmailAddress,String Password,String Pseudo,byte[] image) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_10, EmailAddress);
         contentValues.put(COL_11, Password);
         contentValues.put(COL_12, Pseudo);
+        contentValues.put(COL_13, image);
         long result = db.insert(TABLE_NAME_USERS, null, contentValues);
         if (result == -1)
             return false;
         else
             return true;
-    }
-
-    public void addBitmap( byte[] image)throws SQLException
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv  = new ContentValues();
-        cv.put(COL_13,image);
-        db.insert(TABLE_NAME_USERS,null,cv);
     }
 
     public Cursor LogUser(String LogInMail,String LogInPassword){
