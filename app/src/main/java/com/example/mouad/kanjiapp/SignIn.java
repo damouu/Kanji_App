@@ -2,9 +2,11 @@ package com.example.mouad.kanjiapp;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -59,6 +62,7 @@ public class SignIn extends AppCompatActivity implements Serializable {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
                 AvatarImage.setImageBitmap(bitmap);
+                myDb.addBitmap(Utils.getBytes(bitmap));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -84,7 +88,7 @@ public class SignIn extends AppCompatActivity implements Serializable {
                 SignIn.this.startActivity(intent);
                 startActivity(intent);
             } else {
-                Toast.makeText(SignIn.this, "Une erreure s'est produite", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignIn.this, "A problem occurred ", Toast.LENGTH_SHORT).show();
             }
         }
 

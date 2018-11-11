@@ -3,11 +3,16 @@ package com.example.mouad.kanjiapp;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.net.Uri;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME          =  "KanjiApp.db";
@@ -29,7 +34,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private  static final String DATABASE_ALTER_TMODIF1 = "ALTER TABLE Kanji_Table ADD JLPT_NIVEAU_KANJI TEXT";
 
     public DataBaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 22);
+        super(context, DATABASE_NAME, null, 31);
         SQLiteDatabase db = this.getWritableDatabase();
     }
 
@@ -41,9 +46,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("create table " + TABLE_NAME_USERS +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , EmailAddress TEXT ,Password TEXT ,Pseudo TEXT ,Avatar BLOB,RandomValue TEXT )");
+       // db.execSQL("create table " + TABLE_NAME_USERS +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , EmailAddress TEXT ,Password TEXT ,Pseudo TEXT ,Avatar BLOB,RandomValue TEXT )");
         //db.execSQL("create table " + TABLE_NAME_KATAKANA +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT )");
         //db.execSQL("create table " + TABLE_NAME_HIRAGANA +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT )");
+       // db.execSQL("DELETE from " + TABLE_NAME_USERS);
     }
 
     public Cursor getAllData() {
@@ -169,13 +175,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    public void addBitmap( byte[] image)throws SQLException
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv  = new ContentValues();
+        cv.put(COL_13,image);
+        db.insert(TABLE_NAME_USERS,null,cv);
+    }
 
     public Cursor LogUser(String LogInMail,String LogInPassword){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("SELECT EmailAddress,Password,Pseudo,Avatar FROM Users_Table WHERE EmailAddress = '" + LogInMail +"'" + " AND Password ='" + LogInPassword +"'",null);
         return  res;
     }
-
 
     public boolean Insert_Hiragana(String CHARACTERE,String NUMERO,  String SIGNIFICATION)
     {
