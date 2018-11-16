@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity
     Button ViewAll;
     EditText Time_TextView;
     Toolbar toolbar;
+    ImageView User_Avatar;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
@@ -81,7 +82,8 @@ public class MainActivity extends AppCompatActivity
             NavigationView navigationView2 = (NavigationView) findViewById(R.id.nav_view); View headerView2 = navigationView2.getHeaderView(0);
             TextView navUserEmail = (TextView) headerView2.findViewById(R.id.navUserEmail); navUserEmail.setText(user.GetEmailAddress());
             NavigationView navigationView3 = (NavigationView) findViewById(R.id.nav_view); View headerView3 = navigationView3.getHeaderView(0);
-            //ImageView navUserAvatar = (ImageView) headerView3.findViewById(R.id.imageView); navUserAvatar.setImageBitmap(user.GetAvatar());
+            NavigationView navigationView4 = (NavigationView) findViewById(R.id.nav_view); View headerView4 = navigationView4.getHeaderView(0);
+            ImageView User_Avatar = (ImageView) headerView4.findViewById(R.id.imageView); User_Avatar.setImageBitmap(Utils.getImages(user.GetAvatar()));
         }
     }
 

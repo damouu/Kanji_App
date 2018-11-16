@@ -34,7 +34,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private  static final String DATABASE_ALTER_TMODIF1 = "ALTER TABLE Kanji_Table ADD JLPT_NIVEAU_KANJI TEXT";
 
     public DataBaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 33);
+        super(context, DATABASE_NAME, null, 34);
         SQLiteDatabase db = this.getWritableDatabase();
     }
 
@@ -49,7 +49,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
        // db.execSQL("create table " + TABLE_NAME_USERS +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , EmailAddress TEXT ,Password TEXT ,Pseudo TEXT ,Avatar BLOB,RandomValue TEXT )");
         //db.execSQL("create table " + TABLE_NAME_KATAKANA +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT )");
         //db.execSQL("create table " + TABLE_NAME_HIRAGANA +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT )");
-        //db.execSQL("DELETE from " + TABLE_NAME_USERS);
+        db.execSQL("DELETE from " + TABLE_NAME_USERS);
     }
 
     public Cursor getAllData() {
