@@ -21,6 +21,8 @@ public class User extends AppCompatActivity implements Serializable
         this.RandomValue = RandomValue;
     }
 
+    public User (){ }
+
     public String GetEmailAddress() { return this.EmailAddress; }
 
     public String GetPseudo() { return this.Pseudo; }
