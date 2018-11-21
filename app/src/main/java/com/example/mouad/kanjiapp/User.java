@@ -12,7 +12,7 @@ public class User extends AppCompatActivity implements Serializable
     private String Pseudo;
     private byte[] Avatar;
     private String RandomValue;
-
+s
     public User(String EmailAddress , String Pseudo, byte[] Avatar, String RandomValue)
     {
         this.EmailAddress = EmailAddress;

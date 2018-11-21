@@ -77,17 +77,22 @@ public class SignIn extends AppCompatActivity implements Serializable {
             Toast.makeText(SignIn.this,"Please fill all the fields",Toast.LENGTH_SHORT).show();
         }
         else {
-            boolean isInserted = myDb.InsertUser(Sign_Email.getText().toString(),Sign_Password.getText().toString(),Sign_Pseudo.getText().toString(),Utils.getBytes(bitmap));
-            if (isInserted == true) {
-                Toast.makeText(SignIn.this, "The user" + " " + Sign_Email.getText().toString() + " " + "has been created", Toast.LENGTH_SHORT).show();
-                Sign_Email.setText("EMAILAddress");
-                Sign_Password.setText("Password");
-                Sign_Pseudo.setText("Pseudo");
-                Intent intent = new Intent(SignIn.this , LoginPage.class);
-                SignIn.this.startActivity(intent);
-                startActivity(intent);
+            Cursor isCheck = myDb.CheckUser(Sign_Email.getText().toString(),Sign_Pseudo.getText().toString());
+            if (isCheck.getCount() <= 0){
+                isCheck.close();
+                boolean isInserted = myDb.InsertUser(Sign_Email.getText().toString(),Sign_Password.getText().toString(),Sign_Pseudo.getText().toString(),Utils.getBytes(bitmap));
+                    if (isInserted == true) {
+                    Toast.makeText(SignIn.this, "The user" + " " + Sign_Email.getText().toString() + " " + "has been created", Toast.LENGTH_SHORT).show();
+                    Sign_Email.setText("EMAILAddress");
+                    Sign_Password.setText("Password");
+                    Sign_Pseudo.setText("Pseudo");
+                    Intent intent = new Intent(SignIn.this , LoginPage.class);
+                    SignIn.this.startActivity(intent);
+                    startActivity(intent);
+                    myDb.close();
+                }
             } else {
-                Toast.makeText(SignIn.this, "A problem occurred ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignIn.this, "The email or pseudo are already taken ", Toast.LENGTH_SHORT).show();
             }
         }
     }
