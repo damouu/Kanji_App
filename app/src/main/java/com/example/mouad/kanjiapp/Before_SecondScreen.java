@@ -22,6 +22,7 @@ public class Before_SecondScreen extends AppCompatActivity {
     DataBaseHelper myDb3;
     DataBaseHelper myDb4;
     DataBaseHelper myDb5;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class Before_SecondScreen extends AppCompatActivity {
         myDb3 = new DataBaseHelper(this);
         myDb4 = new DataBaseHelper(this);
         myDb5 = new DataBaseHelper(this);
+        user = (User)getIntent().getSerializableExtra("user");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, leskanjis);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -79,6 +81,7 @@ public class Before_SecondScreen extends AppCompatActivity {
                             intent = new Intent(Before_SecondScreen.this, SecondScreen.class);
                             intent.putExtra("niveauJLPT", niveauJLPT);
                             intent.putExtra("Leskanjis", Kanji_JLPT5);
+                            intent.putExtra("user",user);
                             Before_SecondScreen.this.startActivity(intent);
                             break;
                         }

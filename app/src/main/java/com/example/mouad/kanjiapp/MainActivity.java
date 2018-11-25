@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
         TextView Time_TextView = findViewById(R.id.Time_TextView);
         Time_TextView.setText(currentDateTimeString);
-        User user = (User)getIntent().getSerializableExtra("user");
+        user = (User)getIntent().getSerializableExtra("user");
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout, toolbar, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity
         {@Override
         public void onClick(View view) {
             Intent intent = new Intent(MainActivity.this , Before_SecondScreen.class);
-            startActivity(intent);
         }
         });
     }
@@ -163,6 +162,7 @@ public class MainActivity extends AppCompatActivity
     public void button_KANJI (View v){
         Button button_KANJI = findViewById(R.id.button_KANJI);
         Intent intent = new Intent(MainActivity.this, Kanji_HUB.class);
+        intent.putExtra("user",user);
         startActivity(intent);
     }
 

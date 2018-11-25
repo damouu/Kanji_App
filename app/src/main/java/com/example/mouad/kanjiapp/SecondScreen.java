@@ -23,6 +23,8 @@ public class SecondScreen extends AppCompatActivity
     boolean reponse = false;
     int i = 0;
     int score = 0;
+    String niveauJLPT;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -30,7 +32,8 @@ public class SecondScreen extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.secondactivities);
         myDb = new DataBaseHelper(this);
-        String niveauJLPT = getIntent().getExtras().getString("niveauJLPT");
+        user = (User)getIntent().getSerializableExtra("user");
+        niveauJLPT = getIntent().getExtras().getString("niveauJLPT");
         TextView JLPTView = (findViewById(R.id.JLPTView));
         TextView textView9 = (findViewById(R.id.textView9));
         JLPTView.setText(niveauJLPT);
@@ -64,6 +67,7 @@ public class SecondScreen extends AppCompatActivity
                 Intent intent = new Intent(SecondScreen.this, ThirdActivity.class);
                 intent.putExtra("score", score);
                 intent.putExtra("fauxkanjis", (ArrayList<String>) fauxkanjis);
+                myDb.InsertTest(niveauJLPT,score,user.GetEmailAddress());
                 SecondScreen.this.startActivity(intent);
                 break;
             }
