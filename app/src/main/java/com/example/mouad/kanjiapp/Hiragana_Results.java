@@ -21,8 +21,8 @@ public class Hiragana_Results extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         ArrayList<String> dede = (ArrayList<String>) bundle.getStringArrayList("HiraganaFaux");
         TextView ScoreView = findViewById(R.id.JLPTView);
-        TextView FauxList  = findViewById(R.id.FauxList);
-        ListView ListView  = findViewById(R.id.ListView);
+        TextView FauxList  = findViewById(R.id.Historic_View);
+        ListView ListView  = findViewById(R.id.Historic_ListView);
         ScoreView.setText("Nombres de réponses juste " + " "+": "+" "+ String.valueOf(score));
         Toast.makeText(getApplicationContext(), "Voici vos resultats ! ", Toast.LENGTH_LONG).show();
         ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,dede);

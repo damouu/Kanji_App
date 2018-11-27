@@ -45,7 +45,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private  static final String DATABASE_ALTER_TMODIF1 = "ALTER TABLE Kanji_Table ADD JLPT_NIVEAU_KANJI TEXT";
 
     public DataBaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 41);
+        super(context, DATABASE_NAME, null, 45);
         SQLiteDatabase db = this.getWritableDatabase();
     }
 
@@ -58,10 +58,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
        //db.execSQL("create table " + TABLE_NAME_USERS +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , EmailAddress TEXT ,Password TEXT ,Pseudo TEXT ,Avatar BLOB,RandomValue TEXT )");
-        //db.execSQL("create table " + TABLE_NAME_KATAKANA +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT )");
-        //db.execSQL("create table " + TABLE_NAME_HIRAGANA +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT )");
+        db.execSQL("create table " + TABLE_NAME_KATAKANA +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT )");
+        db.execSQL("create table " + TABLE_NAME_HIRAGANA +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT )");
         db.execSQL("create table " + TABLE_NAME_Test_History +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,NIVEAU_JLPT_TEST_KANJI TEXT,DATE_TEST DATE,SCORE INTEGER,EmailAddress TEXT ,FOREIGN KEY (EmailAddress) REFERENCES " + TABLE_NAME_USERS + " (EmailAddress))");
-        //db.execSQL("DROP TABLE " + TABLE_NAME_Test_History);
+        //db.execSQL("DELETE FROM " + TABLE_NAME_USERS);
     }
 
     public Cursor getAllData() {
@@ -210,6 +210,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
+
+    public Cursor GetUserHistoric(String EmailAddress){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT NIVEAU_JLPT_TEST_KANJI,DATE_TEST,SCORE FROM Test_History WHERE EmailAddress = '" + EmailAddress + "'",null);
+        return  res;
+    }
 
     public Cursor LogUser(String LogInMail,String LogInPassword){
         SQLiteDatabase db = this.getWritableDatabase();

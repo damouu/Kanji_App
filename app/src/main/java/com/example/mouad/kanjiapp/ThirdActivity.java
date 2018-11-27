@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -17,31 +18,34 @@ import java.util.ArrayList;
 
 public class ThirdActivity extends AppCompatActivity
 {
-        protected void onCreate(Bundle savedInstanceState)
-        {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.thirdactivity);
-            int score = getIntent().getIntExtra("score",0);
-            Bundle bundle = getIntent().getExtras();
-            ArrayList<String> dede = (ArrayList<String>) bundle.getStringArrayList("fauxkanjis");
-            TextView ScoreView = findViewById(R.id.JLPTView);
-            TextView FauxList  = findViewById(R.id.FauxList);
-            ListView ListView  = findViewById(R.id.ListView);
-            ScoreView.setText("Nombres de réponses juste " + " "+": "+" "+ String.valueOf(score));
-            Toast.makeText(getApplicationContext(), "Voici vos resultats ! ", Toast.LENGTH_LONG).show();
-            ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,dede);
-            ListView.setAdapter(adapter);
+    User user;
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.thirdactivity);
+        int score = getIntent().getIntExtra("score",0);
+        user = (User)getIntent().getSerializableExtra("user");
+        Serializable TestSize = getIntent().getSerializableExtra("test.size");
+        Bundle bundle = getIntent().getExtras();
+        ArrayList<String> dede = (ArrayList<String>) bundle.getStringArrayList("fauxkanjis");
+        TextView ScoreView = findViewById(R.id.JLPTView);
+        TextView FauxList  = findViewById(R.id.Historic_View);
+        ListView ListView  = findViewById(R.id.Historic_ListView);
+        ScoreView.setText("Correct answers"+": "+" "+ String.valueOf(score)+"/"+ TestSize);
+        Toast.makeText(getApplicationContext(), "Here are your results"  + " " + user.GetPseudo(), Toast.LENGTH_LONG).show();
+        ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,dede);
+        ListView.setAdapter(adapter);
         }
 
-        public void buttonHome (View v)
-        {
+        public void buttonHome (View v) {
             Intent intent = new Intent(ThirdActivity.this, MainActivity.class);
+            intent.putExtra("user",user);
             ThirdActivity.this.startActivity(intent);
         }
 
-        public void buttonRetry (View v)
-        {
+        public void buttonRetry (View v) {
             Intent intent = new Intent(ThirdActivity.this, Before_SecondScreen.class);
+            intent.putExtra("user",user);
             ThirdActivity.this.startActivity(intent);
         }
 

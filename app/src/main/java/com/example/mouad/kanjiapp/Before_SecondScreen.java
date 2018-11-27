@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,7 +28,7 @@ public class Before_SecondScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_before__second_screen);
         Button buttonHome = findViewById(R.id.button_Home);
-        ListView listView = (ListView) findViewById(R.id.ListView);
+        ListView listView = (ListView) findViewById(R.id.Historic_ListView);
         final ArrayList<Kanji> Kanji_JLPT5 = new ArrayList<Kanji>();
         final ArrayList<Kanji> Kanji_JLPT4 = new ArrayList<Kanji>();
         final ArrayList<Kanji> Kanji_JLPT3 = new ArrayList<Kanji>();

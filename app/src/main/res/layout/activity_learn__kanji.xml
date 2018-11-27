@@ -8,7 +8,7 @@
     tools:context=".Learn_Kanji">
 
     <ListView
-        android:id="@+id/ListView"
+        android:id="@+id/Historic_ListView"
         android:layout_width="304dp"
         android:layout_height="382dp"
         android:layout_marginBottom="8dp"
@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ListView"
+        app:layout_constraintTop_toBottomOf="@+id/Historic_ListView"
         app:layout_constraintVertical_bias="0.68" />
 
     <TextView

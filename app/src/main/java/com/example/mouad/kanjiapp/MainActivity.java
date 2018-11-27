@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity
         Button LogInButton = findViewById(R.id.LogIn);
         Button SignIn_button = findViewById(R.id.SignIn_button);
         Button LogOut_Button = findViewById(R.id.LogOut_Button);
+        Button Button_Historic = findViewById(R.id.Button_Historic);
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
         TextView Time_TextView = findViewById(R.id.Time_TextView);
         Time_TextView.setText(currentDateTimeString);
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity
             NavigationView navigationView4 = (NavigationView) findViewById(R.id.nav_view); View headerView4 = navigationView4.getHeaderView(0);
             ImageView User_Avatar = (ImageView) headerView4.findViewById(R.id.imageView); User_Avatar.setImageBitmap(Utils.getImages(user.GetAvatar()));
             LogOut_Button.setVisibility(View.VISIBLE);
+            Button_Historic.setVisibility(View.VISIBLE);
         }
     }
 
@@ -84,6 +86,18 @@ public class MainActivity extends AppCompatActivity
         public void onClick(View view) {
             Intent intent = new Intent(MainActivity.this , Before_SecondScreen.class);
         }
+        });
+    }
+
+    public void Button_Historic(View view){
+        Button Button_Historic = findViewById(R.id.Button_Historic);
+        Button_Historic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this , Historic_Activity.class);
+                intent.putExtra("user",user);
+                startActivity(intent);
+            }
         });
     }
 

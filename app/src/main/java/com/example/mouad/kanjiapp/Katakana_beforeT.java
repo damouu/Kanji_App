@@ -33,7 +33,7 @@ public class Katakana_beforeT extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_katakana_before_t);
         Button buttonHome = findViewById(R.id.button_Home);
-        ListView listView = (ListView) findViewById(R.id.ListView);
+        ListView listView = (ListView) findViewById(R.id.Historic_ListView);
         final String[] LesKatakanas = new String[]{"a", "Ka", "Sa", "Ta", "Na","Ha","Ma","Ra","Ya","Wa","N"};
         final ArrayList<Katakana> Katakana_A = new ArrayList<Katakana>();
         final ArrayList<Katakana> Katakana_Ka = new ArrayList<Katakana>();

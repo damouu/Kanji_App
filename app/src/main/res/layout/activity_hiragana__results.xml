@@ -19,7 +19,7 @@
         android:clickable="true"
         android:text="votre score"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
-        app:layout_constraintBottom_toTopOf="@+id/FauxList"
+        app:layout_constraintBottom_toTopOf="@+id/Historic_View"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,7 @@
         app:layout_constraintVertical_bias="0.948" />
 
     <ListView
-        android:id="@+id/ListView"
+        android:id="@+id/Historic_ListView"
         android:layout_width="283dp"
         android:layout_height="344dp"
         android:layout_alignParentTop="true"
@@ -60,7 +60,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/FauxList"
+        android:id="@+id/Historic_View"
         android:layout_width="155dp"
         android:layout_height="33dp"
         android:layout_marginBottom="16dp"
@@ -69,7 +69,7 @@
         android:layout_marginTop="8dp"
         android:text="Vos erreurs"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
-        app:layout_constraintBottom_toTopOf="@+id/ListView"
+        app:layout_constraintBottom_toTopOf="@+id/Historic_ListView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.308"
         app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +90,7 @@
         app:layout_constraintEnd_toStartOf="@+id/Home"
         app:layout_constraintHorizontal_bias="0.706"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ListView"
+        app:layout_constraintTop_toBottomOf="@+id/Historic_ListView"
         app:layout_constraintVertical_bias="0.369" />
 
 </android.support.constraint.ConstraintLayout>

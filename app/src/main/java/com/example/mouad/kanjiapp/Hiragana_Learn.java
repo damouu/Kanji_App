@@ -33,7 +33,7 @@ public class Hiragana_Learn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hiragana__learn);
         Button buttonHome = findViewById(R.id.button_Home);
-        ListView listView = (ListView) findViewById(R.id.ListView);
+        ListView listView = (ListView) findViewById(R.id.Historic_ListView);
         final String[] LesHiraganas = new String[]{"a", "Ka", "Sa", "Ta", "Na","Ha","Ma","Ra","Ya","Wa","N"};
         final ArrayList<Hiragana> Hiragana_A = new ArrayList<Hiragana>();
         final ArrayList<Hiragana> Hiragana_Ka = new ArrayList<Hiragana>();

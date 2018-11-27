@@ -67,6 +67,8 @@ public class SecondScreen extends AppCompatActivity
                 Intent intent = new Intent(SecondScreen.this, ThirdActivity.class);
                 intent.putExtra("score", score);
                 intent.putExtra("fauxkanjis", (ArrayList<String>) fauxkanjis);
+                intent.putExtra("user",user);
+                intent.putExtra("test.size",Leskanjis.size());
                 myDb.InsertTest(niveauJLPT,score,user.GetEmailAddress());
                 SecondScreen.this.startActivity(intent);
                 break;

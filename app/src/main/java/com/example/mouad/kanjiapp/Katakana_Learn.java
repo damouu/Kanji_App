@@ -32,7 +32,7 @@ public class Katakana_Learn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_katakana__learn);
         Button buttonHome = findViewById(R.id.button_Home);
-        ListView listView = (ListView) findViewById(R.id.ListView);
+        ListView listView = (ListView) findViewById(R.id.Historic_ListView);
         final String[] LesKatakanas = new String[]{"a", "Ka", "Sa", "Ta", "Na","Ha","Ma","Ra","Ya","Wa","N"};
         final ArrayList<Katakana> Katakana_A = new ArrayList<Katakana>();
         final ArrayList<Katakana> Katakana_Ka = new ArrayList<Katakana>();

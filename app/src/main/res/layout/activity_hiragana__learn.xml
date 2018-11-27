@@ -7,7 +7,7 @@
     tools:context=".Hiragana_Learn"
     android:background="@drawable/wp2337025">
     <ListView
-        android:id="@+id/ListView"
+        android:id="@+id/Historic_ListView"
         android:layout_width="275dp"
         android:layout_height="415dp"
         android:layout_marginBottom="8dp"
