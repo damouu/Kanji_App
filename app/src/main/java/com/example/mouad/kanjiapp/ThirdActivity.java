@@ -48,7 +48,6 @@ public class ThirdActivity extends AppCompatActivity
             intent.putExtra("user",user);
             ThirdActivity.this.startActivity(intent);
         }
-
 }
 
 

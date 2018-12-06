@@ -26,7 +26,7 @@
         app:layout_constraintVertical_bias="0.727" />
 
     <Button
-        android:id="@+id/Home"
+        android:id="@+id/Home_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -86,7 +86,7 @@
         android:onClick="buttonRetry"
         android:text="Recommencer"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/Home"
+        app:layout_constraintEnd_toStartOf="@+id/Home_Button"
         app:layout_constraintHorizontal_bias="0.706"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Historic_ListView"
