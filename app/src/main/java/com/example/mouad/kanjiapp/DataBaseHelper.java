@@ -27,6 +27,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME_KATAKANA    =  "Katakana_Table";
     public static final String TABLE_NAME_USERS       =  "Users_Table";
     public static final String TABLE_NAME_Test_History = "Test_History";
+    public static final String TABLE_NAME_Favorite_Kanji = "Favorite_Kanji";
     public static final String COL_1         =  "ID";
     public static final String COL_2         =  "CHARACTERE";
     public static final String COL_3         =  "NUMERO";
@@ -42,10 +43,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COL_18       =   "DATE_TEST";
     public static final String COL_16       =   "SCORE";
     public static final String COL_17       =   "EmailAddress";
+    public static final String COL_20       =   "ID";
+    public static final String COL_21       =   "Kanji";
+    public static final String COL_22       =   "User_Pseudo";
+    public static final String COL_23       =   "Date_Added";
+
+
     private  static final String DATABASE_ALTER_TMODIF1 = "ALTER TABLE Kanji_Table ADD JLPT_NIVEAU_KANJI TEXT";
 
     public DataBaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 49);
+        super(context, DATABASE_NAME, null, 52);
         SQLiteDatabase db = this.getWritableDatabase();
     }
 
@@ -61,8 +68,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         //db.execSQL("create table " + TABLE_NAME_KATAKANA +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT )");
         //db.execSQL("create table " + TABLE_NAME_HIRAGANA +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT )");
         //db.execSQL("create table " + TABLE_NAME_Test_History +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,NIVEAU_JLPT_TEST_KANJI TEXT,DATE_TEST DATE,SCORE INTEGER,EmailAddress TEXT ,FOREIGN KEY (EmailAddress) REFERENCES " + TABLE_NAME_USERS + " (EmailAddress))");
-        db.execSQL("DELETE FROM " + TABLE_NAME_USERS);
-        db.execSQL("DELETE FROM " + TABLE_NAME_Test_History);
+        //db.execSQL("create table " + TABLE_NAME_Favorite_Kanji +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,Kanji TEXT,Date_Added DATE,User_Pseudo TEXT,FOREIGN KEY (Kanji) REFERENCES " + TABLE_NAME + " (CHRACTERE),FOREIGN KEY (User_Pseudo) REFERENCES " + TABLE_NAME_USERS + "(Pseudo))");
+        //db.execSQL("DELETE FROM " + TABLE_NAME_USERS);
+        //db.execSQL("DELETE FROM " + TABLE_NAME_Test_History);
+        //db.execSQL("DELETE FROM " + TABLE_NAME_Favorite_Kanji);
     }
 
     public Cursor getAllData() {
@@ -188,6 +197,32 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         else
             return true;
     }
+
+    public Cursor CheckFavoriteKanji(String Kanji,String User_Pseudo) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT Kanji,User_Pseudo FROM Favorite_Kanji WHERE Kanji = '" + Kanji +"'" + " AND User_Pseudo ='" + User_Pseudo + "'",null);
+        return res;
+    }
+
+    public boolean InsertFavoriteKanji(String Kanji,String User_Pseudo) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_21, Kanji);
+        contentValues.put(COL_22, User_Pseudo);
+        contentValues.put(COL_23, getDateTime());
+        long result = db.insert(TABLE_NAME_Favorite_Kanji, null, contentValues);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
+
+
+    public void DeleteFavoriteKanji(String Kanji,String User_Pseudo) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM "+ TABLE_NAME_Favorite_Kanji + " WHERE Kanji ='" + Kanji +"'" + " AND User_Pseudo ='" + User_Pseudo +"'");
+    }
+
 
     private String getDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(

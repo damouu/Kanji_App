@@ -9,20 +9,20 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="TEST" />
+            android:icon="@drawable/ic_grade_black_24dp"
+            android:title="Favorite Kanjis" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="TEST" />
+            android:icon="@drawable/ic_bookmark_black_24dp"
+            android:title="Lesson history" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="TEST" />
+            android:icon="@drawable/test_history"
+            android:title="Test history"/>
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="TEST" />
+            android:title="Settings" />
     </group>
 
     <item android:title="">

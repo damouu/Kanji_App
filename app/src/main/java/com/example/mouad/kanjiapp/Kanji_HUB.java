@@ -30,6 +30,7 @@ public class Kanji_HUB extends AppCompatActivity {
     public void button_LECON (View v){
         Button button_LECON = findViewById(R.id.Admin_Button);
         Intent intent = new Intent(Kanji_HUB.this, Learn_Kanji.class);
+        intent.putExtra("user",user);
         startActivity(intent);
     }
 }

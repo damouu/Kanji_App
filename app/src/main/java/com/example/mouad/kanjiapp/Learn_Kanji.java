@@ -22,6 +22,7 @@ public class Learn_Kanji extends AppCompatActivity {
     DataBaseHelper myDb4;
     DataBaseHelper myDb5;
     private Object kanji;
+    User user;
 
     @Override
 
@@ -37,6 +38,7 @@ public class Learn_Kanji extends AppCompatActivity {
         myDb3 = new DataBaseHelper(this);
         myDb4 = new DataBaseHelper(this);
         myDb5 = new DataBaseHelper(this);
+        user = (User)getIntent().getSerializableExtra("user");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn__kanji);
         final String [] leskanjis = new String[] {"JLPT5","JLPT4","JLPT3","JLPT2","JLPT1"};
@@ -79,6 +81,7 @@ public class Learn_Kanji extends AppCompatActivity {
                         intent = new Intent(Learn_Kanji.this, Lesson_Kanji.class);
                         intent.putExtra("niveauJLPT", niveauJLPT);
                         intent.putExtra("Leskanjis", Kanji_JLPT5);
+                        intent.putExtra("user",user);
                         Learn_Kanji.this.startActivity(intent);
                         break;
                     }
