@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity
         Button LogInButton = findViewById(R.id.LogIn);
         Button SignIn_button = findViewById(R.id.SignIn_button);
         Button LogOut_Button = findViewById(R.id.LogOut_Button);
+        Button Favorite_Button = findViewById(R.id.Favorite_Button);
         Button Button_Historic = findViewById(R.id.Button_Historic);
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
         TextView Time_TextView = findViewById(R.id.Time_TextView);
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity
             ImageView User_Avatar = (ImageView) headerView4.findViewById(R.id.imageView); User_Avatar.setImageBitmap(Utils.getImages(user.GetAvatar()));
             LogOut_Button.setVisibility(View.VISIBLE);
             Button_Historic.setVisibility(View.VISIBLE);
+            Favorite_Button.setVisibility(View.VISIBLE);
         }
     }
 
@@ -95,6 +97,18 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this , Historic_Activity.class);
+                intent.putExtra("user",user);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void Favorite_Button(View view){
+        Button Button_Historic = findViewById(R.id.Favorite_Button);
+        Button_Historic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this , Favorite_Kanji_Activity.class);
                 intent.putExtra("user",user);
                 startActivity(intent);
             }

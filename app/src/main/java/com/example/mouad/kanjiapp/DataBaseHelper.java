@@ -204,6 +204,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
+    public Cursor GetUserFavoriteKanji(String UserPseudo) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT Kanji,Date_Added FROM Favorite_Kanji WHERE User_Pseudo ='"+ UserPseudo +"'",null);
+        return res;
+    }
+
     public boolean InsertFavoriteKanji(String Kanji,String User_Pseudo) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

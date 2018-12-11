@@ -63,7 +63,8 @@
             android:name=".SignIn"
             android:label="@string/title_activity_sign_in"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Historic_Activity"></activity>
+        <activity android:name=".Historic_Activity" />
+        <activity android:name=".Favorite_Kanji_Activity"></activity>
     </application>
 
 </manifest>
