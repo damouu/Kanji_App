@@ -3,20 +3,10 @@ package com.example.mouad.kanjiapp;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
-import android.net.Uri;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.DateTimeException;
-import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.Locale;
 
@@ -52,7 +42,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private  static final String DATABASE_ALTER_TMODIF1 = "ALTER TABLE Kanji_Table ADD JLPT_NIVEAU_KANJI TEXT";
 
     public DataBaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 52);
+        super(context, DATABASE_NAME, null, 53);
         SQLiteDatabase db = this.getWritableDatabase();
     }
 
@@ -265,6 +255,24 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return  res;
     }
 
+
+    public Cursor AvatarUser(String EmailAddress){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT Avatar FROM Users_Table WHERE EmailAddress = '" + EmailAddress +"'",null);
+        return  res;
+    }
+
+    public boolean ChangeUserAvatar(String EmailAddress,byte[] image){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_17,EmailAddress);
+        contentValues.put(COL_13,image);
+        long result = db.update(TABLE_NAME_USERS,contentValues,"EmailAddress = ? ",new String[]{EmailAddress});
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
 
     public Cursor CheckUser(String LogInMail,String Pseudo2){
         SQLiteDatabase db = this.getWritableDatabase();

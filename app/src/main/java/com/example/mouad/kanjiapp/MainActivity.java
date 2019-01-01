@@ -1,6 +1,10 @@
 package com.example.mouad.kanjiapp;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -19,7 +23,7 @@ import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
 
-
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -31,6 +35,8 @@ public class MainActivity extends AppCompatActivity
     EditText Time_TextView;
     Toolbar toolbar;
     User user;
+    private int REQUEST_CODE =1;
+    Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -52,6 +58,7 @@ public class MainActivity extends AppCompatActivity
         Button LogOut_Button = findViewById(R.id.LogOut_Button);
         Button Favorite_Button = findViewById(R.id.Favorite_Button);
         Button Button_Historic = findViewById(R.id.Button_Historic);
+        Button Button_Change_Avatar = findViewById(R.id.Change_Avatar);
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
         TextView Time_TextView = findViewById(R.id.Time_TextView);
         Time_TextView.setText(currentDateTimeString);
@@ -73,6 +80,7 @@ public class MainActivity extends AppCompatActivity
             LogOut_Button.setVisibility(View.VISIBLE);
             Button_Historic.setVisibility(View.VISIBLE);
             Favorite_Button.setVisibility(View.VISIBLE);
+            Button_Change_Avatar.setVisibility(View.VISIBLE);
         }
     }
 
@@ -84,6 +92,39 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this , Before_SecondScreen.class);
         }
         });
+    }
+
+    public void OpenGalleryMainActivity (View v){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent.createChooser(intent,"Select Picture"),REQUEST_CODE);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        //ImageView AvatarImage = findViewById(R.id.AvatarImage);
+        super.onActivityResult(requestCode, resultCode,data);
+        if(requestCode == REQUEST_CODE  && data != null && data.getData() != null){
+            Uri uri = data.getData();
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
+                 boolean isInserted = myDb.ChangeUserAvatar(user.GetEmailAddress(),Utils.getBytes(bitmap));
+                 if (isInserted == true){
+                     Toast.makeText(MainActivity.this,"avatar changed successfully !",Toast.LENGTH_SHORT).show();
+                     Cursor cursor =  myDb.AvatarUser(user.GetEmailAddress());
+                     cursor.moveToFirst();
+                     byte[] Avatar = cursor.getBlob(0);
+                     NavigationView navigationView4 = (NavigationView) findViewById(R.id.nav_view); View headerView4 = navigationView4.getHeaderView(0);
+                     ImageView User_Avatar = (ImageView) headerView4.findViewById(R.id.imageView);
+                     User_Avatar.setImageBitmap(Utils.getImages(Avatar));
+                 }
+                 else {
+                     Toast.makeText(MainActivity.this,"A problem happened ",Toast.LENGTH_SHORT).show();
+                 }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void Button_Historic(View view){
