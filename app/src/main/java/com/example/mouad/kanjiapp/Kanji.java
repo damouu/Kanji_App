@@ -3,7 +3,11 @@ package com.example.mouad.kanjiapp;
 
 import android.support.v7.app.AppCompatActivity;
 
+import org.json.JSONArray;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by mouad on 29/12/2017.
@@ -58,5 +62,15 @@ public class Kanji extends Charactere implements Serializable
     }
 
     public void setSignification(String signification) {this.signification = signification; }
+
+    public JSONArray convertToJSONArray(){
+        List laliste = new ArrayList();
+        laliste.add(charactere);
+        laliste.add(numero);
+        laliste.add(signification);
+        laliste.add(lecture_kenyon);
+        laliste.add(lecture_onyomi);
+        return new JSONArray(laliste);
+    }
 
 }

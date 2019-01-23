@@ -42,7 +42,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private  static final String DATABASE_ALTER_TMODIF1 = "ALTER TABLE Kanji_Table ADD JLPT_NIVEAU_KANJI TEXT";
 
     public DataBaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 53);
+        super(context, DATABASE_NAME, null, 55);
         SQLiteDatabase db = this.getWritableDatabase();
     }
 
@@ -54,15 +54,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-       //db.execSQL("create table " + TABLE_NAME_USERS +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , EmailAddress TEXT ,Password TEXT ,Pseudo TEXT ,Avatar BLOB,RandomValue TEXT )");
+ //       db.execSQL("create table " + TABLE_NAME_USERS +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , EmailAddress TEXT ,Password TEXT ,Pseudo TEXT ,Avatar BLOB,RandomValue TEXT )");
+        db.execSQL("DELETE FROM " + TABLE_NAME);
         //db.execSQL("create table " + TABLE_NAME_KATAKANA +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT )");
         //db.execSQL("create table " + TABLE_NAME_HIRAGANA +" (ID  INTEGER PRIMARY KEY AUTOINCREMENT , CHARACTERE TEXT , NUMERO INTEGER , SIGNIFICATION TEXT )");
         //db.execSQL("create table " + TABLE_NAME_Test_History +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,NIVEAU_JLPT_TEST_KANJI TEXT,DATE_TEST DATE,SCORE INTEGER,EmailAddress TEXT ,FOREIGN KEY (EmailAddress) REFERENCES " + TABLE_NAME_USERS + " (EmailAddress))");
         //db.execSQL("create table " + TABLE_NAME_Favorite_Kanji +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,Kanji TEXT,Date_Added DATE,User_Pseudo TEXT,FOREIGN KEY (Kanji) REFERENCES " + TABLE_NAME + " (CHRACTERE),FOREIGN KEY (User_Pseudo) REFERENCES " + TABLE_NAME_USERS + "(Pseudo))");
-        //db.execSQL("DELETE FROM " + TABLE_NAME_USERS);
         //db.execSQL("DELETE FROM " + TABLE_NAME_Test_History);
         //db.execSQL("DELETE FROM " + TABLE_NAME_Favorite_Kanji);
     }
+    //TODO jus trying the feature :)
 
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -76,6 +77,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return  res;
     }
 
+
+    //FIXME trying this feature ass well :)
     public Cursor get_Katakana(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("SELECT * FROM "+TABLE_NAME_KATAKANA,null );

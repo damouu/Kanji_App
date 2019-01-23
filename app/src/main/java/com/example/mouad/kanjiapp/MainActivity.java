@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity
     User user;
     private int REQUEST_CODE =1;
     Bitmap bitmap;
+    private static AccesDistant accesDistant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -67,6 +68,8 @@ public class MainActivity extends AppCompatActivity
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout, toolbar, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+        /*Kanji kanji = new Kanji("豆",1,"dede","dede","dede");
+        accesDistant.envoi("enreg",kanji.convertToJSONArray());*/
         if(user != null ){
             TextView User_TextView = findViewById(R.id.User_TextView);
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view); View headerView = navigationView.getHeaderView(0);
