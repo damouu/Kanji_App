@@ -17,6 +17,7 @@ public class AccesDistant implements AsyncResponse {
     ArrayList<Kanji>LesKanjisJSON = new ArrayList<Kanji>();
     int i;
     Bundle bundle= new Bundle();
+    Admin admin = new Admin();
 
     public AccesDistant(){
     super();
@@ -24,11 +25,11 @@ public class AccesDistant implements AsyncResponse {
 
     @Override
     public void processFinish(String output) {
-        Log.d("serveur","*************************"+output);
+        Log.d("serveur","*************************" + output);
         String[] message = output.split("%");
         if (message.length>1){
             if(message[0].equals("enreg")){
-                Log.d("enreg","******************"+message[1]);
+                Log.d("enreg","******************" + message[1]);
             }else{
                 if(message[0].equals("TousLesKanjis")){
                     Log.d("TousLesKanjis","******************"+message[1]);
@@ -36,12 +37,12 @@ public class AccesDistant implements AsyncResponse {
                         JSONArray jsonInfo = new JSONArray(message[1]);
                         for(i=0; i < jsonInfo.length(); i++){
                             JSONObject info = new JSONObject(jsonInfo.get(i).toString());
-                            Integer ID = info.getInt("ID");
-                            String CHARACTERE =     info.getString("CHARACTERE");
-                            Integer JLPT_NUMERO     = info.getInt("JLPT_NUMERO");
+                            Integer ID           = info.getInt("ID");
+                            String CHARACTERE    = info.getString("CHARACTERE");
+                            Integer JLPT_NUMERO  = info.getInt("JLPT_NUMERO");
                             String SIGNIFICATION = info.getString("SIGNIFICATION");
-                            String LECTURE_KUN = info.getString("LECTURE_KUN");
-                            String LECTURE_ON = info.getString("LECTURE_ON");
+                            String LECTURE_KUN   = info.getString("LECTURE_KUN");
+                            String LECTURE_ON    = info.getString("LECTURE_ON");
                             Kanji kanji = new Kanji(CHARACTERE,JLPT_NUMERO,SIGNIFICATION,LECTURE_KUN,LECTURE_ON);
                             LesKanjisJSON.add(kanji);
                         }
@@ -59,14 +60,11 @@ public class AccesDistant implements AsyncResponse {
     }
 
 
-    public void envoi(String operation , JSONArray lesDonneesJSON){
+    public void envoi(String operation ,JSONArray lesDonneesJSON){
         AccesHTTP accesDonnees = new AccesHTTP();
         accesDonnees.delegate = this;
         accesDonnees.addParam("operation",operation);
         accesDonnees.addParam("lesdonnees",lesDonneesJSON.toString());
-        Log.d("AMINNNNNE","******************" + lesDonneesJSON.toString());
         accesDonnees.execute(SERVERADDR);
-        Log.d("BILLAAAAAAL","******************" + lesDonneesJSON.toString());
-
     }
 }

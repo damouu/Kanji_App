@@ -33,7 +33,7 @@ public class Admin extends AppCompatActivity implements Serializable {
     Button button3;
     TextView Time_TextView;
     Button button5;
-
+    ArrayList<Kanji> LesKanjis = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +85,7 @@ public class Admin extends AppCompatActivity implements Serializable {
                 editText5.setText("SIGNIFICATION");
                 editText6.setText("LECTURE_KUN");
                 editText7.setText("LECTURE_ON");
+                LesKanjis.size();
             }
         }
 
@@ -112,9 +113,21 @@ public class Admin extends AppCompatActivity implements Serializable {
                       buffer.append("SIGNIFICATION :" + result.getColumnIndex("SIGNIFICATION")+ "\n");
                       buffer.append("LECTURE_KUN :" + result.getColumnIndex("LECTURE_KUN")+ "\n");
                       buffer.append("LECTURE_ON :" + result.getColumnIndex("LECTURE_ON")+ "\n");
+                      LesKanjis.size();
                   }
                   displayAllData("les kanjis crées", buffer.toString());
               } }
                 });
                 }
-            }
+
+
+    public ArrayList<Kanji> getLesKanjis(ArrayList<Kanji> lesKanjisJSON) {
+        return LesKanjis;
+    }
+
+    public void setLesKanjis(ArrayList<Kanji> lesKanjis)
+    {
+        LesKanjis = lesKanjis;
+    }
+
+}
