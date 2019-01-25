@@ -114,6 +114,7 @@ public class Admin extends AppCompatActivity implements Serializable {
                       buffer.append("LECTURE_KUN :" + result.getColumnIndex("LECTURE_KUN")+ "\n");
                       buffer.append("LECTURE_ON :" + result.getColumnIndex("LECTURE_ON")+ "\n");
                       LesKanjis.size();
+                      LesKanjis.get(2);
                   }
                   displayAllData("les kanjis crées", buffer.toString());
               } }
