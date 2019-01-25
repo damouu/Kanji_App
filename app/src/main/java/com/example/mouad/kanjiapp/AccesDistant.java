@@ -16,8 +16,6 @@ public class AccesDistant implements AsyncResponse {
     private static final String SERVERADDR = "http://192.168.56.1/KanjiApp/serveurKanjiApp.php";
     ArrayList<Kanji>LesKanjisJSON = new ArrayList<Kanji>();
     int i;
-    Bundle bundle= new Bundle();
-    Admin admin = new Admin();
 
     public AccesDistant(){
     super();
@@ -46,7 +44,6 @@ public class AccesDistant implements AsyncResponse {
                             Kanji kanji = new Kanji(CHARACTERE,JLPT_NUMERO,SIGNIFICATION,LECTURE_KUN,LECTURE_ON);
                             LesKanjisJSON.add(kanji);
                         }
-                        bundle.putSerializable("LesKanjisJSON",LesKanjisJSON);
                     } catch (JSONException e) {
                         Log.d("erreur","******************"+message[1]);
                     }
