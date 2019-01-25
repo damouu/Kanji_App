@@ -15,7 +15,7 @@ public class Admin_Hub extends AppCompatActivity {
         setContentView(R.layout.activity_admin__hub);
         Button button_Hiragana = findViewById(R.id.button_Hiragana);
         Button button_Katakana = findViewById(R.id.button_Katakana);
-        Button button_Kanji    = findViewById(R.id.button_Kanji);
+        Button button_Kanji = findViewById(R.id.button_Kanji);
     }
 
 
@@ -31,7 +31,7 @@ public class Admin_Hub extends AppCompatActivity {
     }
 
     public void button_Kanji(View v) {
-        Button button_Kanji    = findViewById(R.id.button_Kanji);
+        Button button_Kanji = findViewById(R.id.button_Kanji);
         Intent intent = new Intent(Admin_Hub.this, Admin.class);
         startActivity(intent);
     }

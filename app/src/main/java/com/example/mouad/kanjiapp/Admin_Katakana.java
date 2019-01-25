@@ -20,14 +20,14 @@ public class Admin_Katakana extends AppCompatActivity {
         setContentView(R.layout.activity_admin__katakana);
         myDb = new DataBaseHelper(this);
         Button button_AJOUTER = findViewById(R.id.button_AJOUTER);
-        EditText editText_CHARACTERE  = findViewById(R.id.editText_CHARACTERE);
+        EditText editText_CHARACTERE = findViewById(R.id.editText_CHARACTERE);
         EditText editText_NUMERO = findViewById(R.id.editText_NUMERO);
         EditText editText_SIGNIFICATION = findViewById(R.id.editText_SIGNIFICATION);
-        Button   button_EFFACER = findViewById(R.id.button_EFFACER);
+        Button button_EFFACER = findViewById(R.id.button_EFFACER);
         viewAll();
     }
 
-    public void DeleteData(View v){
+    public void DeleteData(View v) {
         AlertDialog.Builder builder = new AlertDialog.Builder(Admin_Katakana.this);
         builder.setCancelable(true);
         builder.setTitle("Alerte");
@@ -36,7 +36,7 @@ public class Admin_Katakana extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 myDb.delete_KATAKANA();
-                Toast.makeText(Admin_Katakana.this,"les données ont été supprimé",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Admin_Katakana.this, "les données ont été supprimé", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -50,24 +50,23 @@ public class Admin_Katakana extends AppCompatActivity {
         Button button_EFFACER = findViewById(R.id.button6_Delete);
     }
 
-    public void buttonOnClick5(View v){
+    public void buttonOnClick5(View v) {
         Button button_AJOUTER = findViewById(R.id.button_AJOUTER);
-        EditText editText_CHARACTERE  = findViewById(R.id.editText_CHARACTERE);
+        EditText editText_CHARACTERE = findViewById(R.id.editText_CHARACTERE);
         EditText editText_NUMERO = findViewById(R.id.editText_NUMERO);
         EditText editText_SIGNIFICATION = findViewById(R.id.editText_SIGNIFICATION);
-        if(editText_CHARACTERE.getText().toString().trim().length() == 0 || editText_NUMERO.getText().toString().trim().length() == 0 ||editText_SIGNIFICATION.getText().toString().trim().length()== 0){
-            Toast.makeText(Admin_Katakana.this,"Veulliez remplir tout les champs",Toast.LENGTH_SHORT).show();
-        }
-        else {
-            boolean isInserted =  myDb.Insert_Katakana(editText_CHARACTERE.getText().toString(),editText_NUMERO.getText().toString(),editText_SIGNIFICATION.getText().toString());
-            if (isInserted ==true)
-                Toast.makeText(Admin_Katakana.this,"Un nouveau Katakana a été crée ",Toast.LENGTH_SHORT).show();
+        if (editText_CHARACTERE.getText().toString().trim().length() == 0 || editText_NUMERO.getText().toString().trim().length() == 0 || editText_SIGNIFICATION.getText().toString().trim().length() == 0) {
+            Toast.makeText(Admin_Katakana.this, "Veulliez remplir tout les champs", Toast.LENGTH_SHORT).show();
+        } else {
+            boolean isInserted = myDb.Insert_Katakana(editText_CHARACTERE.getText().toString(), editText_NUMERO.getText().toString(), editText_SIGNIFICATION.getText().toString());
+            if (isInserted == true)
+                Toast.makeText(Admin_Katakana.this, "Un nouveau Katakana a été crée ", Toast.LENGTH_SHORT).show();
             else
-                Toast.makeText(Admin_Katakana.this,"Une erreure s'est produite",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Admin_Katakana.this, "Une erreure s'est produite", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void displayAllData(String tittle, String content){
+    public void displayAllData(String tittle, String content) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setTitle(tittle);
@@ -85,13 +84,14 @@ public class Admin_Katakana extends AppCompatActivity {
                     displayAllData("Aucune donnée", "La base de données est vide");
                 } else {
                     StringBuffer buffer = new StringBuffer();
-                    while(result.moveToNext()) {
+                    while (result.moveToNext()) {
                         buffer.append("Charactere :" + result.getString(1) + "\n");
                         buffer.append("NUMERO :" + result.getString(2) + "\n");
                         buffer.append("SIGNIFICATION :" + result.getString(3) + "\n");
                     }
                     displayAllData("les Katakana crées", buffer.toString());
-                } }
+                }
+            }
         });
     }
 }

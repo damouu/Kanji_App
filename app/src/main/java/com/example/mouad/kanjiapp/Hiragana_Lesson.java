@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Hiragana_Lesson extends AppCompatActivity {
-    List<Hiragana> Leshiraganas  = new ArrayList<Hiragana>();
+    List<Hiragana> Leshiraganas = new ArrayList<Hiragana>();
     int i = 0;
 
     @Override

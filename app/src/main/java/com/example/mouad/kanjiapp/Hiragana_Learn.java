@@ -34,7 +34,7 @@ public class Hiragana_Learn extends AppCompatActivity {
         setContentView(R.layout.activity_hiragana__learn);
         Button buttonHome = findViewById(R.id.button_Home);
         ListView listView = (ListView) findViewById(R.id.Historic_ListView);
-        final String[] LesHiraganas = new String[]{"a", "Ka", "Sa", "Ta", "Na","Ha","Ma","Ra","Ya","Wa","N"};
+        final String[] LesHiraganas = new String[]{"a", "Ka", "Sa", "Ta", "Na", "Ha", "Ma", "Ra", "Ya", "Wa", "N"};
         final ArrayList<Hiragana> Hiragana_A = new ArrayList<Hiragana>();
         final ArrayList<Hiragana> Hiragana_Ka = new ArrayList<Hiragana>();
         final ArrayList<Kanji> Hiragana_Sa = new ArrayList<Kanji>();
@@ -46,12 +46,12 @@ public class Hiragana_Learn extends AppCompatActivity {
         final ArrayList<Kanji> Hiragana_Ya = new ArrayList<Kanji>();
         final ArrayList<Kanji> Hiragana_Wa = new ArrayList<Kanji>();
         final ArrayList<Kanji> Hiragana_N = new ArrayList<Kanji>();
-        myDb  = new DataBaseHelper(this);
+        myDb = new DataBaseHelper(this);
         myDb2 = new DataBaseHelper(this);
         myDb3 = new DataBaseHelper(this);
         myDb4 = new DataBaseHelper(this);
         myDb5 = new DataBaseHelper(this);
-        myDb6  = new DataBaseHelper(this);
+        myDb6 = new DataBaseHelper(this);
         myDb7 = new DataBaseHelper(this);
         myDb8 = new DataBaseHelper(this);
         myDb9 = new DataBaseHelper(this);
@@ -74,24 +74,20 @@ public class Hiragana_Learn extends AppCompatActivity {
                         while (cursor.moveToNext()) {
                             Hiragana_A.add(new Hiragana(cursor.getString(cursor.getColumnIndex("CHARACTERE")), cursor.getInt(cursor.getColumnIndex("NUMERO")), cursor.getString(cursor.getColumnIndex("SIGNIFICATION"))));
                         }
-                        if (Hiragana_A.isEmpty()){
+                        if (Hiragana_A.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Hiragana_Learn.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
                             builder.setMessage("Le Niveau selectionné ne contient pas de Hiragana ");
-                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener()
-                            {
+                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialogInterface, int i)
-                                {
+                                public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
                                 }
                             });
                             builder.show();
                             break;
-                        }
-                        else
-                        {
+                        } else {
                             niveauHiragana = LesHiraganas[0];
                             intent = new Intent(Hiragana_Learn.this, Hiragana_Lesson.class);
                             intent.putExtra("niveauHiragana", niveauHiragana);
@@ -107,24 +103,20 @@ public class Hiragana_Learn extends AppCompatActivity {
                         while (cursor2.moveToNext()) {
                             Hiragana_Ka.add(new Hiragana(cursor2.getString(cursor2.getColumnIndex("CHARACTERE")), cursor2.getInt(cursor2.getColumnIndex("NUMERO")), cursor2.getString(cursor2.getColumnIndex("SIGNIFICATION"))));
                         }
-                        if (Hiragana_Ka.isEmpty()){
+                        if (Hiragana_Ka.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Hiragana_Learn.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
                             builder.setMessage("Le Niveau selectionné ne contient pas de Hiragana ");
-                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener()
-                            {
+                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialogInterface, int i)
-                                {
+                                public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
                                 }
                             });
                             builder.show();
                             break;
-                        }
-                        else
-                        {
+                        } else {
                             niveauHiragana = LesHiraganas[1];
                             intent = new Intent(Hiragana_Learn.this, Hiragana_Lesson.class);
                             intent.putExtra("niveauHiragana", niveauHiragana);

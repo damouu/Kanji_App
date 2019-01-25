@@ -28,7 +28,7 @@ import java.io.Serializable;
 public class SignIn extends AppCompatActivity implements Serializable {
     DataBaseHelper myDb;
     Button Create_Button;
-    private int REQUEST_CODE =1;
+    private int REQUEST_CODE = 1;
     Uri imageUri1;
     ImageView AvatarImage;
     Bitmap bitmap;
@@ -47,20 +47,21 @@ public class SignIn extends AppCompatActivity implements Serializable {
         Button OpenGallery = findViewById(R.id.OpenGallery);
     }
 
-    public void OpenGallery (View v){
+    public void OpenGallery(View v) {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent.createChooser(intent,"Select Picture"),REQUEST_CODE);
+        startActivityForResult(intent.createChooser(intent, "Select Picture"), REQUEST_CODE);
     }
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         ImageView AvatarImage = findViewById(R.id.AvatarImage);
-        super.onActivityResult(requestCode, resultCode,data);
-        if(requestCode == REQUEST_CODE  && data != null && data.getData() != null){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && data != null && data.getData() != null) {
             Uri uri = data.getData();
             try {
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 AvatarImage.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -68,25 +69,24 @@ public class SignIn extends AppCompatActivity implements Serializable {
         }
     }
 
-    public void Create_Button (View v){
+    public void Create_Button(View v) {
         Button Create_Button = findViewById(R.id.Create_Button);
         TextView Sign_Email = findViewById(R.id.Sign_Email);
         TextView Sign_Password = findViewById(R.id.Sign_Password);
         TextView Sign_Pseudo = findViewById(R.id.Sign_Pseudo);
-        if(Sign_Email.getText().toString().trim().length() == 0 || Sign_Password.getText().toString().trim().length() == 0 || Sign_Pseudo.getText().toString().length() == 0){
-            Toast.makeText(SignIn.this,"Please fill all the fields",Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Cursor isCheck = myDb.CheckUser(Sign_Email.getText().toString(),Sign_Pseudo.getText().toString());
-            if (isCheck.getCount() <= 0){
+        if (Sign_Email.getText().toString().trim().length() == 0 || Sign_Password.getText().toString().trim().length() == 0 || Sign_Pseudo.getText().toString().length() == 0) {
+            Toast.makeText(SignIn.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
+        } else {
+            Cursor isCheck = myDb.CheckUser(Sign_Email.getText().toString(), Sign_Pseudo.getText().toString());
+            if (isCheck.getCount() <= 0) {
                 isCheck.close();
-                boolean isInserted = myDb.InsertUser(Sign_Email.getText().toString(),Sign_Password.getText().toString(),Sign_Pseudo.getText().toString(),Utils.getBytes(bitmap));
-                    if (isInserted == true) {
+                boolean isInserted = myDb.InsertUser(Sign_Email.getText().toString(), Sign_Password.getText().toString(), Sign_Pseudo.getText().toString(), Utils.getBytes(bitmap));
+                if (isInserted == true) {
                     Toast.makeText(SignIn.this, "The user" + " " + Sign_Email.getText().toString() + " " + "has been created", Toast.LENGTH_SHORT).show();
                     Sign_Email.setText("EMAILAddress");
                     Sign_Password.setText("Password");
                     Sign_Pseudo.setText("Pseudo");
-                    Intent intent = new Intent(SignIn.this , LoginPage.class);
+                    Intent intent = new Intent(SignIn.this, LoginPage.class);
                     SignIn.this.startActivity(intent);
                     startActivity(intent);
                     myDb.close();

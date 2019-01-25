@@ -41,7 +41,7 @@ public class Before_SecondScreen extends AppCompatActivity {
         myDb3 = new DataBaseHelper(this);
         myDb4 = new DataBaseHelper(this);
         myDb5 = new DataBaseHelper(this);
-        user = (User)getIntent().getSerializableExtra("user");
+        user = (User) getIntent().getSerializableExtra("user");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, leskanjis);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -58,29 +58,25 @@ public class Before_SecondScreen extends AppCompatActivity {
                         while (cursor.moveToNext()) {
                             Kanji_JLPT5.add(new Kanji(cursor.getString(cursor.getColumnIndex("CHARACTERE")), cursor.getInt(cursor.getColumnIndex("NUMERO")), cursor.getString(cursor.getColumnIndex("SIGNIFICATION")), cursor.getString(cursor.getColumnIndex("LECTURE_KUN")), cursor.getString(cursor.getColumnIndex("LECTURE_ON"))));
                         }
-                        if (Kanji_JLPT5.isEmpty()){
+                        if (Kanji_JLPT5.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Before_SecondScreen.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
                             builder.setMessage("Le Niveau selectionné ne contient pas de Kanji ");
-                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener()
-                            {
+                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialogInterface, int i)
-                                {
+                                public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
                                 }
                             });
                             builder.show();
                             break;
-                        }
-                        else
-                        {
+                        } else {
                             niveauJLPT = leskanjis[0];
                             intent = new Intent(Before_SecondScreen.this, SecondScreen.class);
                             intent.putExtra("niveauJLPT", niveauJLPT);
                             intent.putExtra("Leskanjis", Kanji_JLPT5);
-                            intent.putExtra("user",user);
+                            intent.putExtra("user", user);
                             Before_SecondScreen.this.startActivity(intent);
                             break;
                         }
@@ -91,24 +87,20 @@ public class Before_SecondScreen extends AppCompatActivity {
                         while (cursor2.moveToNext()) {
                             Kanji_JLPT4.add(new Kanji(cursor2.getString(cursor2.getColumnIndex("CHARACTERE")), cursor2.getInt(cursor2.getColumnIndex("NUMERO")), cursor2.getString(cursor2.getColumnIndex("SIGNIFICATION")), cursor2.getString(cursor2.getColumnIndex("LECTURE_KUN")), cursor2.getString(cursor2.getColumnIndex("LECTURE_ON"))));
                         }
-                        if (Kanji_JLPT4.isEmpty()){
+                        if (Kanji_JLPT4.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Before_SecondScreen.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
                             builder.setMessage("Le Niveau selectionné ne contient pas de Kanji ");
-                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener()
-                            {
+                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialogInterface, int i)
-                                {
+                                public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
                                 }
                             });
                             builder.show();
                             break;
-                        }
-                        else
-                        {
+                        } else {
                             niveauJLPT = leskanjis[1];
                             intent = new Intent(Before_SecondScreen.this, SecondScreen.class);
                             intent.putExtra("niveauJLPT", niveauJLPT);
@@ -122,24 +114,20 @@ public class Before_SecondScreen extends AppCompatActivity {
                         while (cursor3.moveToNext()) {
                             Kanji_JLPT3.add(new Kanji(cursor3.getString(cursor3.getColumnIndex("CHARACTERE")), cursor3.getInt(cursor3.getColumnIndex("NUMERO")), cursor3.getString(cursor3.getColumnIndex("SIGNIFICATION")), cursor3.getString(cursor3.getColumnIndex("LECTURE_KUN")), cursor3.getString(cursor3.getColumnIndex("LECTURE_ON"))));
                         }
-                        if (Kanji_JLPT3.isEmpty()){
+                        if (Kanji_JLPT3.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Before_SecondScreen.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
                             builder.setMessage("Le Niveau selectionné ne contient pas de Kanji ");
-                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener()
-                            {
+                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialogInterface, int i)
-                                {
+                                public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
                                 }
                             });
                             builder.show();
                             break;
-                        }
-                        else
-                        {
+                        } else {
                             niveauJLPT = leskanjis[2];
                             intent = new Intent(Before_SecondScreen.this, SecondScreen.class);
                             intent.putExtra("niveauJLPT", niveauJLPT);
@@ -153,24 +141,20 @@ public class Before_SecondScreen extends AppCompatActivity {
                         while (cursor4.moveToNext()) {
                             Kanji_JLPT2.add(new Kanji(cursor4.getString(cursor4.getColumnIndex("CHARACTERE")), cursor4.getInt(cursor4.getColumnIndex("NUMERO")), cursor4.getString(cursor4.getColumnIndex("SIGNIFICATION")), cursor4.getString(cursor4.getColumnIndex("LECTURE_KUN")), cursor4.getString(cursor4.getColumnIndex("LECTURE_ON"))));
                         }
-                        if (Kanji_JLPT2.isEmpty()){
+                        if (Kanji_JLPT2.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Before_SecondScreen.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
                             builder.setMessage("Le Niveau selectionné ne contient pas de Kanji ");
-                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener()
-                            {
+                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialogInterface, int i)
-                                {
+                                public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
                                 }
                             });
                             builder.show();
                             break;
-                        }
-                        else
-                        {
+                        } else {
                             niveauJLPT = leskanjis[3];
                             intent = new Intent(Before_SecondScreen.this, SecondScreen.class);
                             intent.putExtra("niveauJLPT", niveauJLPT);
@@ -185,24 +169,20 @@ public class Before_SecondScreen extends AppCompatActivity {
                         while (cursor5.moveToNext()) {
                             Kanji_JLPT1.add(new Kanji(cursor5.getString(cursor5.getColumnIndex("CHARACTERE")), cursor5.getInt(cursor5.getColumnIndex("NUMERO")), cursor5.getString(cursor5.getColumnIndex("SIGNIFICATION")), cursor5.getString(cursor5.getColumnIndex("LECTURE_KUN")), cursor5.getString(cursor5.getColumnIndex("LECTURE_ON"))));
                         }
-                        if (Kanji_JLPT1.isEmpty()){
+                        if (Kanji_JLPT1.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Before_SecondScreen.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
                             builder.setMessage("Le Niveau selectionné ne contient pas de Kanji ");
-                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener()
-                            {
+                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialogInterface, int i)
-                                {
+                                public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
                                 }
                             });
                             builder.show();
                             break;
-                        }
-                        else
-                        {
+                        } else {
                             niveauJLPT = leskanjis[4];
                             intent = new Intent(Before_SecondScreen.this, SecondScreen.class);
                             intent.putExtra("niveauJLPT", niveauJLPT);
@@ -223,6 +203,7 @@ public class Before_SecondScreen extends AppCompatActivity {
 
         });
     }
+
     public void button_Home(View v) {
         Button button_Home = findViewById(R.id.button_Home);
         button_Home.setOnClickListener(new View.OnClickListener() {

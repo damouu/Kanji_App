@@ -27,13 +27,14 @@ public class Katakana_Learn extends AppCompatActivity {
     DataBaseHelper myDb9;
     DataBaseHelper myDb10;
     DataBaseHelper myDb11;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_katakana__learn);
         Button buttonHome = findViewById(R.id.button_Home);
         ListView listView = (ListView) findViewById(R.id.Historic_ListView);
-        final String[] LesKatakanas = new String[]{"a", "Ka", "Sa", "Ta", "Na","Ha","Ma","Ra","Ya","Wa","N"};
+        final String[] LesKatakanas = new String[]{"a", "Ka", "Sa", "Ta", "Na", "Ha", "Ma", "Ra", "Ya", "Wa", "N"};
         final ArrayList<Katakana> Katakana_A = new ArrayList<Katakana>();
         final ArrayList<Katakana> Katakana_Ka = new ArrayList<Katakana>();
         final ArrayList<Katakana> Hiragana_Sa = new ArrayList<Katakana>();
@@ -45,12 +46,12 @@ public class Katakana_Learn extends AppCompatActivity {
         final ArrayList<Katakana> Hiragana_Ya = new ArrayList<Katakana>();
         final ArrayList<Katakana> Hiragana_Wa = new ArrayList<Katakana>();
         final ArrayList<Katakana> Hiragana_N = new ArrayList<Katakana>();
-        myDb  = new DataBaseHelper(this);
+        myDb = new DataBaseHelper(this);
         myDb2 = new DataBaseHelper(this);
         myDb3 = new DataBaseHelper(this);
         myDb4 = new DataBaseHelper(this);
         myDb5 = new DataBaseHelper(this);
-        myDb6  = new DataBaseHelper(this);
+        myDb6 = new DataBaseHelper(this);
         myDb7 = new DataBaseHelper(this);
         myDb8 = new DataBaseHelper(this);
         myDb9 = new DataBaseHelper(this);
@@ -72,24 +73,20 @@ public class Katakana_Learn extends AppCompatActivity {
                         while (cursor.moveToNext()) {
                             Katakana_A.add(new Katakana(cursor.getString(cursor.getColumnIndex("CHARACTERE")), cursor.getInt(cursor.getColumnIndex("NUMERO")), cursor.getString(cursor.getColumnIndex("SIGNIFICATION"))));
                         }
-                        if (Katakana_A.isEmpty()){
+                        if (Katakana_A.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Katakana_Learn.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
                             builder.setMessage("Le Niveau selectionné ne contient pas de Hiragana ");
-                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener()
-                            {
+                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialogInterface, int i)
-                                {
+                                public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
                                 }
                             });
                             builder.show();
                             break;
-                        }
-                        else
-                        {
+                        } else {
                             niveauKatakana = LesKatakanas[0];
                             intent = new Intent(Katakana_Learn.this, Katakana_Lesson.class);
                             intent.putExtra("niveauKatakana", niveauKatakana);
@@ -105,24 +102,20 @@ public class Katakana_Learn extends AppCompatActivity {
                         while (cursor2.moveToNext()) {
                             Katakana_Ka.add(new Katakana(cursor2.getString(cursor2.getColumnIndex("CHARACTERE")), cursor2.getInt(cursor2.getColumnIndex("NUMERO")), cursor2.getString(cursor2.getColumnIndex("SIGNIFICATION"))));
                         }
-                        if (Katakana_Ka.isEmpty()){
+                        if (Katakana_Ka.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Katakana_Learn.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
                             builder.setMessage("Le Niveau selectionné ne contient pas de Hiragana ");
-                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener()
-                            {
+                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialogInterface, int i)
-                                {
+                                public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
                                 }
                             });
                             builder.show();
                             break;
-                        }
-                        else
-                        {
+                        } else {
                             niveauKatakana = LesKatakanas[1];
                             intent = new Intent(Katakana_Learn.this, Katakana_Lesson.class);
                             intent.putExtra("niveauKatakana", niveauKatakana);

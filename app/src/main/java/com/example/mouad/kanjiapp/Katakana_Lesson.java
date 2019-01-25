@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Katakana_Lesson extends AppCompatActivity {
-    List<Katakana> Leskatakanas  = new ArrayList<Katakana>();
+    List<Katakana> Leskatakanas = new ArrayList<Katakana>();
     int i = 0;
 
     @Override

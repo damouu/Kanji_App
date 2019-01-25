@@ -18,16 +18,16 @@ public class Hiragana_HUB extends AppCompatActivity {
         Button button_LECON = findViewById(R.id.button_LECON);
     }
 
-    public void button_TEST (View v){
+    public void button_TEST(View v) {
         Button button_TEST = findViewById(R.id.Admin_Button);
         Intent intent = new Intent(Hiragana_HUB.this, Hiragana_beforeT.class);
         startActivity(intent);
     }
 
-    public void button_LECON (View v){
+    public void button_LECON(View v) {
         Button button_LECON = findViewById(R.id.Admin_Button);
         Intent intent = new Intent(Hiragana_HUB.this, Hiragana_Learn.class);
         startActivity(intent);
     }
-    }
+}
 

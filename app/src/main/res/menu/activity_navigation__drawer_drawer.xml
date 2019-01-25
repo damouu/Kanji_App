@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view"
-    tools:context="com.example.mouad.kanjiapp.MainActivity">
+    tools:context="com.example.mouad.kanjiapp.MainActivity"
+    tools:showIn="navigation_view">
 
     <group
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/test_history"
-            android:title="Test history"/>
+            android:title="Test history" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"

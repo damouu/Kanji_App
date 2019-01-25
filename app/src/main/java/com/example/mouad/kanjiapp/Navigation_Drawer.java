@@ -47,7 +47,6 @@ public class Navigation_Drawer extends AppCompatActivity
     }
 
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -72,7 +71,8 @@ public class Navigation_Drawer extends AppCompatActivity
 
         } else if (id == R.id.Logout) {
             User user = new User();
-            Toast.makeText(this, "You logged out", Toast.LENGTH_SHORT).show(); }
+            Toast.makeText(this, "You logged out", Toast.LENGTH_SHORT).show();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

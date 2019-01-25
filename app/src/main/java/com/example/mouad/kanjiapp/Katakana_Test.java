@@ -38,25 +38,23 @@ public class Katakana_Test extends AppCompatActivity {
         textView5.setText(LesKatakanas.get(i).getCharactere());
     }
 
-    public void buttonOnClick4 (View v)
-    {
+    public void buttonOnClick4(View v) {
         TextView textView5 = findViewById(R.id.ryu_view);
         Button button = findViewById(R.id.button4);
         EditText editText5 = findViewById(R.id.ryu_edit);
         reponse = false;
-        if(Arrays.asList(LesKatakanas).contains(textView5.getText())){
+        if (Arrays.asList(LesKatakanas).contains(textView5.getText())) {
         }
-        for(Katakana katakana : LesKatakanas){
-            if (!editText5.getText().toString().equals(LesKatakanas.get(i).getSignification())){
+        for (Katakana katakana : LesKatakanas) {
+            if (!editText5.getText().toString().equals(LesKatakanas.get(i).getSignification())) {
                 KatakanaFaux.add(LesKatakanas.get(i).getCharactere());
-            }
-            else {
-                reponse=true;
+            } else {
+                reponse = true;
                 score++;
             }
             editText5.setText("");
             i++;
-            if (i==LesKatakanas.size()){
+            if (i == LesKatakanas.size()) {
                 Intent intent = new Intent(Katakana_Test.this, Katakana_Results.class);
                 intent.putExtra("score", score);
                 intent.putExtra("KatakanaFaux", (ArrayList<String>) KatakanaFaux);
