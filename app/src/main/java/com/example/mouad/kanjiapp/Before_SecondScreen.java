@@ -34,6 +34,9 @@ public class Before_SecondScreen extends AppCompatActivity {
         final ArrayList<Kanji> Kanji_JLPT3 = new ArrayList<Kanji>();
         final ArrayList<Kanji> Kanji_JLPT2 = new ArrayList<Kanji>();
         final ArrayList<Kanji> Kanji_JLPT1 = new ArrayList<Kanji>();
+        //TODO 1, Do as in the admin activity load the arrays by difficulty level selected once in the good Activity.
+        //TODO 1, EXEMPLE , if clicked on difficulty JLPT5 , launch SecondScreen activy and once there pull the json arrays
+        //TODO 1, with all the Kanjis NUMERO equals to JLPT5. create a new function in php.file to select only the kanjis JLPT5.
         final String[] leskanjis = new String[]{"JLPT5", "JLPT4", "JLPT3", "JLPT2", "JLPT1"};
         final String niveauJLPT = leskanjis[0];
         myDb = new DataBaseHelper(this);

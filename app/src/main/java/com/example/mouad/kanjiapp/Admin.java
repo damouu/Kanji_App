@@ -20,9 +20,11 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.PriorityQueue;
 
 public class Admin extends AppCompatActivity implements Serializable {
     private static AccesDistant accesDistant;
+    public static ArrayList<Kanji> LesKanjis;
     DataBaseHelper myDb;
     EditText editText;
     EditText editText4;
@@ -33,7 +35,6 @@ public class Admin extends AppCompatActivity implements Serializable {
     Button button3;
     TextView Time_TextView;
     Button button5;
-    ArrayList<Kanji> LesKanjis = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,15 @@ public class Admin extends AppCompatActivity implements Serializable {
         button6_Delete = findViewById(R.id.button6_Delete);
         Time_TextView = findViewById(R.id.Time_TextView);
         button5 = findViewById(R.id.button5);
+        accesDistant.envoi("TousLesKanjis", new JSONArray());
+    }
+
+    public static void setLesKanjis(ArrayList<Kanji> lesKanjis) {
+        LesKanjis = lesKanjis;
+    }
+
+    public ArrayList<Kanji> getLesKanjis() {
+        return LesKanjis;
     }
 
     public void DeleteData(View v) {
@@ -101,21 +111,16 @@ public class Admin extends AppCompatActivity implements Serializable {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                accesDistant.envoi("TousLesKanjis", new JSONArray());
-                // TODO remove the the myDb.getAllData method and replace it by an arraylist that contents the array from AccesDistant.
-                Cursor result = (Cursor) myDb.getAllData();
-                if (result.getColumnCount() == 0) {
+                if (LesKanjis.size() == 0) {
                     displayAllData("no data", "The database is empty");
                 } else {
                     StringBuffer buffer = new StringBuffer();
-                    while (result.moveToNext()) {
-                        buffer.append("Charactere :" + result.getColumnIndex("CHARACTERE") + "\n");
-                        buffer.append("NUMERO :" + result.getColumnIndex("NUMERO") + "\n");
-                        buffer.append("SIGNIFICATION :" + result.getColumnIndex("SIGNIFICATION") + "\n");
-                        buffer.append("LECTURE_KUN :" + result.getColumnIndex("LECTURE_KUN") + "\n");
-                        buffer.append("LECTURE_ON :" + result.getColumnIndex("LECTURE_ON") + "\n");
-                        LesKanjis.size();
-                        LesKanjis.get(2);
+                    for (Kanji Kanji:LesKanjis) {
+                        buffer.append("Charactere :"    + Kanji.getCharactere()     + "\n");
+                        buffer.append("NUMERO :"        + Kanji.getNumero()         + "\n");
+                        buffer.append("SIGNIFICATION :" + Kanji.getSignification()  + "\n");
+                        buffer.append("LECTURE_KUN :"   + Kanji.getLecture_kenyon() + "\n");
+                        buffer.append("LECTURE_ON :"    + Kanji.getLecture_onyomi() + "\n");
                     }
                     displayAllData("les kanjis crées", buffer.toString());
                 }
@@ -124,12 +129,8 @@ public class Admin extends AppCompatActivity implements Serializable {
     }
 
 
-    public ArrayList<Kanji> getLesKanjis(ArrayList<Kanji> lesKanjisJSON) {
+    public static ArrayList<Kanji> getLesKanjis(ArrayList<Kanji> lesKanjisJSON) {
         return LesKanjis;
-    }
-
-    public void setLesKanjis(ArrayList<Kanji> lesKanjis) {
-        LesKanjis = lesKanjis;
     }
 
 }

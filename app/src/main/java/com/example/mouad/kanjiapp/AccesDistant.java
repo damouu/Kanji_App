@@ -44,6 +44,7 @@ public class AccesDistant implements AsyncResponse {
                             Kanji kanji = new Kanji(CHARACTERE, JLPT_NUMERO, SIGNIFICATION, LECTURE_KUN, LECTURE_ON);
                             LesKanjisJSON.add(kanji);
                         }
+                        Admin.setLesKanjis(LesKanjisJSON);
                     } catch (JSONException e) {
                         Log.d("erreur", "******************" + message[1]);
                     }
