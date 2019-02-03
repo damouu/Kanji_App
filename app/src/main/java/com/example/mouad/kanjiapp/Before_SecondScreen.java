@@ -28,7 +28,7 @@ public class Before_SecondScreen extends AppCompatActivity {
     private static ArrayList<Kanji> Kanji_JLPT2_ArrayList;
     private static ArrayList<Kanji> Kanji_JLPT1_ArrayList;
 
-
+//still have to change all this activity to fit the distant database.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
