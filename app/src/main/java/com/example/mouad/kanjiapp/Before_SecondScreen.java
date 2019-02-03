@@ -22,6 +22,12 @@ public class Before_SecondScreen extends AppCompatActivity {
     DataBaseHelper myDb4;
     DataBaseHelper myDb5;
     User user;
+    private static ArrayList<Kanji> Kanji_JLPT5_ArrayList;
+    private static ArrayList<Kanji> Kanji_JLPT4_ArrayList;
+    private static ArrayList<Kanji> Kanji_JLPT3_ArrayList;
+    private static ArrayList<Kanji> Kanji_JLPT2_ArrayList;
+    private static ArrayList<Kanji> Kanji_JLPT1_ArrayList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +40,11 @@ public class Before_SecondScreen extends AppCompatActivity {
         final ArrayList<Kanji> Kanji_JLPT3 = new ArrayList<Kanji>();
         final ArrayList<Kanji> Kanji_JLPT2 = new ArrayList<Kanji>();
         final ArrayList<Kanji> Kanji_JLPT1 = new ArrayList<Kanji>();
-        //TODO 1, Do as in the admin activity load the arrays by difficulty level selected once in the good Activity.
-        //TODO 1, EXEMPLE , if clicked on difficulty JLPT5 , launch SecondScreen activy and once there pull the json arrays
-        //TODO 1, with all the Kanjis NUMERO equals to JLPT5. create a new function in php.file to select only the kanjis JLPT5.
+        Kanji_JLPT5_ArrayList = new ArrayList<Kanji>();
+        Kanji_JLPT4_ArrayList = new ArrayList<Kanji>();
+        Kanji_JLPT3_ArrayList = new ArrayList<Kanji>();
+        Kanji_JLPT2_ArrayList = new ArrayList<Kanji>();
+        Kanji_JLPT1_ArrayList = new ArrayList<Kanji>();
         final String[] leskanjis = new String[]{"JLPT5", "JLPT4", "JLPT3", "JLPT2", "JLPT1"};
         final String niveauJLPT = leskanjis[0];
         myDb = new DataBaseHelper(this);
@@ -217,4 +225,47 @@ public class Before_SecondScreen extends AppCompatActivity {
             }
         });
     }
+
+
+    public static ArrayList<Kanji> getKanji_JLPT5_ArrayList() {
+        return Kanji_JLPT5_ArrayList;
+    }
+
+    public static void setKanji_JLPT5_ArrayList(ArrayList<Kanji> kanji_JLPT5_ArrayList) {
+        Kanji_JLPT5_ArrayList = kanji_JLPT5_ArrayList;
+    }
+
+    public static ArrayList<Kanji> getKanji_JLPT4_ArrayList() {
+        return Kanji_JLPT4_ArrayList;
+    }
+
+    public static void setKanji_JLPT4_ArrayList(ArrayList<Kanji> kanji_JLPT4_ArrayList) {
+        Kanji_JLPT4_ArrayList = kanji_JLPT4_ArrayList;
+    }
+
+    public static ArrayList<Kanji> getKanji_JLPT3_ArrayList() {
+        return Kanji_JLPT3_ArrayList;
+    }
+
+    public static void setKanji_JLPT3_ArrayList(ArrayList<Kanji> kanji_JLPT3_ArrayList) {
+        Kanji_JLPT3_ArrayList = kanji_JLPT3_ArrayList;
+    }
+
+    public static ArrayList<Kanji> getKanji_JLPT2_ArrayList() {
+        return Kanji_JLPT2_ArrayList;
+    }
+
+    public static void setKanji_JLPT2_ArrayList(ArrayList<Kanji> kanji_JLPT2_ArrayList) {
+        Kanji_JLPT2_ArrayList = kanji_JLPT2_ArrayList;
+    }
+
+    public static ArrayList<Kanji> getKanji_JLPT1_ArrayList() {
+        return Kanji_JLPT1_ArrayList;
+    }
+
+    public static void setKanji_JLPT1_ArrayList(ArrayList<Kanji> kanji_JLPT1_ArrayList) {
+        Kanji_JLPT1_ArrayList = kanji_JLPT1_ArrayList;
+    }
+
+
 }

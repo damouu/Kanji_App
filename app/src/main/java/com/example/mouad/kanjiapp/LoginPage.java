@@ -41,10 +41,11 @@ public class LoginPage extends AppCompatActivity implements Serializable {
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 String emailAddress = cursor.getString(0);
+                String password = cursor.getString(1);
                 String Pseudo = cursor.getString(2);
                 byte[] Avatar = cursor.getBlob(3);
                 Toast.makeText(LoginPage.this, "the user" + " " + Pseudo + " " + " is now log", Toast.LENGTH_SHORT).show();
-                User user = new User(emailAddress, Pseudo, Avatar, "salam");
+                User user = new User(emailAddress,password ,Pseudo, Avatar, "salam");
                 cursor.close();
                 Intent intent = new Intent(LoginPage.this, MainActivity.class);
                 intent.putExtra("user", user);

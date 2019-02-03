@@ -15,6 +15,11 @@ public class AccesDistant implements AsyncResponse {
 
     private static final String SERVERADDR = "http://192.168.56.1/KanjiApp/serveurKanjiApp.php";
     ArrayList<Kanji> LesKanjisJSON = new ArrayList<Kanji>();
+    ArrayList<Kanji> Kanji_JLPT5_JSONArray = new ArrayList<Kanji>();
+    ArrayList<Kanji> Kanji_JLPT4_JSONArray = new ArrayList<Kanji>();
+    ArrayList<Kanji> Kanji_JLPT3_JSONArray = new ArrayList<Kanji>();
+    ArrayList<Kanji> Kanji_JLPT2_JSONArray = new ArrayList<Kanji>();
+    ArrayList<Kanji> Kanji_JLPT1_JSONArray = new ArrayList<Kanji>();
     int i;
 
     public AccesDistant() {
@@ -42,16 +47,38 @@ public class AccesDistant implements AsyncResponse {
                             String LECTURE_KUN = info.getString("LECTURE_KUN");
                             String LECTURE_ON = info.getString("LECTURE_ON");
                             Kanji kanji = new Kanji(CHARACTERE, JLPT_NUMERO, SIGNIFICATION, LECTURE_KUN, LECTURE_ON);
+                            if (kanji.getNumero() == 5) {
+                                Kanji_JLPT5_JSONArray.add(kanji);
+                            }
+                            if (kanji.getNumero() == 4) {
+                                Kanji_JLPT4_JSONArray.add(kanji);
+                            }
+                            if (kanji.getNumero() == 3) {
+                                Kanji_JLPT3_JSONArray.add(kanji);
+                            }
+
+                            if (kanji.getNumero() == 2) {
+                                Kanji_JLPT2_JSONArray.add(kanji);
+                            }
+
+                            if (kanji.getNumero() == 1) {
+                                Kanji_JLPT1_JSONArray.add(kanji);
+                            }
                             LesKanjisJSON.add(kanji);
                         }
                         Admin.setLesKanjis(LesKanjisJSON);
+                        Before_SecondScreen.setKanji_JLPT5_ArrayList(Kanji_JLPT5_JSONArray);
+                        Before_SecondScreen.setKanji_JLPT4_ArrayList(Kanji_JLPT4_JSONArray);
+                        Before_SecondScreen.setKanji_JLPT3_ArrayList(Kanji_JLPT3_JSONArray);
+                        Before_SecondScreen.setKanji_JLPT2_ArrayList(Kanji_JLPT2_JSONArray);
+                        Before_SecondScreen.setKanji_JLPT1_ArrayList(Kanji_JLPT1_JSONArray);
                     } catch (JSONException e) {
                         Log.d("erreur", "******************" + message[1]);
                     }
-                } else {
-                    if (message[0].equals("ERREUR")) {
-                        Log.d("ERREUR", "******************" + message[1]);
-                    }
+                }
+
+                if (message[0].equals("NewUser")) {
+                    Log.d("NewUser", "******************" + message[1]);
                 }
             }
         }

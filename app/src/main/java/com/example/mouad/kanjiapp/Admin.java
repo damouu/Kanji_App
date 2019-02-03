@@ -88,7 +88,7 @@ public class Admin extends AppCompatActivity implements Serializable {
         if (editText.getText().toString().trim().length() == 0 || editText4.getText().toString().trim().length() == 0 || editText5.getText().toString().trim().length() == 0 || editText6.getText().toString().trim().length() == 0 || editText7.getText().toString().trim().length() == 0) {
             Toast.makeText(Admin.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
         } else {
-            accesDistant.envoi("enreg", kanji.convertToJSONArray());
+            accesDistant.envoi("enreg",kanji.convertToJSONArray());
             Toast.makeText(Admin.this, "The Kanji" + " " + kanji.getCharactere() + " " + "has been added to the database", Toast.LENGTH_SHORT).show();
             editText.setText("Charactere");
             editText4.setText("NUMERO");
@@ -106,8 +106,6 @@ public class Admin extends AppCompatActivity implements Serializable {
         builder.setMessage(content);
         builder.show();
     }
-
-    //swsw
 
     public void viewAll(View v) {
         button3.setOnClickListener(new View.OnClickListener() {

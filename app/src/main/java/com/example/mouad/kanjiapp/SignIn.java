@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -27,11 +29,13 @@ import java.io.Serializable;
 
 public class SignIn extends AppCompatActivity implements Serializable {
     DataBaseHelper myDb;
+    private static AccesDistant accesDistant;
     Button Create_Button;
     private int REQUEST_CODE = 1;
     Uri imageUri1;
     ImageView AvatarImage;
     Bitmap bitmap;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +78,14 @@ public class SignIn extends AppCompatActivity implements Serializable {
         TextView Sign_Email = findViewById(R.id.Sign_Email);
         TextView Sign_Password = findViewById(R.id.Sign_Password);
         TextView Sign_Pseudo = findViewById(R.id.Sign_Pseudo);
+        String dede = String.valueOf(Utils.getBytes(bitmap));
         if (Sign_Email.getText().toString().trim().length() == 0 || Sign_Password.getText().toString().trim().length() == 0 || Sign_Pseudo.getText().toString().length() == 0) {
             Toast.makeText(SignIn.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
         } else {
-            Cursor isCheck = myDb.CheckUser(Sign_Email.getText().toString(), Sign_Pseudo.getText().toString());
+            user = new User("\"" + Sign_Email.getText().toString() + "\"","\"" + Sign_Password.getText().toString()+ "\"","\"" + Sign_Pseudo.getText().toString()+ "\"",Utils.getBytes(bitmap),"\"" + Sign_Email.getText().toString() + "\"");
+            accesDistant = new AccesDistant();
+            accesDistant.envoi("NewUser",user.convertToJSONArray());
+            Cursor isCheck = myDb.CheckUser(Sign_Email.getText().toString(),Sign_Pseudo.getText().toString());
             if (isCheck.getCount() <= 0) {
                 isCheck.close();
                 boolean isInserted = myDb.InsertUser(Sign_Email.getText().toString(), Sign_Password.getText().toString(), Sign_Pseudo.getText().toString(), Utils.getBytes(bitmap));
