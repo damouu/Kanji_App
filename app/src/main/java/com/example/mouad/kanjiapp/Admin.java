@@ -128,7 +128,7 @@ public class Admin extends AppCompatActivity implements Serializable {
         });
     }
 
-
+//dsqds
     public static ArrayList<Kanji> getLesKanjis(ArrayList<Kanji> lesKanjisJSON) {
         return LesKanjis;
     }
