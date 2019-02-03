@@ -66,7 +66,6 @@ public class SecondScreen extends AppCompatActivity {
                 intent.putExtra("fauxkanjis", (ArrayList<String>) fauxkanjis);
                 intent.putExtra("user", user);
                 intent.putExtra("test.size", Leskanjis.size());
-                myDb.InsertTest(niveauJLPT, score, user.GetEmailAddress());
                 SecondScreen.this.startActivity(intent);
                 break;
             }

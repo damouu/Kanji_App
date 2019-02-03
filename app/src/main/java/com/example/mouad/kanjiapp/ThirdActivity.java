@@ -24,6 +24,7 @@ public class ThirdActivity extends AppCompatActivity {
         setContentView(R.layout.thirdactivity);
         int score = getIntent().getIntExtra("score", 0);
         user = (User) getIntent().getSerializableExtra("user");
+        user = new User();
         Serializable TestSize = getIntent().getSerializableExtra("test.size");
         Bundle bundle = getIntent().getExtras();
         ArrayList<String> dede = (ArrayList<String>) bundle.getStringArrayList("fauxkanjis");
@@ -31,7 +32,11 @@ public class ThirdActivity extends AppCompatActivity {
         TextView FauxList = findViewById(R.id.Historic_View);
         ListView ListView = findViewById(R.id.Historic_ListView);
         ScoreView.setText("Correct answers" + ": " + " " + String.valueOf(score) + "/" + TestSize);
-        Toast.makeText(getApplicationContext(), "Here are your results" + " " + user.GetPseudo(), Toast.LENGTH_LONG).show();
+        if (user.GetEmailAddress()== null) {
+            Toast.makeText(getApplicationContext(), "Here are your results" , Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Here are your results" + " " + user.GetEmailAddress(), Toast.LENGTH_LONG).show();
+        }
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dede);
         ListView.setAdapter(adapter);
     }

@@ -13,33 +13,27 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 public class Before_SecondScreen extends AppCompatActivity {
-    DataBaseHelper myDb;
-    DataBaseHelper myDb2;
-    DataBaseHelper myDb3;
-    DataBaseHelper myDb4;
-    DataBaseHelper myDb5;
     User user;
+    private static AccesDistant accesDistant;
     private static ArrayList<Kanji> Kanji_JLPT5_ArrayList;
     private static ArrayList<Kanji> Kanji_JLPT4_ArrayList;
     private static ArrayList<Kanji> Kanji_JLPT3_ArrayList;
     private static ArrayList<Kanji> Kanji_JLPT2_ArrayList;
     private static ArrayList<Kanji> Kanji_JLPT1_ArrayList;
 
-//still have to change all this activity to fit the distant database.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_before__second_screen);
+        accesDistant = new AccesDistant();
+        accesDistant.envoi("TousLesKanjis", new JSONArray());
         Button buttonHome = findViewById(R.id.button_Home);
         ListView listView = (ListView) findViewById(R.id.Historic_ListView);
-        final ArrayList<Kanji> Kanji_JLPT5 = new ArrayList<Kanji>();
-        final ArrayList<Kanji> Kanji_JLPT4 = new ArrayList<Kanji>();
-        final ArrayList<Kanji> Kanji_JLPT3 = new ArrayList<Kanji>();
-        final ArrayList<Kanji> Kanji_JLPT2 = new ArrayList<Kanji>();
-        final ArrayList<Kanji> Kanji_JLPT1 = new ArrayList<Kanji>();
         Kanji_JLPT5_ArrayList = new ArrayList<Kanji>();
         Kanji_JLPT4_ArrayList = new ArrayList<Kanji>();
         Kanji_JLPT3_ArrayList = new ArrayList<Kanji>();
@@ -47,14 +41,10 @@ public class Before_SecondScreen extends AppCompatActivity {
         Kanji_JLPT1_ArrayList = new ArrayList<Kanji>();
         final String[] leskanjis = new String[]{"JLPT5", "JLPT4", "JLPT3", "JLPT2", "JLPT1"};
         final String niveauJLPT = leskanjis[0];
-        myDb = new DataBaseHelper(this);
-        myDb2 = new DataBaseHelper(this);
-        myDb3 = new DataBaseHelper(this);
-        myDb4 = new DataBaseHelper(this);
-        myDb5 = new DataBaseHelper(this);
         user = (User) getIntent().getSerializableExtra("user");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, leskanjis);
         listView.setAdapter(adapter);
+        Kanji_JLPT5_ArrayList.size();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -65,11 +55,7 @@ public class Before_SecondScreen extends AppCompatActivity {
                 switch (position) {
                     case 0:
                         position = 0;
-                        Cursor cursor = myDb.JLPT5_Kanji();
-                        while (cursor.moveToNext()) {
-                            Kanji_JLPT5.add(new Kanji(cursor.getString(cursor.getColumnIndex("CHARACTERE")), cursor.getInt(cursor.getColumnIndex("NUMERO")), cursor.getString(cursor.getColumnIndex("SIGNIFICATION")), cursor.getString(cursor.getColumnIndex("LECTURE_KUN")), cursor.getString(cursor.getColumnIndex("LECTURE_ON"))));
-                        }
-                        if (Kanji_JLPT5.isEmpty()) {
+                        if (Kanji_JLPT5_ArrayList.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Before_SecondScreen.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
@@ -86,7 +72,7 @@ public class Before_SecondScreen extends AppCompatActivity {
                             niveauJLPT = leskanjis[0];
                             intent = new Intent(Before_SecondScreen.this, SecondScreen.class);
                             intent.putExtra("niveauJLPT", niveauJLPT);
-                            intent.putExtra("Leskanjis", Kanji_JLPT5);
+                            intent.putExtra("Leskanjis", Kanji_JLPT5_ArrayList);
                             intent.putExtra("user", user);
                             Before_SecondScreen.this.startActivity(intent);
                             break;
@@ -94,11 +80,7 @@ public class Before_SecondScreen extends AppCompatActivity {
 
                     case 1:
                         position = 1;
-                        Cursor cursor2 = myDb2.JLPT4_Kanji();
-                        while (cursor2.moveToNext()) {
-                            Kanji_JLPT4.add(new Kanji(cursor2.getString(cursor2.getColumnIndex("CHARACTERE")), cursor2.getInt(cursor2.getColumnIndex("NUMERO")), cursor2.getString(cursor2.getColumnIndex("SIGNIFICATION")), cursor2.getString(cursor2.getColumnIndex("LECTURE_KUN")), cursor2.getString(cursor2.getColumnIndex("LECTURE_ON"))));
-                        }
-                        if (Kanji_JLPT4.isEmpty()) {
+                        if (Kanji_JLPT4_ArrayList.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Before_SecondScreen.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
@@ -115,17 +97,14 @@ public class Before_SecondScreen extends AppCompatActivity {
                             niveauJLPT = leskanjis[1];
                             intent = new Intent(Before_SecondScreen.this, SecondScreen.class);
                             intent.putExtra("niveauJLPT", niveauJLPT);
-                            intent.putExtra("Leskanjis", Kanji_JLPT4);
+                            intent.putExtra("Leskanjis", Kanji_JLPT4_ArrayList);
+                            intent.putExtra("user", user);
                             Before_SecondScreen.this.startActivity(intent);
                             break;
                         }
                     case 2:
                         position = 2;
-                        Cursor cursor3 = myDb3.JLPT3_Kanji();
-                        while (cursor3.moveToNext()) {
-                            Kanji_JLPT3.add(new Kanji(cursor3.getString(cursor3.getColumnIndex("CHARACTERE")), cursor3.getInt(cursor3.getColumnIndex("NUMERO")), cursor3.getString(cursor3.getColumnIndex("SIGNIFICATION")), cursor3.getString(cursor3.getColumnIndex("LECTURE_KUN")), cursor3.getString(cursor3.getColumnIndex("LECTURE_ON"))));
-                        }
-                        if (Kanji_JLPT3.isEmpty()) {
+                        if (Kanji_JLPT3_ArrayList.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Before_SecondScreen.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
@@ -142,17 +121,14 @@ public class Before_SecondScreen extends AppCompatActivity {
                             niveauJLPT = leskanjis[2];
                             intent = new Intent(Before_SecondScreen.this, SecondScreen.class);
                             intent.putExtra("niveauJLPT", niveauJLPT);
-                            intent.putExtra("Leskanjis", Kanji_JLPT3);
+                            intent.putExtra("Leskanjis", Kanji_JLPT3_ArrayList);
+                            intent.putExtra("user", user);
                             Before_SecondScreen.this.startActivity(intent);
                             break;
                         }
                     case 3:
                         position = 3;
-                        Cursor cursor4 = myDb4.JLPT2_Kanji();
-                        while (cursor4.moveToNext()) {
-                            Kanji_JLPT2.add(new Kanji(cursor4.getString(cursor4.getColumnIndex("CHARACTERE")), cursor4.getInt(cursor4.getColumnIndex("NUMERO")), cursor4.getString(cursor4.getColumnIndex("SIGNIFICATION")), cursor4.getString(cursor4.getColumnIndex("LECTURE_KUN")), cursor4.getString(cursor4.getColumnIndex("LECTURE_ON"))));
-                        }
-                        if (Kanji_JLPT2.isEmpty()) {
+                        if (Kanji_JLPT2_ArrayList.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Before_SecondScreen.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
@@ -169,18 +145,15 @@ public class Before_SecondScreen extends AppCompatActivity {
                             niveauJLPT = leskanjis[3];
                             intent = new Intent(Before_SecondScreen.this, SecondScreen.class);
                             intent.putExtra("niveauJLPT", niveauJLPT);
-                            intent.putExtra("Leskanjis", Kanji_JLPT2);
+                            intent.putExtra("Leskanjis", Kanji_JLPT2_ArrayList);
+                            intent.putExtra("user", user);
                             Before_SecondScreen.this.startActivity(intent);
                             break;
                         }
 
                     case 4:
                         position = 4;
-                        Cursor cursor5 = myDb5.JLPT1_Kanji();
-                        while (cursor5.moveToNext()) {
-                            Kanji_JLPT1.add(new Kanji(cursor5.getString(cursor5.getColumnIndex("CHARACTERE")), cursor5.getInt(cursor5.getColumnIndex("NUMERO")), cursor5.getString(cursor5.getColumnIndex("SIGNIFICATION")), cursor5.getString(cursor5.getColumnIndex("LECTURE_KUN")), cursor5.getString(cursor5.getColumnIndex("LECTURE_ON"))));
-                        }
-                        if (Kanji_JLPT1.isEmpty()) {
+                        if (Kanji_JLPT1_ArrayList.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Before_SecondScreen.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
@@ -197,7 +170,8 @@ public class Before_SecondScreen extends AppCompatActivity {
                             niveauJLPT = leskanjis[4];
                             intent = new Intent(Before_SecondScreen.this, SecondScreen.class);
                             intent.putExtra("niveauJLPT", niveauJLPT);
-                            intent.putExtra("Leskanjis", Kanji_JLPT1);
+                            intent.putExtra("Leskanjis", Kanji_JLPT1_ArrayList);
+                            intent.putExtra("user", user);
                             Before_SecondScreen.this.startActivity(intent);
                             break;
                         }
