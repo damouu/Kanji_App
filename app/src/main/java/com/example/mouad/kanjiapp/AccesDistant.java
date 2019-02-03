@@ -83,7 +83,7 @@ public class AccesDistant implements AsyncResponse {
             }
         }
     }
-
+//dssdsd
 
     public void envoi(String operation, JSONArray lesDonneesJSON) {
         AccesHTTP accesDonnees = new AccesHTTP();
