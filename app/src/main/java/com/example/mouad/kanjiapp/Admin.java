@@ -98,7 +98,7 @@ public class Admin extends AppCompatActivity implements Serializable {
             LesKanjis.size();
         }
     }
-
+//sdsds
     public void displayAllData(String tittle, String content) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
