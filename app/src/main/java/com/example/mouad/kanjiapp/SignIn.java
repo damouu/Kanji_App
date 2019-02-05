@@ -26,29 +26,43 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class SignIn extends AppCompatActivity implements Serializable {
-    DataBaseHelper myDb;
+    private static ArrayList<UserDistant> LesUserDistants;
     private static AccesDistant accesDistant;
+    DataBaseHelper myDb;
     Button Create_Button;
+    TextView Sign_Email;
+    TextView Sign_Password;
+    TextView Sign_Pseudo;
+    Button OpenGallery;
     private int REQUEST_CODE = 1;
+    String dede;
     Uri imageUri1;
     ImageView AvatarImage;
     Bitmap bitmap;
     User user;
+    UserDistant userDistant;
+    int conter = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_sign_in);
+        LesUserDistants = new ArrayList<UserDistant>();
+        accesDistant = new AccesDistant();
+        accesDistant.envoi("AllUsers", new JSONArray());
         myDb = new DataBaseHelper(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Button Create_Button = findViewById(R.id.Create_Button);
-        TextView Sign_Email = findViewById(R.id.Sign_Email);
-        TextView Sign_Password = findViewById(R.id.Sign_Password);
-        ImageView AvatarImage = findViewById(R.id.AvatarImage);
-        Button OpenGallery = findViewById(R.id.OpenGallery);
+        Create_Button = findViewById(R.id.Create_Button);
+        Sign_Email = findViewById(R.id.Sign_Email);
+        Sign_Password = findViewById(R.id.Sign_Password);
+        AvatarImage = findViewById(R.id.AvatarImage);
+        OpenGallery = findViewById(R.id.OpenGallery);
+        Sign_Pseudo = findViewById(R.id.Sign_Pseudo);
     }
 
     public void OpenGallery(View v) {
@@ -74,34 +88,41 @@ public class SignIn extends AppCompatActivity implements Serializable {
     }
 
     public void Create_Button(View v) {
-        Button Create_Button = findViewById(R.id.Create_Button);
-        TextView Sign_Email = findViewById(R.id.Sign_Email);
-        TextView Sign_Password = findViewById(R.id.Sign_Password);
-        TextView Sign_Pseudo = findViewById(R.id.Sign_Pseudo);
-        String dede = String.valueOf(Utils.getBytes(bitmap));
+        dede = String.valueOf(Utils.getBytes(bitmap));
         if (Sign_Email.getText().toString().trim().length() == 0 || Sign_Password.getText().toString().trim().length() == 0 || Sign_Pseudo.getText().toString().length() == 0) {
             Toast.makeText(SignIn.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
         } else {
-            user = new User("\"" + Sign_Email.getText().toString() + "\"","\"" + Sign_Password.getText().toString()+ "\"","\"" + Sign_Pseudo.getText().toString()+ "\"",Utils.getBytes(bitmap),"\"" + Sign_Email.getText().toString() + "\"");
-            accesDistant = new AccesDistant();
-            accesDistant.envoi("NewUser",user.convertToJSONArray());
-            Cursor isCheck = myDb.CheckUser(Sign_Email.getText().toString(),Sign_Pseudo.getText().toString());
-            if (isCheck.getCount() <= 0) {
-                isCheck.close();
-                boolean isInserted = myDb.InsertUser(Sign_Email.getText().toString(), Sign_Password.getText().toString(), Sign_Pseudo.getText().toString(), Utils.getBytes(bitmap));
-                if (isInserted == true) {
-                    Toast.makeText(SignIn.this, "The user" + " " + Sign_Email.getText().toString() + " " + "has been created", Toast.LENGTH_SHORT).show();
-                    Sign_Email.setText("EMAILAddress");
-                    Sign_Password.setText("Password");
-                    Sign_Pseudo.setText("Pseudo");
-                    Intent intent = new Intent(SignIn.this, LoginPage.class);
-                    SignIn.this.startActivity(intent);
-                    startActivity(intent);
-                    myDb.close();
+            user = new User(Sign_Email.getText().toString(), Sign_Password.getText().toString(), Sign_Pseudo.getText().toString(), Utils.getBytes(bitmap), Sign_Email.getText().toString());
+            userDistant = new UserDistant("\"" + Sign_Email.getText().toString() + "\"", "\"" + Sign_Password.getText().toString() + "\"", "\"" + Sign_Pseudo.getText().toString() + "\"");
+            for (UserDistant userDistant1 : LesUserDistants) {
+                if (userDistant1.GetEmailAddress().equals(user.getEmailAddress())) {
+                    conter++;
+                } else {
+
                 }
-            } else {
+            }
+            if (conter >= 1) {
                 Toast.makeText(SignIn.this, "The email or pseudo are already taken ", Toast.LENGTH_SHORT).show();
+            } else {
+                accesDistant.envoi("NewUser", userDistant.convertToJSONArray());
+                myDb.InsertUser(user.getEmailAddress(), user.getPassword(), user.getPseudo(), Utils.getBytes(bitmap));
+                myDb.close();
+                Sign_Email.setText("EMAILAddress");
+                Sign_Password.setText("Password");
+                Toast.makeText(SignIn.this, "The user" + " " + user.getPseudo() + " " + "has been created", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(SignIn.this, LoginPage.class);
+                SignIn.this.startActivity(intent);
+                startActivity(intent);
             }
         }
     }
+
+    public ArrayList<UserDistant> getLesUserDistants() {
+        return LesUserDistants;
+    }
+
+    public static void setLesUserDistants(ArrayList<UserDistant> lesUserDistants) {
+        LesUserDistants = lesUserDistants;
+    }
+
 }

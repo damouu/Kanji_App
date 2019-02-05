@@ -32,10 +32,10 @@ public class ThirdActivity extends AppCompatActivity {
         TextView FauxList = findViewById(R.id.Historic_View);
         ListView ListView = findViewById(R.id.Historic_ListView);
         ScoreView.setText("Correct answers" + ": " + " " + String.valueOf(score) + "/" + TestSize);
-        if (user.GetEmailAddress()== null) {
+        if (user.getEmailAddress()== null) {
             Toast.makeText(getApplicationContext(), "Here are your results" , Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(getApplicationContext(), "Here are your results" + " " + user.GetEmailAddress(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Here are your results" + " " + user.getEmailAddress(), Toast.LENGTH_LONG).show();
         }
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dede);
         ListView.setAdapter(adapter);

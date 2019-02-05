@@ -30,7 +30,7 @@ public class Historic_Activity extends AppCompatActivity {
         ListView Historic_ListView = findViewById(R.id.Historic_ListView);
         myDb = new DataBaseHelper(this);
         user = (User) getIntent().getSerializableExtra("user");
-        cursor = myDb.GetUserHistoric(user.GetEmailAddress());
+        cursor = myDb.GetUserHistoric(user.getEmailAddress());
         if (cursor.getCount() > 0) {
             ArrayList<String> mArrayList = new ArrayList<String>();
             while (cursor.moveToNext()) {

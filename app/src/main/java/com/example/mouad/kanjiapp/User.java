@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User extends AppCompatActivity implements Serializable {
-    private int Id;
     private String EmailAddress;
     private String Password;
     private String Pseudo;
@@ -24,32 +23,17 @@ public class User extends AppCompatActivity implements Serializable {
         this.RandomValue = RandomValue;
     }
 
-    public User() {
-    }
+    public User() { }
 
-    public int GetId() {
-        return this.Id;
-    }
+    public String getEmailAddress() { return this.EmailAddress; }
 
-    public String GetEmailAddress() {
-        return this.EmailAddress;
-    }
+    public String getPseudo() { return this.Pseudo; }
 
-    public String GetPseudo() {
-        return this.Pseudo;
-    }
+    public byte[] getAvatar() { return this.Avatar; }
 
-    public byte[] GetAvatar() {
-        return this.Avatar;
-    }
+    public String getPassword() { return this.Password; }
 
-    public String GetPassword() {
-        return this.Password;
-    }
-
-    public String GetRandomValue() {
-        return this.RandomValue;
-    }
+    public String GetRandomValue() { return this.RandomValue; }
 
     public JSONArray convertToJSONArray() {
         List laliste = new ArrayList();

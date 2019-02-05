@@ -75,18 +75,18 @@ public class MainActivity extends AppCompatActivity {
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             View headerView = navigationView.getHeaderView(0);
             TextView navUsername = (TextView) headerView.findViewById(R.id.navUsername);
-            navUsername.setText(user.GetPseudo());
-            User_TextView.setText("Welcome back " + " " + user.GetPseudo());
+            navUsername.setText(user.getPseudo());
+            User_TextView.setText("Welcome back " + " " + user.getPseudo());
             NavigationView navigationView2 = (NavigationView) findViewById(R.id.nav_view);
             View headerView2 = navigationView2.getHeaderView(0);
             TextView navUserEmail = (TextView) headerView2.findViewById(R.id.navUserEmail);
-            navUserEmail.setText(user.GetEmailAddress());
+            navUserEmail.setText(user.getEmailAddress());
             NavigationView navigationView3 = (NavigationView) findViewById(R.id.nav_view);
             View headerView3 = navigationView3.getHeaderView(0);
             NavigationView navigationView4 = (NavigationView) findViewById(R.id.nav_view);
             View headerView4 = navigationView4.getHeaderView(0);
             ImageView User_Avatar = (ImageView) headerView4.findViewById(R.id.imageView);
-            User_Avatar.setImageBitmap(Utils.getImages(user.GetAvatar()));
+            User_Avatar.setImageBitmap(Utils.getImages(user.getAvatar()));
             LogOut_Button.setVisibility(View.VISIBLE);
             Button_Historic.setVisibility(View.VISIBLE);
             Favorite_Button.setVisibility(View.VISIBLE);
@@ -119,10 +119,10 @@ public class MainActivity extends AppCompatActivity {
             Uri uri = data.getData();
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                boolean isInserted = myDb.ChangeUserAvatar(user.GetEmailAddress(), Utils.getBytes(bitmap));
+                boolean isInserted = myDb.ChangeUserAvatar(user.getEmailAddress(), Utils.getBytes(bitmap));
                 if (isInserted == true) {
                     Toast.makeText(MainActivity.this, "avatar changed successfully !", Toast.LENGTH_SHORT).show();
-                    Cursor cursor = myDb.AvatarUser(user.GetEmailAddress());
+                    Cursor cursor = myDb.AvatarUser(user.getEmailAddress());
                     cursor.moveToFirst();
                     byte[] Avatar = cursor.getBlob(0);
                     NavigationView navigationView4 = (NavigationView) findViewById(R.id.nav_view);

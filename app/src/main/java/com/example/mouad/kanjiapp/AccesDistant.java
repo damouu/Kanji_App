@@ -15,6 +15,7 @@ public class AccesDistant implements AsyncResponse {
 
     private static final String SERVERADDR = "http://192.168.56.1/KanjiApp/serveurKanjiApp.php";
     ArrayList<Kanji> LesKanjisJSON = new ArrayList<Kanji>();
+    ArrayList<UserDistant> LesUserDistants = new ArrayList<UserDistant>();
     ArrayList<Kanji> Kanji_JLPT5_JSONArray = new ArrayList<Kanji>();
     ArrayList<Kanji> Kanji_JLPT4_JSONArray = new ArrayList<Kanji>();
     ArrayList<Kanji> Kanji_JLPT3_JSONArray = new ArrayList<Kanji>();
@@ -34,6 +35,29 @@ public class AccesDistant implements AsyncResponse {
             if (message[0].equals("enreg")) {
                 Log.d("enreg", "******************" + message[1]);
             } else {
+
+
+
+                if (message[0].equals("AllUsers")) {
+                    Log.d("AllUsers", "******************" + message[1]);
+                    try {
+                        JSONArray jsonInfo = new JSONArray(message[1]);
+                        for (i = 0; i < jsonInfo.length(); i++) {
+                            JSONObject info = new JSONObject(jsonInfo.get(i).toString());
+                            String EmailAddress = info.getString("EmailAddress");
+                            String Password = info.getString("Password");
+                            String Pseudo = info.getString("Pseudo");
+                            UserDistant userDistant = new UserDistant(EmailAddress,Password,Pseudo);
+                            LesUserDistants.add(userDistant);
+                        }
+                        SignIn.setLesUserDistants(LesUserDistants);
+                    } catch (JSONException e) {
+                        Log.d("erreur", "******************" + message[1]);
+                    }
+                }
+
+
+
                 if (message[0].equals("TousLesKanjis")) {
                     Log.d("TousLesKanjis", "******************" + message[1]);
                     try {
@@ -76,7 +100,6 @@ public class AccesDistant implements AsyncResponse {
                         Log.d("erreur", "******************" + message[1]);
                     }
                 }
-
                 if (message[0].equals("NewUser")) {
                     Log.d("NewUser", "******************" + message[1]);
                 }

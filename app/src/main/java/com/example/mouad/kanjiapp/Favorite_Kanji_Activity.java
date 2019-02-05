@@ -30,7 +30,7 @@ public class Favorite_Kanji_Activity extends AppCompatActivity {
         ListView Historic_ListView = findViewById(R.id.Historic_ListView);
         myDb = new DataBaseHelper(this);
         user = (User) getIntent().getSerializableExtra("user");
-        cursor = myDb.GetUserFavoriteKanji(user.GetPseudo());
+        cursor = myDb.GetUserFavoriteKanji(user.getPseudo());
         if (cursor.getCount() > 0) {
             ArrayList<String> mArrayList = new ArrayList<String>();
             while (cursor.moveToNext()) {

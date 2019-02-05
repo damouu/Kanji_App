@@ -47,7 +47,7 @@ public class Lesson_Kanji extends AppCompatActivity {
         textView5.setText(Leskanjis.get(i).getLecture_onyomi());
         textView6.setText(Leskanjis.get(i).getSignification());
         GetNbKanjis();
-        CheckFavoriteKanji = myDb.CheckFavoriteKanji(Leskanjis.get(i).getCharactere(), user.GetPseudo());
+        CheckFavoriteKanji = myDb.CheckFavoriteKanji(Leskanjis.get(i).getCharactere(), user.getPseudo());
         if (CheckFavoriteKanji.getCount() > 0) {
             toggleButton.setChecked(true);
         } else {
@@ -57,17 +57,17 @@ public class Lesson_Kanji extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    CheckFavoriteKanji = myDb.CheckFavoriteKanji(Leskanjis.get(i).getCharactere(), user.GetPseudo());
+                    CheckFavoriteKanji = myDb.CheckFavoriteKanji(Leskanjis.get(i).getCharactere(), user.getPseudo());
                     if (CheckFavoriteKanji.getCount() > 0) {
                         toggleButton.setChecked(true);
                     } else {
-                        myDb.InsertFavoriteKanji(Leskanjis.get(i).getCharactere(), user.GetPseudo());
+                        myDb.InsertFavoriteKanji(Leskanjis.get(i).getCharactere(), user.getPseudo());
                         Toast.makeText(Lesson_Kanji.this, "Kanji added to your favorite list", Toast.LENGTH_SHORT).show();
                         toggleButton.setChecked(true);
                     }
                 } else {
                     toggleButton.setChecked(false);
-                    myDb.DeleteFavoriteKanji(Leskanjis.get(i).getCharactere(), user.GetPseudo());
+                    myDb.DeleteFavoriteKanji(Leskanjis.get(i).getCharactere(), user.getPseudo());
                 }
             }
         });
@@ -102,7 +102,7 @@ public class Lesson_Kanji extends AppCompatActivity {
                 Lesson_Kanji.this.startActivity(intent);
                 break;
             } else {
-                CheckFavoriteKanji = myDb.CheckFavoriteKanji(Leskanjis.get(i).getCharactere(), user.GetPseudo());
+                CheckFavoriteKanji = myDb.CheckFavoriteKanji(Leskanjis.get(i).getCharactere(), user.getPseudo());
                 if (CheckFavoriteKanji.getCount() > 0) {
                     toggleButton.setChecked(true);
                 } else {
