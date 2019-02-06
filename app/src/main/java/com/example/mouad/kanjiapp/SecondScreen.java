@@ -65,6 +65,7 @@ public class SecondScreen extends AppCompatActivity {
                 intent.putExtra("score", score);
                 intent.putExtra("fauxkanjis", (ArrayList<String>) fauxkanjis);
                 intent.putExtra("user", user);
+                intent.putExtra("niveauJLPT", niveauJLPT);
                 intent.putExtra("test.size", Leskanjis.size());
                 SecondScreen.this.startActivity(intent);
                 break;
