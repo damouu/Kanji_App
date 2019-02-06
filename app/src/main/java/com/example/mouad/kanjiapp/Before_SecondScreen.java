@@ -2,7 +2,6 @@ package com.example.mouad.kanjiapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 
 public class Before_SecondScreen extends AppCompatActivity {
     User user;
-    private static AccesDistant accesDistant;
+    private static DistantAccess distantAccess;
     private static ArrayList<Kanji> Kanji_JLPT5_ArrayList;
     private static ArrayList<Kanji> Kanji_JLPT4_ArrayList;
     private static ArrayList<Kanji> Kanji_JLPT3_ArrayList;
@@ -30,8 +29,8 @@ public class Before_SecondScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_before__second_screen);
-        accesDistant = new AccesDistant();
-        accesDistant.envoi("TousLesKanjis", new JSONArray());
+        distantAccess = new DistantAccess();
+        distantAccess.envoi("TousLesKanjis", new JSONArray());
         Button buttonHome = findViewById(R.id.button_Home);
         ListView listView = (ListView) findViewById(R.id.Historic_ListView);
         Kanji_JLPT5_ArrayList = new ArrayList<Kanji>();

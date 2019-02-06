@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDistant extends AppCompatActivity implements Serializable {
-    private int Id;
     private String EmailAddress;
     private String Password;
     private String Pseudo;
@@ -20,25 +19,16 @@ public class UserDistant extends AppCompatActivity implements Serializable {
         this.Pseudo = Pseudo;
     }
 
-    public UserDistant() {
-    }
+    public UserDistant() { }
 
-    public int GetId() {
-        return this.Id;
-    }
+    public String getEmailAddress() { return this.EmailAddress; }
 
-    public String GetEmailAddress() {
-        return this.EmailAddress;
-    }
-
-    public String GetPseudo() {
+    public String getPseudo() {
         return this.Pseudo;
     }
 
 
-    public String GetPassword() {
-        return this.Password;
-    }
+    public String getPassword() { return this.Password; }
 
 
     public JSONArray convertToJSONArray() {

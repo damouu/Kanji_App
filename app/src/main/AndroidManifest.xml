@@ -57,15 +57,15 @@
         <activity android:name=".Katakana_Learn" />
         <activity android:name=".Katakana_Lesson" />
         <activity
-            android:name=".LoginPage"
+            android:name=".LoginUserActivity"
             android:label="@string/title_activity_login_page"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SignIn"
+            android:name=".SignInUserActivity"
             android:label="@string/title_activity_sign_in"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Historic_Activity" />
-        <activity android:name=".Favorite_Kanji_Activity"></activity>
+        <activity android:name=".UserFavoriteKanjiActivity"></activity>
     </application>
 
 </manifest>

@@ -18,6 +18,10 @@ import java.util.ArrayList;
 
 public class ThirdActivity extends AppCompatActivity {
     User user;
+    ArrayList<String> ArrayListfauxkanjis;
+    TextView ScoreView;
+    ListView listViewFauxkanjis;
+    ArrayAdapter adapter;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,18 +31,18 @@ public class ThirdActivity extends AppCompatActivity {
         user = new User();
         Serializable TestSize = getIntent().getSerializableExtra("test.size");
         Bundle bundle = getIntent().getExtras();
-        ArrayList<String> dede = (ArrayList<String>) bundle.getStringArrayList("fauxkanjis");
-        TextView ScoreView = findViewById(R.id.JLPTView);
-        TextView FauxList = findViewById(R.id.Historic_View);
-        ListView ListView = findViewById(R.id.Historic_ListView);
+        ArrayListfauxkanjis = (ArrayList<String>) bundle.getStringArrayList("fauxkanjis");
+        ScoreView = findViewById(R.id.JLPTView);
+        listViewFauxkanjis = findViewById(R.id.Historic_ListView);
         ScoreView.setText("Correct answers" + ": " + " " + String.valueOf(score) + "/" + TestSize);
-        if (user.getEmailAddress()== null) {
-            Toast.makeText(getApplicationContext(), "Here are your results" , Toast.LENGTH_LONG).show();
+        if (user.getEmailAddress() == null) {
+            Toast.makeText(getApplicationContext(), "Here are your results", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(getApplicationContext(), "Here are your results" + " " + user.getEmailAddress(), Toast.LENGTH_LONG).show();
         }
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dede);
-        ListView.setAdapter(adapter);
+        //todo insert users's results test into the distqnt database.
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ArrayListfauxkanjis);
+        listViewFauxkanjis.setAdapter(adapter);
     }
 
     public void buttonHome(View v) {

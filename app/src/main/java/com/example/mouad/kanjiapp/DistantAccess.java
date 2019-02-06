@@ -1,8 +1,5 @@
 package com.example.mouad.kanjiapp;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -11,7 +8,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class AccesDistant implements AsyncResponse {
+public class DistantAccess implements AsyncResponse {
 
     private static final String SERVERADDR = "http://192.168.56.1/KanjiApp/serveurKanjiApp.php";
     ArrayList<Kanji> LesKanjisJSON = new ArrayList<Kanji>();
@@ -23,7 +20,7 @@ public class AccesDistant implements AsyncResponse {
     ArrayList<Kanji> Kanji_JLPT1_JSONArray = new ArrayList<Kanji>();
     int i;
 
-    public AccesDistant() {
+    public DistantAccess() {
         super();
     }
 
@@ -35,9 +32,6 @@ public class AccesDistant implements AsyncResponse {
             if (message[0].equals("enreg")) {
                 Log.d("enreg", "******************" + message[1]);
             } else {
-
-
-
                 if (message[0].equals("AllUsers")) {
                     Log.d("AllUsers", "******************" + message[1]);
                     try {
@@ -47,17 +41,14 @@ public class AccesDistant implements AsyncResponse {
                             String EmailAddress = info.getString("EmailAddress");
                             String Password = info.getString("Password");
                             String Pseudo = info.getString("Pseudo");
-                            UserDistant userDistant = new UserDistant(EmailAddress,Password,Pseudo);
+                            UserDistant userDistant = new UserDistant(EmailAddress, Password, Pseudo);
                             LesUserDistants.add(userDistant);
                         }
-                        SignIn.setLesUserDistants(LesUserDistants);
+                        SignInUserActivity.setLesUserDistants(LesUserDistants);
                     } catch (JSONException e) {
                         Log.d("erreur", "******************" + message[1]);
                     }
                 }
-
-
-
                 if (message[0].equals("TousLesKanjis")) {
                     Log.d("TousLesKanjis", "******************" + message[1]);
                     try {
@@ -103,13 +94,33 @@ public class AccesDistant implements AsyncResponse {
                 if (message[0].equals("NewUser")) {
                     Log.d("NewUser", "******************" + message[1]);
                 }
+                if (message[0].equals("insert_test_history")) {
+                    Log.d("insert_test_history", "******************" + message[1]);
+                }
+                if (message[0].equals("LogUser")) {
+                    Log.d("LogUser", "******************" + message[1]);
+                    try {
+                        JSONArray jsonInfo = new JSONArray(message[1]);
+                        for (i = 0; i < jsonInfo.length(); i++) {
+                            JSONObject info = new JSONObject(jsonInfo.get(i).toString());
+                            String EmailAddress = info.getString("EmailAddress");
+                            String Password = info.getString("Password");
+                            String Pseudo = info.getString("Pseudo");
+                            UserDistant userDistant = new UserDistant(EmailAddress, Password, Pseudo);
+                            LesUserDistants.add(userDistant);
+                        }
+                        LoginUserActivity.setLesUserDistants(LesUserDistants);
+                    } catch (JSONException e) {
+                        Log.d("erreur", "******************" + message[1]);
+                    }
+                }
             }
         }
     }
 
 
     public void envoi(String operation, JSONArray lesDonneesJSON) {
-        AccesHTTP accesDonnees = new AccesHTTP();
+        HTTPAccess accesDonnees = new HTTPAccess();
         accesDonnees.delegate = this;
         accesDonnees.addParam("operation", operation);
         accesDonnees.addParam("lesdonnees", lesDonneesJSON.toString());

@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     User user;
     private int REQUEST_CODE = 1;
     Bitmap bitmap;
-    private static AccesDistant accesDistant;
+    private static DistantAccess distantAccess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         /*Kanji kanji = new Kanji("豆",1,"dede","dede","dede");
-        accesDistant.envoi("enreg",kanji.convertToJSONArray());*/
+        distantAccess.envoi("enreg",kanji.convertToJSONArray());*/
         if (user != null) {
             TextView User_TextView = findViewById(R.id.User_TextView);
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         Button_Historic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Favorite_Kanji_Activity.class);
+                Intent intent = new Intent(MainActivity.this, UserFavoriteKanjiActivity.class);
                 intent.putExtra("user", user);
                 startActivity(intent);
             }
@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
         LogInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, LoginPage.class);
+                Intent intent = new Intent(MainActivity.this, LoginUserActivity.class);
                 startActivity(intent);
             }
         });
@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
         SignIn_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SignIn.class);
+                Intent intent = new Intent(MainActivity.this, SignInUserActivity.class);
                 startActivity(intent);
             }
         });

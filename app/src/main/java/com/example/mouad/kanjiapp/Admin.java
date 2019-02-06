@@ -1,29 +1,22 @@
 package com.example.mouad.kanjiapp;
 
-import android.content.Context;
 import android.content.DialogInterface;
-import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.PriorityQueue;
 
 public class Admin extends AppCompatActivity implements Serializable {
-    private static AccesDistant accesDistant;
+    private static DistantAccess distantAccess;
     public static ArrayList<Kanji> LesKanjis;
     DataBaseHelper myDb;
     EditText editText;
@@ -41,7 +34,7 @@ public class Admin extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
         myDb = new DataBaseHelper(this);
-        accesDistant = new AccesDistant();
+        distantAccess = new DistantAccess();
         editText = findViewById(R.id.editText);
         editText4 = findViewById(R.id.editText4);
         editText5 = findViewById(R.id.editText5);
@@ -51,7 +44,7 @@ public class Admin extends AppCompatActivity implements Serializable {
         button6_Delete = findViewById(R.id.button6_Delete);
         Time_TextView = findViewById(R.id.Time_TextView);
         button5 = findViewById(R.id.button5);
-        accesDistant.envoi("TousLesKanjis", new JSONArray());
+        distantAccess.envoi("TousLesKanjis", new JSONArray());
     }
 
     public static void setLesKanjis(ArrayList<Kanji> lesKanjis) {
@@ -88,7 +81,7 @@ public class Admin extends AppCompatActivity implements Serializable {
         if (editText.getText().toString().trim().length() == 0 || editText4.getText().toString().trim().length() == 0 || editText5.getText().toString().trim().length() == 0 || editText6.getText().toString().trim().length() == 0 || editText7.getText().toString().trim().length() == 0) {
             Toast.makeText(Admin.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
         } else {
-            accesDistant.envoi("enreg",kanji.convertToJSONArray());
+            distantAccess.envoi("enreg",kanji.convertToJSONArray());
             Toast.makeText(Admin.this, "The Kanji" + " " + kanji.getCharactere() + " " + "has been added to the database", Toast.LENGTH_SHORT).show();
             editText.setText("Charactere");
             editText4.setText("NUMERO");

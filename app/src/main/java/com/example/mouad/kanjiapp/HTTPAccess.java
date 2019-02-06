@@ -17,13 +17,13 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
-public class AccesHTTP extends AsyncTask<String, Integer, Long> {
+public class HTTPAccess extends AsyncTask<String, Integer, Long> {
 
     private ArrayList<NameValuePair> parametres;
     private String ret = null;
     public AsyncResponse delegate = null;
 
-    public AccesHTTP() {
+    public HTTPAccess() {
         parametres = new ArrayList<NameValuePair>();
     }
 

@@ -13,14 +13,13 @@ public class User extends AppCompatActivity implements Serializable {
     private String Password;
     private String Pseudo;
     private byte[] Avatar;
-    private String RandomValue;
 
-    public User(String EmailAddress,String Password,String Pseudo, byte[] Avatar, String RandomValue) {
+
+    public User(String EmailAddress,String Password,String Pseudo, byte[] Avatar) {
         this.EmailAddress = EmailAddress;
         this.Password = Password;
         this.Pseudo = Pseudo;
         this.Avatar = Avatar;
-        this.RandomValue = RandomValue;
     }
 
     public User() { }
@@ -33,7 +32,6 @@ public class User extends AppCompatActivity implements Serializable {
 
     public String getPassword() { return this.Password; }
 
-    public String GetRandomValue() { return this.RandomValue; }
 
     public JSONArray convertToJSONArray() {
         List laliste = new ArrayList();
@@ -41,7 +39,6 @@ public class User extends AppCompatActivity implements Serializable {
         laliste.add(Pseudo);
         laliste.add(Avatar);
         laliste.add(Password);
-        laliste.add(RandomValue);
         return new JSONArray(laliste);
     }
 

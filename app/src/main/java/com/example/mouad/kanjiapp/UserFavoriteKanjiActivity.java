@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,7 +14,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class Favorite_Kanji_Activity extends AppCompatActivity {
+public class UserFavoriteKanjiActivity extends AppCompatActivity {
     User user;
     DataBaseHelper myDb;
     Cursor cursor;
@@ -56,7 +55,7 @@ public class Favorite_Kanji_Activity extends AppCompatActivity {
 
     public void Home_Button1(View v) {
         Button Home_Button = findViewById(R.id.Home_Button);
-        Intent intent = new Intent(Favorite_Kanji_Activity.this, MainActivity.class);
+        Intent intent = new Intent(UserFavoriteKanjiActivity.this, MainActivity.class);
         intent.putExtra("user", user);
         startActivity(intent);
     }
