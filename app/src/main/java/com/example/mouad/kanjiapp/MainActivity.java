@@ -30,14 +30,36 @@ import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity {
+    private int REQUEST_CODE = 1;
+    private static RemoteAccess remoteAccess;
     DataBaseHelper myDb;
     EditText editText;
     EditText Time_TextView;
     Toolbar toolbar;
     User user;
-    private int REQUEST_CODE = 1;
     Bitmap bitmap;
-    private static DistantAccess distantAccess;
+    Button LogInButton;
+    Button Admin_Button;
+    Button Kanji_Button;
+    Button Hiragana_Button;
+    Button Katakana_Button;
+    Button SignIn_button;
+    Button LogOut_Button;
+    Button Favorite_Button;
+    Button Historic_Button;
+    Button ChangeAvatar_Button;
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    NavigationView navigationView;
+    TextView User_TextView;
+    View headerView;
+    TextView navUsername;
+    NavigationView navigationView2;
+    View headerView2;
+    ImageButton personaButton;
+    ImageView User_Avatar;
+    TextView navUserEmail;
+    NavigationView navigationView3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,59 +72,51 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         actionBar.setHomeButtonEnabled(true);
         myDb = new DataBaseHelper(this);
-        Button Admin_Button = findViewById(R.id.Admin_Button);
-        Button button_KANJI = findViewById(R.id.button_KANJI);
-        Button button_HIRAGANA = findViewById(R.id.button_HIRAGANA);
-        Button button_KATAKANA = findViewById(R.id.button_KATAKANA);
-        Button LogInButton = findViewById(R.id.LogIn);
-        Button SignIn_button = findViewById(R.id.SignIn_button);
-        Button LogOut_Button = findViewById(R.id.LogOut_Button);
-        Button Favorite_Button = findViewById(R.id.Favorite_Button);
-        Button Button_Historic = findViewById(R.id.Button_Historic);
-        Button Button_Change_Avatar = findViewById(R.id.Change_Avatar);
+        Admin_Button = findViewById(R.id.Admin_Button);
+        Kanji_Button = findViewById(R.id.button_KANJI);
+        Hiragana_Button = findViewById(R.id.button_HIRAGANA);
+        Katakana_Button = findViewById(R.id.button_KATAKANA);
+        LogInButton = findViewById(R.id.LogIn);
+        SignIn_button = findViewById(R.id.SignIn_button);
+        LogOut_Button = findViewById(R.id.LogOut_Button);
+        Favorite_Button = findViewById(R.id.Favorite_Button);
+        Historic_Button = findViewById(R.id.Button_Historic);
+        ChangeAvatar_Button = findViewById(R.id.Change_Avatar);
+        personaButton = findViewById(R.id.personaPurple);
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
         TextView Time_TextView = findViewById(R.id.Time_TextView);
         Time_TextView.setText(currentDateTimeString);
         user = (User) getIntent().getSerializableExtra("user");
-        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-        /*Kanji kanji = new Kanji("豆",1,"dede","dede","dede");
-        distantAccess.envoi("enreg",kanji.convertToJSONArray());*/
         if (user != null) {
-            TextView User_TextView = findViewById(R.id.User_TextView);
-            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-            View headerView = navigationView.getHeaderView(0);
-            TextView navUsername = (TextView) headerView.findViewById(R.id.navUsername);
+            User_TextView = findViewById(R.id.User_TextView);
+            navigationView = findViewById(R.id.nav_view);
+            headerView = navigationView.getHeaderView(0);
+            navUsername = headerView.findViewById(R.id.navUsername);
             navUsername.setText(user.getPseudo());
             User_TextView.setText("Welcome back " + " " + user.getPseudo());
-            NavigationView navigationView2 = (NavigationView) findViewById(R.id.nav_view);
-            View headerView2 = navigationView2.getHeaderView(0);
-            TextView navUserEmail = (TextView) headerView2.findViewById(R.id.navUserEmail);
-            navUserEmail.setText(user.getEmailAddress());
-            NavigationView navigationView3 = (NavigationView) findViewById(R.id.nav_view);
+            navigationView2 = (NavigationView) findViewById(R.id.nav_view);
+            headerView2 = navigationView2.getHeaderView(0);
+            navigationView3 = findViewById(R.id.nav_view);
+            NavigationView navigationView3 = findViewById(R.id.nav_view);
             View headerView3 = navigationView3.getHeaderView(0);
             NavigationView navigationView4 = (NavigationView) findViewById(R.id.nav_view);
             View headerView4 = navigationView4.getHeaderView(0);
-            ImageView User_Avatar = (ImageView) headerView4.findViewById(R.id.imageView);
+            User_Avatar = (ImageView) headerView4.findViewById(R.id.imageView);
             User_Avatar.setImageBitmap(Utils.getImages(user.getAvatar()));
             LogOut_Button.setVisibility(View.VISIBLE);
-            Button_Historic.setVisibility(View.VISIBLE);
+            Historic_Button.setVisibility(View.VISIBLE);
             Favorite_Button.setVisibility(View.VISIBLE);
-            Button_Change_Avatar.setVisibility(View.VISIBLE);
+            ChangeAvatar_Button.setVisibility(View.VISIBLE);
+            LogInButton.setVisibility(View.INVISIBLE);
+            navUserEmail = headerView2.findViewById(R.id.navUserEmail);
+            navUserEmail.setText(user.getEmailAddress());
         }
     }
 
-    public void buttonOnClick3(View v) {
-        ImageButton personaButton = findViewById(R.id.imageButton2);
-        personaButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Before_SecondScreen.class);
-            }
-        });
-    }
 
     public void OpenGalleryMainActivity(View v) {
         Intent intent = new Intent();
@@ -113,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //ImageView AvatarImage = findViewById(R.id.AvatarImage);
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE && data != null && data.getData() != null) {
             Uri uri = data.getData();
@@ -139,8 +152,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Button_Historic(View view) {
-        Button Button_Historic = findViewById(R.id.Button_Historic);
-        Button_Historic.setOnClickListener(new View.OnClickListener() {
+        Historic_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Historic_Activity.class);
@@ -151,8 +163,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Favorite_Button(View view) {
-        Button Button_Historic = findViewById(R.id.Favorite_Button);
-        Button_Historic.setOnClickListener(new View.OnClickListener() {
+        Favorite_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, UserFavoriteKanjiActivity.class);
@@ -163,7 +174,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void LogOut_Button(View v) {
-        Button LogOut_Button = findViewById(R.id.LogOut_Button);
         LogOut_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -175,23 +185,24 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         user = null;
-                        TextView User_TextView = findViewById(R.id.User_TextView);
-                        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-                        View headerView = navigationView.getHeaderView(0);
-                        TextView navUsername = (TextView) headerView.findViewById(R.id.navUsername);
-                        navUsername.setText("Hello guest");
-                        NavigationView navigationView2 = (NavigationView) findViewById(R.id.nav_view);
                         View headerView2 = navigationView2.getHeaderView(0);
-                        TextView navUserEmail = (TextView) headerView2.findViewById(R.id.navUserEmail);
+                        navUserEmail = headerView2.findViewById(R.id.navUserEmail);
+                        User_TextView = findViewById(R.id.User_TextView);
+                        navigationView3 = findViewById(R.id.nav_view);
+                        navigationView = findViewById(R.id.nav_view);
+                        navUsername = headerView.findViewById(R.id.navUsername);
+                        navigationView2 = findViewById(R.id.nav_view);
+                        headerView = navigationView.getHeaderView(0);
+                        navUsername.setText("Hello guest");
                         navUserEmail.setText("Hello guest");
                         User_TextView.setText("Welcome guest");
                         NavigationView navigationView4 = (NavigationView) findViewById(R.id.nav_view);
                         View headerView4 = navigationView4.getHeaderView(0);
-                        ImageView User_Avatar = (ImageView) headerView4.findViewById(R.id.imageView);
+                        User_Avatar = headerView4.findViewById(R.id.imageView);
                         User_Avatar.setImageDrawable(getApplicationContext().getDrawable(R.drawable.bilalpng_96x96));
                         Toast.makeText(MainActivity.this, "You successfully logout", Toast.LENGTH_SHORT).show();
-                        Button LogOut_Button = findViewById(R.id.LogOut_Button);
                         LogOut_Button.setVisibility(View.INVISIBLE);
+                        LogInButton.setVisibility(View.VISIBLE);
                     }
                 });
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -207,7 +218,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void LogInButton(View v) {
-        Button LogInButton = findViewById(R.id.LogIn);
         LogInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -218,7 +228,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void SignIn_button(View v) {
-        Button SignIn_button = findViewById(R.id.SignIn_button);
         SignIn_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -229,8 +238,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void personaPurple(View v) {
-        ImageButton personaPurple = findViewById(R.id.personaPurple);
-        personaPurple.setOnClickListener(new View.OnClickListener() {
+        personaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Learn_Kanji.class);
@@ -240,64 +248,46 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void button_KANJI(View v) {
-        Button button_KANJI = findViewById(R.id.button_KANJI);
-        Intent intent = new Intent(MainActivity.this, Kanji_HUB.class);
-        intent.putExtra("user", user);
-        startActivity(intent);
+        Kanji_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Kanji_HUB.class);
+                intent.putExtra("user", user);
+                startActivity(intent);
+            }
+        });
     }
 
     public void button_HIRAGANA(View v) {
-        Button button_HIRAGANA = findViewById(R.id.button_HIRAGANA);
-        Intent intent = new Intent(MainActivity.this, Hiragana_HUB.class);
-        startActivity(intent);
+        Hiragana_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Hiragana_HUB.class);
+                intent.putExtra("user", user);
+                startActivity(intent);
+            }
+        });
     }
 
     public void button_KATAKANA(View v) {
-        Button button_KATAKANA = findViewById(R.id.button_KATAKANA);
-        Intent intent = new Intent(MainActivity.this, Katakana_HUB.class);
-        startActivity(intent);
+        Katakana_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Katakana_HUB.class);
+                intent.putExtra("user", user);
+                startActivity(intent);
+            }
+        });
     }
 
     public void Admin_Button(View v) {
-        Button Admin_Button = findViewById(R.id.Admin_Button);
-        Intent intent = new Intent(MainActivity.this, Admin_Hub.class);
-        startActivity(intent);
-    }
-
-    public void buttonOnClick1(View v) {
-        Button Click = findViewById(R.id.button);
-        TextView ChampText = findViewById(R.id.textView);
-        ChampText.setText(editText.getText());
-        ((Button) v).setText("salam");
-        Click.setOnClickListener(new View.OnClickListener() {
+        Admin_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("My app", "do the magic");
-                Toast.makeText(getApplicationContext(), "button has been Clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, Admin.class);
+                intent.putExtra("user", user);
+                startActivity(intent);
             }
         });
     }
-
-    public void buttonOnClick2(View v) {
-        Toast.makeText(MainActivity.this, "UEUE ", Toast.LENGTH_SHORT).show();
-        Toast.makeText(MainActivity.this, "NAN NAN ", Toast.LENGTH_SHORT).show();
-        TextView ChampText = findViewById(R.id.textView);
-        ChampText.setText(editText.getText());
-        ImageButton Damou_Button = findViewById(R.id.Damou_Button);
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setCancelable(true);
-        builder.setTitle("Alerte");
-        builder.setMessage("MASHALLAH ");
-        builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-                Log.i("GG", "do the shit");
-                Toast.makeText(getApplicationContext(), "my god !", Toast.LENGTH_SHORT).show();
-            }
-
-        });
-        builder.show();
-    }
-
 }

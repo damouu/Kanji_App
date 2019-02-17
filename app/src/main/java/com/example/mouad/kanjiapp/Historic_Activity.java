@@ -2,6 +2,7 @@ package com.example.mouad.kanjiapp;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,53 +14,68 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Historic_Activity extends AppCompatActivity {
+    private static ArrayList<UserTestHistory> LesTestHistoryUsers;
+    public ArrayList<String> arrayList2;
+    private static RemoteAccess remoteAccess;
     User user;
-    DataBaseHelper myDb;
     Cursor cursor;
     Button Home_Button;
+    ArrayAdapter adapter;
+    TextView Historic_View;
+    Button getTestButton;
+    ListView Historic_ListView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historic_);
-        Button Home = findViewById(R.id.Home_Button);
-        TextView Historic_View = findViewById(R.id.Historic_View);
-        ListView Historic_ListView = findViewById(R.id.Historic_ListView);
-        myDb = new DataBaseHelper(this);
+        LesTestHistoryUsers = new ArrayList<UserTestHistory>();
+        remoteAccess = new RemoteAccess();
+        remoteAccess.envoi("HistoryTest", new JSONArray());
+        arrayList2 = new ArrayList<String>();
+        Home_Button = findViewById(R.id.Home_Button);
+        getTestButton = findViewById(R.id.getTestButton);
+        Historic_View = findViewById(R.id.Historic_View);
+        Historic_ListView = findViewById(R.id.Historic_ListView);
         user = (User) getIntent().getSerializableExtra("user");
-        cursor = myDb.GetUserHistoric(user.getEmailAddress());
-        if (cursor.getCount() > 0) {
-            ArrayList<String> mArrayList = new ArrayList<String>();
-            while (cursor.moveToNext()) {
-                mArrayList.add(cursor.getString(cursor.getColumnIndex("NIVEAU_JLPT_TEST_KANJI")));
-                mArrayList.add(cursor.getString(cursor.getColumnIndex("DATE_TEST")));
-                mArrayList.add(cursor.getString(cursor.getColumnIndex("SCORE")));
-            }
-            cursor.close();
-            ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mArrayList);
-            Historic_ListView.setAdapter(adapter);
-            Historic_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    if (position == 3) {
-                        Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_SHORT).show();
+        Historic_View.setText("Your results historic " + user.getPseudo());
+        LesTestHistoryUsers.size();
 
-                    }
-                }
-            });
-        } else {
-            Toast.makeText(getApplicationContext(), "You still haven't passed a test !", Toast.LENGTH_LONG).show();
+    }
+
+    public void getTestButton(View v) {
+        for (UserTestHistory userTestHistory : LesTestHistoryUsers) {
+            if (userTestHistory.getEmailAddress().equals(user.getEmailAddress())) {
+                arrayList2.add(userTestHistory.getNiveauJLPTTestKanji());
+                arrayList2.add(userTestHistory.getDateTest());
+                arrayList2.add(String.valueOf(userTestHistory.getScore()));
+            } else {
+                Toast.makeText(Historic_Activity.this, "You have not passed any test", Toast.LENGTH_SHORT).show();
+            }
         }
-        //SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_1,null,new String[]{String.valueOf(myDb.GetUserHistoric(user.GetEmailAddress()))},new int[]{android.R.id.list_container});
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayList2);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList2);
+        Historic_ListView.setAdapter(adapter);
     }
 
     public void Home_Button1(View v) {
-        Button Home_Button = findViewById(R.id.Home_Button);
         Intent intent = new Intent(Historic_Activity.this, MainActivity.class);
         intent.putExtra("user", user);
         startActivity(intent);
+    }
+
+    public static ArrayList<UserTestHistory> getLesTestHistoryUsers() {
+        return LesTestHistoryUsers;
+    }
+
+    public static void setLesTestHistoryUsers(ArrayList<UserTestHistory> lesTestHistoryUsers) {
+        LesTestHistoryUsers = lesTestHistoryUsers;
     }
 }

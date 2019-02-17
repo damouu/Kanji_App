@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="256dp"
+        android:layout_marginBottom="40dp"
         android:onClick="Home_Button1"
         android:text="Home"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,14 +25,17 @@
 
     <ListView
         android:id="@+id/Historic_ListView"
-        android:layout_width="283dp"
-        android:layout_height="344dp"
+        style="@android:style/Widget.DeviceDefault.ListView"
+        android:layout_width="371dp"
+        android:layout_height="393dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="100dp"
+        android:entries="@drawable/bilalpng_96x96"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,19 +44,35 @@
 
     <TextView
         android:id="@+id/Historic_View"
-        android:layout_width="155dp"
-        android:layout_height="33dp"
+        android:layout_width="241dp"
+        android:layout_height="72dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
-        android:text="Vore Historique"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
         app:layout_constraintBottom_toTopOf="@+id/Historic_ListView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.616" />
+
+    <Button
+        android:id="@+id/getTestButton"
+        android:layout_width="109dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="getTestButton"
+        android:text="getTest"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.817"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.952" />
 
 
 </android.support.constraint.ConstraintLayout>

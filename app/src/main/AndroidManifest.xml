@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SecondScreen" />
-        <activity android:name=".ThirdActivity" />
+        <activity android:name=".ResultsKanjiTest" />
         <activity
             android:name=".Learning_Kanji"
             android:label="@string/title_activity_learning__kanji"

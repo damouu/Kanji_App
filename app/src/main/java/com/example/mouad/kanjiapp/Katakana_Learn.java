@@ -13,50 +13,45 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 public class Katakana_Learn extends AppCompatActivity {
-    DataBaseHelper myDb;
-    DataBaseHelper myDb2;
-    DataBaseHelper myDb3;
-    DataBaseHelper myDb4;
-    DataBaseHelper myDb5;
-    DataBaseHelper myDb6;
-    DataBaseHelper myDb7;
-    DataBaseHelper myDb8;
-    DataBaseHelper myDb9;
-    DataBaseHelper myDb10;
-    DataBaseHelper myDb11;
+    private static ArrayList<Katakana> Katakana_ArrayList_Groupe_A = new ArrayList<Katakana>();
+    private static ArrayList<Katakana> Katakana_ArrayList_Groupe_K = new ArrayList<Katakana>();
+    private static ArrayList<Katakana> Katakana_ArrayList_Groupe_S = new ArrayList<Katakana>();
+    private static ArrayList<Katakana> Katakana_ArrayList_Groupe_T = new ArrayList<Katakana>();
+    private static ArrayList<Katakana> Katakana_ArrayList_Groupe_N = new ArrayList<Katakana>();
+    private static ArrayList<Katakana> Katakana_ArrayList_Groupe_H = new ArrayList<Katakana>();
+    private static ArrayList<Katakana> Katakana_ArrayList_Groupe_M = new ArrayList<Katakana>();
+    private static ArrayList<Katakana> Katakana_ArrayList_Groupe_Y = new ArrayList<Katakana>();
+    private static ArrayList<Katakana> Katakana_ArrayList_Groupe_R = new ArrayList<Katakana>();
+    private static ArrayList<Katakana> Katakana_ArrayList_Groupe_W = new ArrayList<Katakana>();
+    private static ArrayList<Katakana> Katakana_ArrayList_Groupe_0 = new ArrayList<Katakana>();
+    private static RemoteAccess remoteAccess;
+    Button buttonHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_katakana__learn);
-        Button buttonHome = findViewById(R.id.button_Home);
+        buttonHome = findViewById(R.id.button_Home);
+        remoteAccess = new RemoteAccess();
+        remoteAccess.envoi("TousLesKatakana", new JSONArray());
         ListView listView = (ListView) findViewById(R.id.Historic_ListView);
         final String[] LesKatakanas = new String[]{"a", "Ka", "Sa", "Ta", "Na", "Ha", "Ma", "Ra", "Ya", "Wa", "N"};
-        final ArrayList<Katakana> Katakana_A = new ArrayList<Katakana>();
-        final ArrayList<Katakana> Katakana_Ka = new ArrayList<Katakana>();
-        final ArrayList<Katakana> Hiragana_Sa = new ArrayList<Katakana>();
-        final ArrayList<Katakana> Hiragana_Ta = new ArrayList<Katakana>();
-        final ArrayList<Katakana> Hiragana_Na = new ArrayList<Katakana>();
-        final ArrayList<Katakana> Hiragana_Ha = new ArrayList<Katakana>();
-        final ArrayList<Katakana> Hiragana_Ma = new ArrayList<Katakana>();
-        final ArrayList<Katakana> Hiragana_Ra = new ArrayList<Katakana>();
-        final ArrayList<Katakana> Hiragana_Ya = new ArrayList<Katakana>();
-        final ArrayList<Katakana> Hiragana_Wa = new ArrayList<Katakana>();
-        final ArrayList<Katakana> Hiragana_N = new ArrayList<Katakana>();
-        myDb = new DataBaseHelper(this);
-        myDb2 = new DataBaseHelper(this);
-        myDb3 = new DataBaseHelper(this);
-        myDb4 = new DataBaseHelper(this);
-        myDb5 = new DataBaseHelper(this);
-        myDb6 = new DataBaseHelper(this);
-        myDb7 = new DataBaseHelper(this);
-        myDb8 = new DataBaseHelper(this);
-        myDb9 = new DataBaseHelper(this);
-        myDb10 = new DataBaseHelper(this);
-        myDb11 = new DataBaseHelper(this);
+        Katakana_ArrayList_Groupe_A = new ArrayList<Katakana>();
+        Katakana_ArrayList_Groupe_K = new ArrayList<Katakana>();
+        Katakana_ArrayList_Groupe_S = new ArrayList<Katakana>();
+        Katakana_ArrayList_Groupe_T = new ArrayList<Katakana>();
+        Katakana_ArrayList_Groupe_N = new ArrayList<Katakana>();
+        Katakana_ArrayList_Groupe_H = new ArrayList<Katakana>();
+        Katakana_ArrayList_Groupe_M = new ArrayList<Katakana>();
+        Katakana_ArrayList_Groupe_Y = new ArrayList<Katakana>();
+        Katakana_ArrayList_Groupe_R = new ArrayList<Katakana>();
+        Katakana_ArrayList_Groupe_W = new ArrayList<Katakana>();
+        Katakana_ArrayList_Groupe_0 = new ArrayList<Katakana>();
         final String niveauKatakana = LesKatakanas[0];
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, LesKatakanas);
         listView.setAdapter(adapter);
@@ -69,11 +64,7 @@ public class Katakana_Learn extends AppCompatActivity {
                 switch (position) {
                     case 0:
                         position = 0;
-                        Cursor cursor = myDb.get_Katakana_A();
-                        while (cursor.moveToNext()) {
-                            Katakana_A.add(new Katakana(cursor.getString(cursor.getColumnIndex("CHARACTERE")), cursor.getInt(cursor.getColumnIndex("NUMERO")), cursor.getString(cursor.getColumnIndex("SIGNIFICATION"))));
-                        }
-                        if (Katakana_A.isEmpty()) {
+                        if (Katakana_ArrayList_Groupe_A.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Katakana_Learn.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
@@ -90,7 +81,7 @@ public class Katakana_Learn extends AppCompatActivity {
                             niveauKatakana = LesKatakanas[0];
                             intent = new Intent(Katakana_Learn.this, Katakana_Lesson.class);
                             intent.putExtra("niveauKatakana", niveauKatakana);
-                            intent.putExtra("LesKatakanas", Katakana_A);
+                            intent.putExtra("LesKatakanas", Katakana_ArrayList_Groupe_A);
                             Katakana_Learn.this.startActivity(intent);
                             break;
                         }
@@ -98,11 +89,7 @@ public class Katakana_Learn extends AppCompatActivity {
 
                     case 1:
                         position = 1;
-                        Cursor cursor2 = myDb2.get_Katakana_Ka();
-                        while (cursor2.moveToNext()) {
-                            Katakana_Ka.add(new Katakana(cursor2.getString(cursor2.getColumnIndex("CHARACTERE")), cursor2.getInt(cursor2.getColumnIndex("NUMERO")), cursor2.getString(cursor2.getColumnIndex("SIGNIFICATION"))));
-                        }
-                        if (Katakana_Ka.isEmpty()) {
+                        if (Katakana_ArrayList_Groupe_K.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Katakana_Learn.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
@@ -119,13 +106,101 @@ public class Katakana_Learn extends AppCompatActivity {
                             niveauKatakana = LesKatakanas[1];
                             intent = new Intent(Katakana_Learn.this, Katakana_Lesson.class);
                             intent.putExtra("niveauKatakana", niveauKatakana);
-                            intent.putExtra("LesKatakanas", Katakana_Ka);
+                            intent.putExtra("LesKatakanas", Katakana_ArrayList_Groupe_K);
                             Katakana_Learn.this.startActivity(intent);
                             break;
                         }
                 }
-
             }
         });
+    }
+
+
+    public static ArrayList<Katakana> getKatakana_ArrayList_Groupe_A() {
+        return Katakana_ArrayList_Groupe_A;
+    }
+
+    public static void setKatakana_ArrayList_Groupe_A(ArrayList<Katakana> katakana_ArrayList_Groupe_A) {
+        Katakana_ArrayList_Groupe_A = katakana_ArrayList_Groupe_A;
+    }
+
+    public static ArrayList<Katakana> getKatakana_ArrayList_Groupe_K() {
+        return Katakana_ArrayList_Groupe_K;
+    }
+
+    public static void setKatakana_ArrayList_Groupe_K(ArrayList<Katakana> katakana_ArrayList_Groupe_K) {
+        Katakana_ArrayList_Groupe_K = katakana_ArrayList_Groupe_K;
+    }
+
+    public static ArrayList<Katakana> getKatakana_ArrayList_Groupe_S() {
+        return Katakana_ArrayList_Groupe_S;
+    }
+
+    public static void setKatakana_ArrayList_Groupe_S(ArrayList<Katakana> katakana_ArrayList_Groupe_S) {
+        Katakana_ArrayList_Groupe_S = katakana_ArrayList_Groupe_S;
+    }
+
+    public static ArrayList<Katakana> getKatakana_ArrayList_Groupe_T() {
+        return Katakana_ArrayList_Groupe_T;
+    }
+
+    public static void setKatakana_ArrayList_Groupe_T(ArrayList<Katakana> katakana_ArrayList_Groupe_T) {
+        Katakana_ArrayList_Groupe_T = katakana_ArrayList_Groupe_T;
+    }
+
+    public static ArrayList<Katakana> getKatakana_ArrayList_Groupe_N() {
+        return Katakana_ArrayList_Groupe_N;
+    }
+
+    public static void setKatakana_ArrayList_Groupe_N(ArrayList<Katakana> katakana_ArrayList_Groupe_N) {
+        Katakana_ArrayList_Groupe_N = katakana_ArrayList_Groupe_N;
+    }
+
+    public static ArrayList<Katakana> getKatakana_ArrayList_Groupe_H() {
+        return Katakana_ArrayList_Groupe_H;
+    }
+
+    public static void setKatakana_ArrayList_Groupe_H(ArrayList<Katakana> katakana_ArrayList_Groupe_H) {
+        Katakana_ArrayList_Groupe_H = katakana_ArrayList_Groupe_H;
+    }
+
+    public static ArrayList<Katakana> getKatakana_ArrayList_Groupe_M() {
+        return Katakana_ArrayList_Groupe_M;
+    }
+
+    public static void setKatakana_ArrayList_Groupe_M(ArrayList<Katakana> katakana_ArrayList_Groupe_M) {
+        Katakana_ArrayList_Groupe_M = katakana_ArrayList_Groupe_M;
+    }
+
+    public static ArrayList<Katakana> getKatakana_ArrayList_Groupe_Y() {
+        return Katakana_ArrayList_Groupe_Y;
+    }
+
+    public static void setKatakana_ArrayList_Groupe_Y(ArrayList<Katakana> katakana_ArrayList_Groupe_Y) {
+        Katakana_ArrayList_Groupe_Y = katakana_ArrayList_Groupe_Y;
+    }
+
+    public static ArrayList<Katakana> getKatakana_ArrayList_Groupe_R() {
+        return Katakana_ArrayList_Groupe_R;
+    }
+
+    public static void setKatakana_ArrayList_Groupe_R(ArrayList<Katakana> katakana_ArrayList_Groupe_R) {
+        Katakana_ArrayList_Groupe_R = katakana_ArrayList_Groupe_R;
+    }
+
+    public static ArrayList<Katakana> getKatakana_ArrayList_Groupe_W() {
+        return Katakana_ArrayList_Groupe_W;
+    }
+
+    public static void setKatakana_ArrayList_Groupe_W(ArrayList<Katakana> katakana_ArrayList_Groupe_W) {
+        Katakana_ArrayList_Groupe_W = katakana_ArrayList_Groupe_W;
+    }
+
+    public static ArrayList<Katakana> getKatakana_ArrayList_Groupe_0() {
+        return Katakana_ArrayList_Groupe_0;
+    }
+
+    public static void setKatakana_ArrayList_Groupe_0(ArrayList<Katakana> katakana_ArrayList_Groupe_0) {
+        Katakana_ArrayList_Groupe_0 = katakana_ArrayList_Groupe_0;
     }
 }

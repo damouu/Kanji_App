@@ -13,50 +13,45 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 public class Hiragana_Learn extends AppCompatActivity {
-    DataBaseHelper myDb;
-    DataBaseHelper myDb2;
-    DataBaseHelper myDb3;
-    DataBaseHelper myDb4;
-    DataBaseHelper myDb5;
-    DataBaseHelper myDb6;
-    DataBaseHelper myDb7;
-    DataBaseHelper myDb8;
-    DataBaseHelper myDb9;
-    DataBaseHelper myDb10;
-    DataBaseHelper myDb11;
+    Button buttonHome;
+    private static RemoteAccess remoteAccess;
+    private static ArrayList<Hiragana> Hiragana_ArrayList_Groupe_A;
+    private static ArrayList<Hiragana> Hiragana_ArrayList_Groupe_K;
+    private static ArrayList<Hiragana> Hiragana_ArrayList_Groupe_S;
+    private static ArrayList<Hiragana> Hiragana_ArrayList_Groupe_T;
+    private static ArrayList<Hiragana> Hiragana_ArrayList_Groupe_N;
+    private static ArrayList<Hiragana> Hiragana_ArrayList_Groupe_H;
+    private static ArrayList<Hiragana> Hiragana_ArrayList_Groupe_M;
+    private static ArrayList<Hiragana> Hiragana_ArrayList_Groupe_Y;
+    private static ArrayList<Hiragana> Hiragana_ArrayList_Groupe_R;
+    private static ArrayList<Hiragana> Hiragana_ArrayList_Groupe_W;
+    private static ArrayList<Hiragana> Hiragana_ArrayList_Groupe_0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hiragana__learn);
-        Button buttonHome = findViewById(R.id.button_Home);
+        buttonHome = findViewById(R.id.button_Home);
+        remoteAccess = new RemoteAccess();
+        remoteAccess.envoi("TousLesHiragana", new JSONArray());
         ListView listView = (ListView) findViewById(R.id.Historic_ListView);
         final String[] LesHiraganas = new String[]{"a", "Ka", "Sa", "Ta", "Na", "Ha", "Ma", "Ra", "Ya", "Wa", "N"};
-        final ArrayList<Hiragana> Hiragana_A = new ArrayList<Hiragana>();
-        final ArrayList<Hiragana> Hiragana_Ka = new ArrayList<Hiragana>();
-        final ArrayList<Kanji> Hiragana_Sa = new ArrayList<Kanji>();
-        final ArrayList<Kanji> Hiragana_Ta = new ArrayList<Kanji>();
-        final ArrayList<Kanji> Hiragana_Na = new ArrayList<Kanji>();
-        final ArrayList<Kanji> Hiragana_Ha = new ArrayList<Kanji>();
-        final ArrayList<Kanji> Hiragana_Ma = new ArrayList<Kanji>();
-        final ArrayList<Kanji> Hiragana_Ra = new ArrayList<Kanji>();
-        final ArrayList<Kanji> Hiragana_Ya = new ArrayList<Kanji>();
-        final ArrayList<Kanji> Hiragana_Wa = new ArrayList<Kanji>();
-        final ArrayList<Kanji> Hiragana_N = new ArrayList<Kanji>();
-        myDb = new DataBaseHelper(this);
-        myDb2 = new DataBaseHelper(this);
-        myDb3 = new DataBaseHelper(this);
-        myDb4 = new DataBaseHelper(this);
-        myDb5 = new DataBaseHelper(this);
-        myDb6 = new DataBaseHelper(this);
-        myDb7 = new DataBaseHelper(this);
-        myDb8 = new DataBaseHelper(this);
-        myDb9 = new DataBaseHelper(this);
-        myDb10 = new DataBaseHelper(this);
-        myDb11 = new DataBaseHelper(this);
+        Hiragana_ArrayList_Groupe_A = new ArrayList<Hiragana>();
+        Hiragana_ArrayList_Groupe_K = new ArrayList<Hiragana>();
+        Hiragana_ArrayList_Groupe_S = new ArrayList<Hiragana>();
+        Hiragana_ArrayList_Groupe_T = new ArrayList<Hiragana>();
+        Hiragana_ArrayList_Groupe_N = new ArrayList<Hiragana>();
+        Hiragana_ArrayList_Groupe_H = new ArrayList<Hiragana>();
+        Hiragana_ArrayList_Groupe_M = new ArrayList<Hiragana>();
+        Hiragana_ArrayList_Groupe_Y = new ArrayList<Hiragana>();
+        Hiragana_ArrayList_Groupe_R = new ArrayList<Hiragana>();
+        Hiragana_ArrayList_Groupe_W = new ArrayList<Hiragana>();
+        Hiragana_ArrayList_Groupe_0 = new ArrayList<Hiragana>();
         final String niveauHiragana = LesHiraganas[0];
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, LesHiraganas);
         listView.setAdapter(adapter);
@@ -70,11 +65,7 @@ public class Hiragana_Learn extends AppCompatActivity {
                 switch (position) {
                     case 0:
                         position = 0;
-                        Cursor cursor = myDb.get_Hiragana_A();
-                        while (cursor.moveToNext()) {
-                            Hiragana_A.add(new Hiragana(cursor.getString(cursor.getColumnIndex("CHARACTERE")), cursor.getInt(cursor.getColumnIndex("NUMERO")), cursor.getString(cursor.getColumnIndex("SIGNIFICATION"))));
-                        }
-                        if (Hiragana_A.isEmpty()) {
+                        if (Hiragana_ArrayList_Groupe_A.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Hiragana_Learn.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
@@ -91,19 +82,13 @@ public class Hiragana_Learn extends AppCompatActivity {
                             niveauHiragana = LesHiraganas[0];
                             intent = new Intent(Hiragana_Learn.this, Hiragana_Lesson.class);
                             intent.putExtra("niveauHiragana", niveauHiragana);
-                            intent.putExtra("LesHiraganas", Hiragana_A);
+                            intent.putExtra("LesHiraganas", Hiragana_ArrayList_Groupe_A);
                             Hiragana_Learn.this.startActivity(intent);
                             break;
                         }
-
-
                     case 1:
                         position = 1;
-                        Cursor cursor2 = myDb2.get_Hiragana_Ka();
-                        while (cursor2.moveToNext()) {
-                            Hiragana_Ka.add(new Hiragana(cursor2.getString(cursor2.getColumnIndex("CHARACTERE")), cursor2.getInt(cursor2.getColumnIndex("NUMERO")), cursor2.getString(cursor2.getColumnIndex("SIGNIFICATION"))));
-                        }
-                        if (Hiragana_Ka.isEmpty()) {
+                        if (Hiragana_ArrayList_Groupe_K.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Hiragana_Learn.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
@@ -120,16 +105,308 @@ public class Hiragana_Learn extends AppCompatActivity {
                             niveauHiragana = LesHiraganas[1];
                             intent = new Intent(Hiragana_Learn.this, Hiragana_Lesson.class);
                             intent.putExtra("niveauHiragana", niveauHiragana);
-                            intent.putExtra("LesHiraganas", Hiragana_Ka);
+                            intent.putExtra("LesHiraganas", Hiragana_ArrayList_Groupe_K);
                             Hiragana_Learn.this.startActivity(intent);
                             break;
                         }
-
-
+                    case 2:
+                        position = 2;
+                        if (Hiragana_ArrayList_Groupe_S.isEmpty()) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(Hiragana_Learn.this);
+                            builder.setCancelable(true);
+                            builder.setTitle("Alerte");
+                            builder.setMessage("Le Niveau selectionné ne contient pas de Hiragana ");
+                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+                            builder.show();
+                            break;
+                        } else {
+                            niveauHiragana = LesHiraganas[2];
+                            intent = new Intent(Hiragana_Learn.this, Hiragana_Lesson.class);
+                            intent.putExtra("niveauHiragana", niveauHiragana);
+                            intent.putExtra("LesHiraganas", Hiragana_ArrayList_Groupe_S);
+                            Hiragana_Learn.this.startActivity(intent);
+                            break;
+                        }
+                    case 3:
+                        position = 3;
+                        if (Hiragana_ArrayList_Groupe_T.isEmpty()) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(Hiragana_Learn.this);
+                            builder.setCancelable(true);
+                            builder.setTitle("Alerte");
+                            builder.setMessage("Le Niveau selectionné ne contient pas de Hiragana ");
+                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+                            builder.show();
+                            break;
+                        } else {
+                            niveauHiragana = LesHiraganas[3];
+                            intent = new Intent(Hiragana_Learn.this, Hiragana_Lesson.class);
+                            intent.putExtra("niveauHiragana", niveauHiragana);
+                            intent.putExtra("LesHiraganas", Hiragana_ArrayList_Groupe_T);
+                            Hiragana_Learn.this.startActivity(intent);
+                            break;
+                        }
+                    case 4:
+                        position = 4;
+                        if (Hiragana_ArrayList_Groupe_N.isEmpty()) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(Hiragana_Learn.this);
+                            builder.setCancelable(true);
+                            builder.setTitle("Alerte");
+                            builder.setMessage("Le Niveau selectionné ne contient pas de Hiragana ");
+                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+                            builder.show();
+                            break;
+                        } else {
+                            niveauHiragana = LesHiraganas[4];
+                            intent = new Intent(Hiragana_Learn.this, Hiragana_Lesson.class);
+                            intent.putExtra("niveauHiragana", niveauHiragana);
+                            intent.putExtra("LesHiraganas", Hiragana_ArrayList_Groupe_N);
+                            Hiragana_Learn.this.startActivity(intent);
+                            break;
+                        }
+                    case 5:
+                        position = 5;
+                        if (Hiragana_ArrayList_Groupe_H.isEmpty()) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(Hiragana_Learn.this);
+                            builder.setCancelable(true);
+                            builder.setTitle("Alerte");
+                            builder.setMessage("Le Niveau selectionné ne contient pas de Hiragana ");
+                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+                            builder.show();
+                            break;
+                        } else {
+                            niveauHiragana = LesHiraganas[5];
+                            intent = new Intent(Hiragana_Learn.this, Hiragana_Lesson.class);
+                            intent.putExtra("niveauHiragana", niveauHiragana);
+                            intent.putExtra("LesHiraganas", Hiragana_ArrayList_Groupe_H);
+                            Hiragana_Learn.this.startActivity(intent);
+                            break;
+                        }
+                    case 6:
+                        position = 6;
+                        if (Hiragana_ArrayList_Groupe_M.isEmpty()) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(Hiragana_Learn.this);
+                            builder.setCancelable(true);
+                            builder.setTitle("Alerte");
+                            builder.setMessage("Le Niveau selectionné ne contient pas de Hiragana ");
+                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+                            builder.show();
+                            break;
+                        } else {
+                            niveauHiragana = LesHiraganas[6];
+                            intent = new Intent(Hiragana_Learn.this, Hiragana_Lesson.class);
+                            intent.putExtra("niveauHiragana", niveauHiragana);
+                            intent.putExtra("LesHiraganas", Hiragana_ArrayList_Groupe_M);
+                            Hiragana_Learn.this.startActivity(intent);
+                            break;
+                        }
+                    case 7:
+                        position = 7;
+                        if (Hiragana_ArrayList_Groupe_R.isEmpty()) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(Hiragana_Learn.this);
+                            builder.setCancelable(true);
+                            builder.setTitle("Alerte");
+                            builder.setMessage("Le Niveau selectionné ne contient pas de Hiragana ");
+                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+                            builder.show();
+                            break;
+                        } else {
+                            niveauHiragana = LesHiraganas[7];
+                            intent = new Intent(Hiragana_Learn.this, Hiragana_Lesson.class);
+                            intent.putExtra("niveauHiragana", niveauHiragana);
+                            intent.putExtra("LesHiraganas", Hiragana_ArrayList_Groupe_R);
+                            Hiragana_Learn.this.startActivity(intent);
+                            break;
+                        }
+                    case 8:
+                        position = 8;
+                        if (Hiragana_ArrayList_Groupe_Y.isEmpty()) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(Hiragana_Learn.this);
+                            builder.setCancelable(true);
+                            builder.setTitle("Alerte");
+                            builder.setMessage("Le Niveau selectionné ne contient pas de Hiragana ");
+                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+                            builder.show();
+                            break;
+                        } else {
+                            niveauHiragana = LesHiraganas[8];
+                            intent = new Intent(Hiragana_Learn.this, Hiragana_Lesson.class);
+                            intent.putExtra("niveauHiragana", niveauHiragana);
+                            intent.putExtra("LesHiraganas", Hiragana_ArrayList_Groupe_Y);
+                            Hiragana_Learn.this.startActivity(intent);
+                            break;
+                        }
+                    case 9:
+                        position = 9;
+                        if (Hiragana_ArrayList_Groupe_W.isEmpty()) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(Hiragana_Learn.this);
+                            builder.setCancelable(true);
+                            builder.setTitle("Alerte");
+                            builder.setMessage("Le Niveau selectionné ne contient pas de Hiragana ");
+                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+                            builder.show();
+                            break;
+                        } else {
+                            niveauHiragana = LesHiraganas[9];
+                            intent = new Intent(Hiragana_Learn.this, Hiragana_Lesson.class);
+                            intent.putExtra("niveauHiragana", niveauHiragana);
+                            intent.putExtra("LesHiraganas", Hiragana_ArrayList_Groupe_W);
+                            Hiragana_Learn.this.startActivity(intent);
+                            break;
+                        }
+                    case 10:
+                        position = 10;
+                        if (Hiragana_ArrayList_Groupe_0.isEmpty()) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(Hiragana_Learn.this);
+                            builder.setCancelable(true);
+                            builder.setTitle("Alerte");
+                            builder.setMessage("Le Niveau selectionné ne contient pas de Hiragana ");
+                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+                            builder.show();
+                            break;
+                        } else {
+                            niveauHiragana = LesHiraganas[9];
+                            intent = new Intent(Hiragana_Learn.this, Hiragana_Lesson.class);
+                            intent.putExtra("niveauHiragana", niveauHiragana);
+                            intent.putExtra("LesHiraganas", Hiragana_ArrayList_Groupe_0);
+                            Hiragana_Learn.this.startActivity(intent);
+                            break;
+                        }
                 }
-
             }
         });
+    }
+
+    public static ArrayList<Hiragana> getHiragana_ArrayList_Groupe_A() {
+        return Hiragana_ArrayList_Groupe_A;
+    }
+
+    public static void setHiragana_ArrayList_Groupe_A(ArrayList<Hiragana> hiragana_ArrayList_Groupe_A) {
+        Hiragana_ArrayList_Groupe_A = hiragana_ArrayList_Groupe_A;
+    }
+
+    public static ArrayList<Hiragana> getHiragana_ArrayList_Groupe_K() {
+        return Hiragana_ArrayList_Groupe_K;
+    }
+
+    public static void setHiragana_ArrayList_Groupe_K(ArrayList<Hiragana> hiragana_ArrayList_Groupe_K) {
+        Hiragana_ArrayList_Groupe_K = hiragana_ArrayList_Groupe_K;
+    }
+
+    public static ArrayList<Hiragana> getHiragana_ArrayList_Groupe_S() {
+        return Hiragana_ArrayList_Groupe_S;
+    }
+
+    public static void setHiragana_ArrayList_Groupe_S(ArrayList<Hiragana> hiragana_ArrayList_Groupe_S) {
+        Hiragana_ArrayList_Groupe_S = hiragana_ArrayList_Groupe_S;
+    }
+
+    public static ArrayList<Hiragana> getHiragana_ArrayList_Groupe_T() {
+        return Hiragana_ArrayList_Groupe_T;
+    }
+
+    public static void setHiragana_ArrayList_Groupe_T(ArrayList<Hiragana> hiragana_ArrayList_Groupe_T) {
+        Hiragana_ArrayList_Groupe_T = hiragana_ArrayList_Groupe_T;
+    }
+
+    public static ArrayList<Hiragana> getHiragana_ArrayList_Groupe_N() {
+        return Hiragana_ArrayList_Groupe_N;
+    }
+
+    public static void setHiragana_ArrayList_Groupe_N(ArrayList<Hiragana> hiragana_ArrayList_Groupe_N) {
+        Hiragana_ArrayList_Groupe_N = hiragana_ArrayList_Groupe_N;
+    }
+
+    public static ArrayList<Hiragana> getHiragana_ArrayList_Groupe_H() {
+        return Hiragana_ArrayList_Groupe_H;
+    }
+
+    public static void setHiragana_ArrayList_Groupe_H(ArrayList<Hiragana> hiragana_ArrayList_Groupe_H) {
+        Hiragana_ArrayList_Groupe_H = hiragana_ArrayList_Groupe_H;
+    }
+
+    public static ArrayList<Hiragana> getHiragana_ArrayList_Groupe_M() {
+        return Hiragana_ArrayList_Groupe_M;
+    }
+
+    public static void setHiragana_ArrayList_Groupe_M(ArrayList<Hiragana> hiragana_ArrayList_Groupe_M) {
+        Hiragana_ArrayList_Groupe_M = hiragana_ArrayList_Groupe_M;
+    }
+
+    public static ArrayList<Hiragana> getHiragana_ArrayList_Groupe_Y() {
+        return Hiragana_ArrayList_Groupe_Y;
+    }
+
+    public static void setHiragana_ArrayList_Groupe_Y(ArrayList<Hiragana> hiragana_ArrayList_Groupe_Y) {
+        Hiragana_ArrayList_Groupe_Y = hiragana_ArrayList_Groupe_Y;
+    }
+
+    public static ArrayList<Hiragana> getHiragana_ArrayList_Groupe_R() {
+        return Hiragana_ArrayList_Groupe_R;
+    }
+
+    public static void setHiragana_ArrayList_Groupe_R(ArrayList<Hiragana> hiragana_ArrayList_Groupe_R) {
+        Hiragana_ArrayList_Groupe_R = hiragana_ArrayList_Groupe_R;
+    }
+
+    public static ArrayList<Hiragana> getHiragana_ArrayList_Groupe_W() {
+        return Hiragana_ArrayList_Groupe_W;
+    }
+
+    public static void setHiragana_ArrayList_Groupe_W(ArrayList<Hiragana> hiragana_ArrayList_Groupe_W) {
+        Hiragana_ArrayList_Groupe_W = hiragana_ArrayList_Groupe_W;
+    }
+
+    public static ArrayList<Hiragana> getHiragana_ArrayList_Groupe_0() {
+        return Hiragana_ArrayList_Groupe_0;
+    }
+
+    public static void setHiragana_ArrayList_Groupe_0(ArrayList<Hiragana> hiragana_ArrayList_Groupe_0) {
+        Hiragana_ArrayList_Groupe_0 = hiragana_ArrayList_Groupe_0;
     }
 }
 

@@ -13,34 +13,34 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 public class Learn_Kanji extends AppCompatActivity {
-    DataBaseHelper myDb;
-    DataBaseHelper myDb2;
-    DataBaseHelper myDb3;
-    DataBaseHelper myDb4;
-    DataBaseHelper myDb5;
-    private Object kanji;
     User user;
+    private static RemoteAccess remoteAccess;
+    private static ArrayList<Kanji> Kanji_JLPT5_ArrayList;
+    private static ArrayList<Kanji> Kanji_JLPT4_ArrayList;
+    private static ArrayList<Kanji> Kanji_JLPT3_ArrayList;
+    private static ArrayList<Kanji> Kanji_JLPT2_ArrayList;
+    private static ArrayList<Kanji> Kanji_JLPT1_ArrayList;
+    Button Button6;
+
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
-        Button Button6 = findViewById(R.id.button6);
-        final ArrayList<Kanji> Kanji_JLPT5 = new ArrayList<Kanji>();
-        final ArrayList<Kanji> Kanji_JLPT4 = new ArrayList<Kanji>();
-        final ArrayList<Kanji> Kanji_JLPT3 = new ArrayList<Kanji>();
-        final ArrayList<Kanji> Kanji_JLPT2 = new ArrayList<Kanji>();
-        final ArrayList<Kanji> Kanji_JLPT1 = new ArrayList<Kanji>();
-        myDb = new DataBaseHelper(this);
-        myDb2 = new DataBaseHelper(this);
-        myDb3 = new DataBaseHelper(this);
-        myDb4 = new DataBaseHelper(this);
-        myDb5 = new DataBaseHelper(this);
-        user = (User) getIntent().getSerializableExtra("user");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn__kanji);
+        Button6 = findViewById(R.id.button6);
+        remoteAccess = new RemoteAccess();
+        remoteAccess.envoi("TousLesKanjis", new JSONArray());
+        Kanji_JLPT5_ArrayList = new ArrayList<Kanji>();
+        Kanji_JLPT4_ArrayList = new ArrayList<Kanji>();
+        Kanji_JLPT3_ArrayList = new ArrayList<Kanji>();
+        Kanji_JLPT2_ArrayList = new ArrayList<Kanji>();
+        Kanji_JLPT1_ArrayList = new ArrayList<Kanji>();
+        user = (User) getIntent().getSerializableExtra("user");
         final String[] leskanjis = new String[]{"JLPT5", "JLPT4", "JLPT3", "JLPT2", "JLPT1"};
         final String niveauJLPT = leskanjis[0];
         ListView listView = (ListView) findViewById(R.id.Historic_ListView);
@@ -52,15 +52,11 @@ public class Learn_Kanji extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "chargement", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Learn_Kanji.this, Lesson_Kanji.class);
+                String niveauJLPT = leskanjis[0];
                 switch (position) {
                     case 0:
                         position = 0;
-                        Cursor cursor = myDb.JLPT5_Kanji();
-                        while (cursor.moveToNext()) {
-                            Kanji_JLPT5.add(new Kanji(cursor.getString(cursor.getColumnIndex("CHARACTERE")), cursor.getInt(cursor.getColumnIndex("NUMERO")), cursor.getString(cursor.getColumnIndex("SIGNIFICATION")), cursor.getString(cursor.getColumnIndex("LECTURE_KUN")), cursor.getString(cursor.getColumnIndex("LECTURE_ON"))));
-                        }
-                        String niveauJLPT = leskanjis[0];
-                        if (Kanji_JLPT5.isEmpty()) {
+                        if (Kanji_JLPT5_ArrayList.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Learn_Kanji.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
@@ -77,19 +73,13 @@ public class Learn_Kanji extends AppCompatActivity {
                             niveauJLPT = leskanjis[0];
                             intent = new Intent(Learn_Kanji.this, Lesson_Kanji.class);
                             intent.putExtra("niveauJLPT", niveauJLPT);
-                            intent.putExtra("Leskanjis", Kanji_JLPT5);
+                            intent.putExtra("Leskanjis", Kanji_JLPT5_ArrayList);
                             intent.putExtra("user", user);
                             Learn_Kanji.this.startActivity(intent);
                             break;
                         }
                     case 1:
-                        position = 1;
-                        Cursor cursor2 = myDb2.JLPT4_Kanji();
-                        while (cursor2.moveToNext()) {
-                            Kanji_JLPT4.add(new Kanji(cursor2.getString(cursor2.getColumnIndex("CHARACTERE")), cursor2.getInt(cursor2.getColumnIndex("NUMERO")), cursor2.getString(cursor2.getColumnIndex("SIGNIFICATION")), cursor2.getString(cursor2.getColumnIndex("LECTURE_KUN")), cursor2.getString(cursor2.getColumnIndex("LECTURE_ON"))));
-                        }
-                        niveauJLPT = leskanjis[1];
-                        if (Kanji_JLPT4.isEmpty()) {
+                        if (Kanji_JLPT4_ArrayList.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Learn_Kanji.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
@@ -106,18 +96,13 @@ public class Learn_Kanji extends AppCompatActivity {
                             niveauJLPT = leskanjis[1];
                             intent = new Intent(Learn_Kanji.this, Lesson_Kanji.class);
                             intent.putExtra("niveauJLPT", niveauJLPT);
-                            intent.putExtra("Leskanjis", Kanji_JLPT4);
+                            intent.putExtra("Leskanjis", Kanji_JLPT4_ArrayList);
+                            intent.putExtra("user", user);
                             Learn_Kanji.this.startActivity(intent);
                             break;
                         }
                     case 2:
-                        position = 2;
-                        Cursor cursor3 = myDb3.JLPT3_Kanji();
-                        while (cursor3.moveToNext()) {
-                            Kanji_JLPT3.add(new Kanji(cursor3.getString(cursor3.getColumnIndex("CHARACTERE")), cursor3.getInt(cursor3.getColumnIndex("NUMERO")), cursor3.getString(cursor3.getColumnIndex("SIGNIFICATION")), cursor3.getString(cursor3.getColumnIndex("LECTURE_KUN")), cursor3.getString(cursor3.getColumnIndex("LECTURE_ON"))));
-                        }
-                        niveauJLPT = leskanjis[2];
-                        if (Kanji_JLPT3.isEmpty()) {
+                        if (Kanji_JLPT3_ArrayList.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Learn_Kanji.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
@@ -134,19 +119,13 @@ public class Learn_Kanji extends AppCompatActivity {
                             niveauJLPT = leskanjis[2];
                             intent = new Intent(Learn_Kanji.this, Lesson_Kanji.class);
                             intent.putExtra("niveauJLPT", niveauJLPT);
-                            intent.putExtra("Leskanjis", Kanji_JLPT3);
+                            intent.putExtra("Leskanjis", Kanji_JLPT3_ArrayList);
+                            intent.putExtra("user", user);
                             Learn_Kanji.this.startActivity(intent);
                             break;
                         }
-
                     case 3:
-                        position = 3;
-                        Cursor cursor4 = myDb4.JLPT2_Kanji();
-                        while (cursor4.moveToNext()) {
-                            Kanji_JLPT2.add(new Kanji(cursor4.getString(cursor4.getColumnIndex("CHARACTERE")), cursor4.getInt(cursor4.getColumnIndex("NUMERO")), cursor4.getString(cursor4.getColumnIndex("SIGNIFICATION")), cursor4.getString(cursor4.getColumnIndex("LECTURE_KUN")), cursor4.getString(cursor4.getColumnIndex("LECTURE_ON"))));
-                        }
-                        niveauJLPT = leskanjis[3];
-                        if (Kanji_JLPT2.isEmpty()) {
+                        if (Kanji_JLPT2_ArrayList.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Learn_Kanji.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
@@ -163,19 +142,13 @@ public class Learn_Kanji extends AppCompatActivity {
                             niveauJLPT = leskanjis[3];
                             intent = new Intent(Learn_Kanji.this, Lesson_Kanji.class);
                             intent.putExtra("niveauJLPT", niveauJLPT);
-                            intent.putExtra("Leskanjis", Kanji_JLPT2);
+                            intent.putExtra("Leskanjis", Kanji_JLPT2_ArrayList);
+                            intent.putExtra("user", user);
                             Learn_Kanji.this.startActivity(intent);
                             break;
                         }
-
                     case 4:
-                        position = 4;
-                        Cursor cursor5 = myDb5.JLPT1_Kanji();
-                        while (cursor5.moveToNext()) {
-                            Kanji_JLPT1.add(new Kanji(cursor5.getString(cursor5.getColumnIndex("CHARACTERE")), cursor5.getInt(cursor5.getColumnIndex("NUMERO")), cursor5.getString(cursor5.getColumnIndex("SIGNIFICATION")), cursor5.getString(cursor5.getColumnIndex("LECTURE_KUN")), cursor5.getString(cursor5.getColumnIndex("LECTURE_ON"))));
-                        }
-                        niveauJLPT = leskanjis[4];
-                        if (Kanji_JLPT1.isEmpty()) {
+                        if (Kanji_JLPT1_ArrayList.isEmpty()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(Learn_Kanji.this);
                             builder.setCancelable(true);
                             builder.setTitle("Alerte");
@@ -192,11 +165,11 @@ public class Learn_Kanji extends AppCompatActivity {
                             niveauJLPT = leskanjis[4];
                             intent = new Intent(Learn_Kanji.this, Lesson_Kanji.class);
                             intent.putExtra("niveauJLPT", niveauJLPT);
-                            intent.putExtra("Leskanjis", Kanji_JLPT1);
+                            intent.putExtra("Leskanjis", Kanji_JLPT1_ArrayList);
+                            intent.putExtra("user", user);
                             Learn_Kanji.this.startActivity(intent);
                             break;
                         }
-
                     case 5:
                         position = 5;
                         niveauJLPT = leskanjis[5];
@@ -220,4 +193,46 @@ public class Learn_Kanji extends AppCompatActivity {
         });
 
     }
+
+    public static ArrayList<Kanji> getKanji_JLPT5_ArrayList() {
+        return Kanji_JLPT5_ArrayList;
+    }
+
+    public static void setKanji_JLPT5_ArrayList(ArrayList<Kanji> kanji_JLPT5_ArrayList) {
+        Kanji_JLPT5_ArrayList = kanji_JLPT5_ArrayList;
+    }
+
+    public static ArrayList<Kanji> getKanji_JLPT4_ArrayList() {
+        return Kanji_JLPT4_ArrayList;
+    }
+
+    public static void setKanji_JLPT4_ArrayList(ArrayList<Kanji> kanji_JLPT4_ArrayList) {
+        Kanji_JLPT4_ArrayList = kanji_JLPT4_ArrayList;
+    }
+
+    public static ArrayList<Kanji> getKanji_JLPT3_ArrayList() {
+        return Kanji_JLPT3_ArrayList;
+    }
+
+    public static void setKanji_JLPT3_ArrayList(ArrayList<Kanji> kanji_JLPT3_ArrayList) {
+        Kanji_JLPT3_ArrayList = kanji_JLPT3_ArrayList;
+    }
+
+    public static ArrayList<Kanji> getKanji_JLPT2_ArrayList() {
+        return Kanji_JLPT2_ArrayList;
+    }
+
+    public static void setKanji_JLPT2_ArrayList(ArrayList<Kanji> kanji_JLPT2_ArrayList) {
+        Kanji_JLPT2_ArrayList = kanji_JLPT2_ArrayList;
+    }
+
+    public static ArrayList<Kanji> getKanji_JLPT1_ArrayList() {
+        return Kanji_JLPT1_ArrayList;
+    }
+
+    public static void setKanji_JLPT1_ArrayList(ArrayList<Kanji> kanji_JLPT1_ArrayList) {
+        Kanji_JLPT1_ArrayList = kanji_JLPT1_ArrayList;
+    }
+
+
 }

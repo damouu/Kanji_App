@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class LoginUserActivity extends AppCompatActivity implements Serializable {
     DataBaseHelper myDb;
-    private static DistantAccess distantAccess;
+    private static RemoteAccess remoteAccess;
     private static ArrayList<UserDistant> LesUserDistants;
     Toolbar toolbar;
     Button LogInButton;
@@ -29,8 +29,8 @@ public class LoginUserActivity extends AppCompatActivity implements Serializable
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
-        distantAccess = new DistantAccess();
-        distantAccess.envoi("LogUser", new JSONArray());
+        remoteAccess = new RemoteAccess();
+        remoteAccess.envoi("LogUser", new JSONArray());
         myDb = new DataBaseHelper(this);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -51,7 +51,6 @@ public class LoginUserActivity extends AppCompatActivity implements Serializable
                 if (userDistant1.getEmailAddress().equals(LogInMail.getText().toString()) && userDistant1.getPassword().equals(LogInPassword.getText().toString())) {
                     counter++;
                 } else {
-
                 }
             }
             if (counter == 0) {
@@ -74,8 +73,11 @@ public class LoginUserActivity extends AppCompatActivity implements Serializable
         }
     }
 
-    public static ArrayList<UserDistant> getLesUserDistants() { return LesUserDistants; }
+    public static ArrayList<UserDistant> getLesUserDistants() {
+        return LesUserDistants;
+    }
 
-
-    public static void setLesUserDistants(ArrayList<UserDistant> lesUserDistants) { LesUserDistants = lesUserDistants; }
+    public static void setLesUserDistants(ArrayList<UserDistant> lesUserDistants) {
+        LesUserDistants = lesUserDistants;
+    }
 }

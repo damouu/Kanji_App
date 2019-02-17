@@ -19,7 +19,6 @@ import java.util.List;
 public class SecondScreen extends AppCompatActivity {
     ArrayList<Kanji> Leskanjis = new ArrayList<Kanji>();
     List<String> fauxkanjis = new ArrayList<String>();
-    DataBaseHelper myDb;
     boolean reponse = false;
     int i = 0;
     int score = 0;
@@ -30,8 +29,8 @@ public class SecondScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.secondactivities);
-        myDb = new DataBaseHelper(this);
         user = (User) getIntent().getSerializableExtra("user");
+        //todo chqnger les test pr hiragana>
         niveauJLPT = getIntent().getExtras().getString("niveauJLPT");
         TextView JLPTView = (findViewById(R.id.JLPTView));
         TextView textView9 = (findViewById(R.id.textView9));
@@ -61,7 +60,7 @@ public class SecondScreen extends AppCompatActivity {
             editText5.setText("");
             i++;
             if (i == Leskanjis.size()) {
-                Intent intent = new Intent(SecondScreen.this, ThirdActivity.class);
+                Intent intent = new Intent(SecondScreen.this, ResultsKanjiTest.class);
                 intent.putExtra("score", score);
                 intent.putExtra("fauxkanjis", (ArrayList<String>) fauxkanjis);
                 intent.putExtra("user", user);

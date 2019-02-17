@@ -16,7 +16,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Admin extends AppCompatActivity implements Serializable {
-    private static DistantAccess distantAccess;
+    private static RemoteAccess remoteAccess;
     public static ArrayList<Kanji> LesKanjis;
     DataBaseHelper myDb;
     EditText editText;
@@ -34,7 +34,7 @@ public class Admin extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
         myDb = new DataBaseHelper(this);
-        distantAccess = new DistantAccess();
+        remoteAccess = new RemoteAccess();
         editText = findViewById(R.id.editText);
         editText4 = findViewById(R.id.editText4);
         editText5 = findViewById(R.id.editText5);
@@ -44,7 +44,7 @@ public class Admin extends AppCompatActivity implements Serializable {
         button6_Delete = findViewById(R.id.button6_Delete);
         Time_TextView = findViewById(R.id.Time_TextView);
         button5 = findViewById(R.id.button5);
-        distantAccess.envoi("TousLesKanjis", new JSONArray());
+        remoteAccess.envoi("TousLesKanjis", new JSONArray());
     }
 
     public static void setLesKanjis(ArrayList<Kanji> lesKanjis) {
@@ -81,7 +81,7 @@ public class Admin extends AppCompatActivity implements Serializable {
         if (editText.getText().toString().trim().length() == 0 || editText4.getText().toString().trim().length() == 0 || editText5.getText().toString().trim().length() == 0 || editText6.getText().toString().trim().length() == 0 || editText7.getText().toString().trim().length() == 0) {
             Toast.makeText(Admin.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
         } else {
-            distantAccess.envoi("enreg",kanji.convertToJSONArray());
+            remoteAccess.envoi("enreg",kanji.convertToJSONArray());
             Toast.makeText(Admin.this, "The Kanji" + " " + kanji.getCharactere() + " " + "has been added to the database", Toast.LENGTH_SHORT).show();
             editText.setText("Charactere");
             editText4.setText("NUMERO");

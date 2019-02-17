@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class SignInUserActivity extends AppCompatActivity implements Serializable {
     private static ArrayList<UserDistant> LesUserDistants;
-    private static DistantAccess distantAccess;
+    private static RemoteAccess remoteAccess;
     DataBaseHelper myDb;
     Button Create_Button;
     TextView Sign_Email;
@@ -43,8 +43,8 @@ public class SignInUserActivity extends AppCompatActivity implements Serializabl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_sign_in);
         LesUserDistants = new ArrayList<UserDistant>();
-        distantAccess = new DistantAccess();
-        distantAccess.envoi("AllUsers", new JSONArray());
+        remoteAccess = new RemoteAccess();
+        remoteAccess.envoi("AllUsers", new JSONArray());
         myDb = new DataBaseHelper(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -95,7 +95,7 @@ public class SignInUserActivity extends AppCompatActivity implements Serializabl
             if (counter >= 1) {
                 Toast.makeText(SignInUserActivity.this, "The email or pseudo are already taken ", Toast.LENGTH_SHORT).show();
             } else {
-                distantAccess.envoi("NewUser", userDistant.convertToJSONArray());
+                remoteAccess.envoi("NewUser", userDistant.convertToJSONArray());
                 myDb.InsertUser(user.getEmailAddress(), user.getPassword(), user.getPseudo(), Utils.getBytes(bitmap));
                 myDb.close();
                 Sign_Email.setText("EMAILAddress");

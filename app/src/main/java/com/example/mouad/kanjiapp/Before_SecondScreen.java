@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class Before_SecondScreen extends AppCompatActivity {
     User user;
-    private static DistantAccess distantAccess;
+    private static RemoteAccess remoteAccess;
     private static ArrayList<Kanji> Kanji_JLPT5_ArrayList;
     private static ArrayList<Kanji> Kanji_JLPT4_ArrayList;
     private static ArrayList<Kanji> Kanji_JLPT3_ArrayList;
@@ -29,8 +29,8 @@ public class Before_SecondScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_before__second_screen);
-        distantAccess = new DistantAccess();
-        distantAccess.envoi("TousLesKanjis", new JSONArray());
+        remoteAccess = new RemoteAccess();
+        remoteAccess.envoi("TousLesKanjis", new JSONArray());
         Button buttonHome = findViewById(R.id.button_Home);
         ListView listView = (ListView) findViewById(R.id.Historic_ListView);
         Kanji_JLPT5_ArrayList = new ArrayList<Kanji>();
@@ -43,7 +43,6 @@ public class Before_SecondScreen extends AppCompatActivity {
         user = (User) getIntent().getSerializableExtra("user");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, leskanjis);
         listView.setAdapter(adapter);
-        Kanji_JLPT5_ArrayList.size();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override

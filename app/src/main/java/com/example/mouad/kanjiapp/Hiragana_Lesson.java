@@ -38,7 +38,6 @@ public class Hiragana_Lesson extends AppCompatActivity {
         TextView textView4 = (TextView) findViewById(R.id.textView4);
         TextView textView5 = (TextView) findViewById(R.id.textView5);
         TextView textView6 = (TextView) findViewById(R.id.textView6);
-
         for (Hiragana hiragana : Leshiraganas) {
             i++;
             if (i == Leshiraganas.size()) {
