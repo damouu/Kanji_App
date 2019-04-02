@@ -331,7 +331,7 @@ public class RemoteAccess implements AsyncResponse {
             }
         }
     }
-//amine FDP
+//amine FDP 2
 
     public void envoi(String operation, JSONArray lesDonneesJSON) {
         HTTPAccess accesDonnees = new HTTPAccess();
