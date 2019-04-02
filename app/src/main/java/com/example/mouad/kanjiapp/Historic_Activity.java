@@ -24,7 +24,6 @@ public class Historic_Activity extends AppCompatActivity {
     public ArrayList<String> arrayList2;
     private static RemoteAccess remoteAccess;
     User user;
-    Cursor cursor;
     Button Home_Button;
     ArrayAdapter adapter;
     TextView Historic_View;
@@ -47,7 +46,6 @@ public class Historic_Activity extends AppCompatActivity {
         user = (User) getIntent().getSerializableExtra("user");
         Historic_View.setText("Your results historic " + user.getPseudo());
         LesTestHistoryUsers.size();
-
     }
 
     public void getTestButton(View v) {

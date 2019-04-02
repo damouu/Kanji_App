@@ -30,7 +30,6 @@ public class SecondScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.secondactivities);
         user = (User) getIntent().getSerializableExtra("user");
-        //todo chqnger les test pr hiragana>
         niveauJLPT = getIntent().getExtras().getString("niveauJLPT");
         TextView JLPTView = (findViewById(R.id.JLPTView));
         TextView textView9 = (findViewById(R.id.textView9));

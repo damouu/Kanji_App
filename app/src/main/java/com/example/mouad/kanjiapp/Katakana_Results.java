@@ -27,6 +27,7 @@ public class Katakana_Results extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Voici vos resultats ! ", Toast.LENGTH_LONG).show();
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dede);
         ListView.setAdapter(adapter);
+        //todo insert katakana test into remote database.
     }
 
     public void buttonHome(View v) {
